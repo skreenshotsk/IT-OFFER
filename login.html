@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="assets/css/style_common.css">
+    <link rel="stylesheet" href="assets/css/style_login.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="container">
+            <span class="logo">IT-ОФФЕР</span>
+            <nav>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="vacancies.html">Вакансии</a></li>
+                    <li><a href="profile.html">Профиль</a></li>
+                    <li>
+                        <button id="toggleButton">Контакты</button>
+                        <div id="dropdown" class="dropdown-content">
+                            <ul class="dropdown-list">
+                                <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+                                <li><a href="mailto:info@example.com">info@example.com</a></li>
+                                <li><a href="https://t.me/example">Telegram</a></li>
+                                <li><a href="https://wa.me/79991234567">WhatsApp</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <script src="scripts/script.js"></script>
+                </ul>
+            </nav>
+            <h3>Авторизация</h3>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <form action="auth.php" method="post">
+                    <div class="input-group">                        
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+    
+                    <div class="input-group">                        
+                        <input type="password" id="password" name="password" required placeholder="Enter your password">
+                        <img src="assets/images/eyeclose.png" id="eyeicon">
+                    </div>
+    
+                    <div class="input-group">
+                        <label for="rememberMe">
+                            <input type="checkbox" id="rememberMe" name="rememberMe"> Запомнить меня
+                        </label>
+                    </div>
+    
+                    <button type="submit">Войти</button>
+                </form>
+                <p><a href="register.html">Зарегистрироваться</a></p>
+                <p><a href="forgot-password.html">Забыли пароль?</a></p>
+            </section>
+            
+        </main>
+
+    </div>
+    <footer>
+        <div class="blocks container">
+            <div>
+                <span class="logo">IT-ОФФЕР</span>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </div>
+            <div>
+                <h4>Contact us</h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p>+908 89097 890</p>
+            </div>
+        </div>
+        <hr>
+        <p>Copyright ® 2021 Lorem All rights Rcerved</p>
+    </footer>
+    <script>
+        let eyeicon = document.getElementById("eyeicon");
+        let password = document.getElementById("password");
+        eyeicon.onclick = function(){
+            if (password.type=="password"){
+                password.type="text";
+                eyeicon.src = "assets/images/eyeopen.png"
+            }
+            else{
+                password.type="password";
+                eyeicon.src = "assets/images/eyeclose.png"
+            }
+        }
+    </script>
+</body>
+</html>

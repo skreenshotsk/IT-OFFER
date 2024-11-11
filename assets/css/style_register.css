@@ -1,0 +1,62 @@
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="tel"],
+.form-section input[type="password"],
+.form-section select,
+.form-section textarea,
+.form-section input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-section input[type="text"]:focus,
+.form-section input[type="email"]:focus,
+.form-section input[type="tel"]:focus,
+.form-section input[type="password"]:focus,
+.form-section select:focus,
+.form-section textarea:focus,
+.form-section input[type="file"]:focus {
+    border-color: #FA8305;
+    outline: none;
+}
+
+.form-section .disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.checkbox-list {
+    max-height: 150px; /* Установите максимальную высоту для отображения части списка */
+    overflow-y: auto; /* Добавьте полосу прокрутки */
+    border: 1px solid #000000;
+    padding: 10px;
+    width: 200px;
+    margin-bottom: 25px;
+}
+
+/* Кнопка войти */
+main p {
+    margin: 10px 0;
+    text-align: center;
+}
+
+main a {
+    color: #ffffff; /* Белый цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: bold; /* Жирный шрифт */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Плавный переход */
+}
+
+main a:hover {
+    color: #FA8305; /* Цвет текста при наведении */
+    text-shadow: 0 0 10px rgba(250, 131, 5, 0.5); /* Тень при наведении */
+}
+
+main a:hover {
+    color: #9c9c9c;
+}

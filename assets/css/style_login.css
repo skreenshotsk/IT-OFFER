@@ -1,0 +1,78 @@
+.input-group {
+    position: relative;
+    margin-bottom: 5px;
+}
+/* тут подгонять изображение глаза под место */
+.input-group img {
+    position: absolute;
+    right: -10px;
+    left: auto;/* Этот, предыдущий и следующий параметр меняй и подгонишь если сьехал глаз */
+    top: 30%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 30px; /* Устанавливаем ширину изображения */
+    height: 30px;
+}
+.input-group label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.input-group input[type="email"],
+.input-group input[type="password"],
+.input-group input[type="text"]
+ {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-group input[type="checkbox"] {
+    margin-right: 5px;
+}
+/* Сделал более красивые кнопки зарегистрироваться и забыли пароль на экране входа */
+main p {
+    margin: 10px 0;
+    text-align: center;
+}
+
+main a {
+    color: #ffffff; /* Белый цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: bold; /* Жирный шрифт */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Плавный переход */
+}
+
+main a:hover {
+    color: #FA8305; /* Цвет текста при наведении */
+    text-shadow: 0 0 10px rgba(250, 131, 5, 0.5); /* Тень при наведении */
+}
+
+main a:hover {
+    color: #9c9c9c;
+}
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-section input[type="text"]:focus,
+.form-section input[type="email"]:focus,
+.form-section input[type="password"]:focus {
+    border-color: #FA8305;
+    outline: none;
+}
+
+.form-section .disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}

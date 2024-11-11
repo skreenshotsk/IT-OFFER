@@ -1,0 +1,99 @@
+.profile-section {
+    padding: 20px;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+.profile-section h3 {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 50px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.profile-section p {
+    margin: 10px 0;
+    font-size: 30px;
+    text-align: left;
+    color: #ffffff;
+}
+
+.profile-section strong {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.profile-section .highlight {
+    background-color: #886866; 
+    padding: 2px 5px;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+.profile-actions {
+    margin-top: 20px; 
+    padding: 0;   
+}
+
+main .profile-actions button[type ="profile-button"], .edit-button {
+    position: relative;
+    display: flex;
+    font-size: 26px;
+    font-weight: 600;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+    border: none;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;    
+}
+
+
+
+
+
+
+
+#editProfileForm {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#editProfileForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+#editProfileForm input, #editProfileForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#editProfileForm button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#editProfileForm button:hover {
+    background-color: #218838;
+}

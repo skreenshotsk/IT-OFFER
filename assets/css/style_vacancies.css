@@ -1,0 +1,140 @@
+/* Стили для кнопки фильтра */
+.filter-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для опций фильтра */
+.filter-options {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
+
+/* Стили для списка вакансий */
+/* Стили для секции вакансий */
+.vacancies-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.vacancies-section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Стили для кнопки фильтра */
+.filter-button {
+    background-color: #007bff;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для опций фильтра */
+.filter-options {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+}
+
+.filter-options label {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.filter-options input {
+    padding: 5px;
+    border: 1px solid #fafafa;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.apply-filter-button {
+    background-color: #28a745;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.apply-filter-button:hover {
+    background-color: #218838;
+}
+
+/* Стили для списка вакансий */
+.vacancies-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.vacancy {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.vacancy:hover {
+    background-color: #c2bdbd;
+}
+
+.vacancy h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.vacancy p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #000000;
+}
+.vacancy ul li  {
+    color: #000000;
+}
+
+.checkbox-list {
+    max-height: 150px; /* Установите максимальную высоту для отображения части списка */
+    overflow-y: auto; /* Добавьте полосу прокрутки */
+    border: 1px solid #000000;
+    padding: 10px;
+    width: 200px;
+    margin-bottom: 25px;
+}

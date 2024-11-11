@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="assets/css/style_common.css">
+    <link rel="stylesheet" href="assets/css/style_register.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="container">
+            <span class="logo">IT-ОФФЕР</span>
+            <nav>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="vacancies.html">Вакансии</a></li>
+                    <li><a href="profile.html">Профиль</a></li>
+                    <li>
+                        <button id="toggleButton">Контакты</button>
+                        <div id="dropdown" class="dropdown-content">
+                            <ul class="dropdown-list">
+                                <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+                                <li><a href="mailto:info@example.com">info@example.com</a></li>
+                                <li><a href="https://t.me/example">Telegram</a></li>
+                                <li><a href="https://wa.me/79991234567">WhatsApp</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <script src="scripts/script.js"></script>
+                </ul>
+            </nav>
+            <h3>Регистрация</h3>
+        </header>
+        <main>
+            <section class="form-section">
+                <form action="registration.php" method="post" id="registrationForm">
+                    <label for="role">Выберите роль:</label>
+                    <select id="role" name="role" required>
+                        <option value="notSelected">---------</option>
+                        <option value="candidate">Соискатель</option>
+                        <option value="employer">Работодатель</option>
+                    </select>
+            
+                    <!-- Общие поля -->
+                    <div id="commonFields" class="disabled">
+                        <label for="name">Имя:</label>
+                        <input type="text" id="name" name="name" required disabled>
+
+                        <label for="surname">Фамилия:</label>
+                        <input type="text" id="surname" name="surname" required disabled>
+            
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required disabled placeholder="example@rtxty.com">
+            
+                        <label for="phone">Номер телефона:</label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" required disabled placeholder="8__________">
+            
+                        <label for="password">Пароль:</label>
+                        <input type="password" id="password" name="password" required disabled placeholder="Должен состоять минимум из 8 символов">
+            
+                        <label for="confirm-password">Подтверждение пароля:</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required disabled>
+                    </div>
+            
+                    <!-- Поля для кандидата -->
+                    <div id="candidateFields" style="display: none;">
+                        <label for="education">Образование:</label>
+                        <select id="education" name="education" required>
+                            <option value="none">Без образования</option>
+                            <option value="secondary">Среднее-профессиональное</option>
+                            <option value="higher">Высшее</option>
+                        </select>
+            
+                        <label for="experience">Опыт работы:</label>
+                        <textarea id="experience" name="experience" required></textarea>
+            
+                        <label for="skills">Ключевые навыки:</label>
+                        <div class="checkbox-list" id="checkboxList">
+                            <label><input type="checkbox" value="HTML"> HTML</label><br>
+                            <label><input type="checkbox" value="CSS"> CSS</label><br>
+                            <label><input type="checkbox" value="JavaScript"> JavaScript</label><br>
+                            <label><input type="checkbox" value="Python"> Python</label><br>
+                            <label><input type="checkbox" value="Java"> Java</label><br>
+                            <label><input type="checkbox" value="C++"> C++</label><br>
+                            <label><input type="checkbox" value="C#"> C#</label><br>
+                            <label><input type="checkbox" value="Ruby"> Ruby</label><br>
+                            <label><input type="checkbox" value="PHP"> PHP</label><br>
+                            <label><input type="checkbox" value="Swift"> Swift</label><br>
+                            <label><input type="checkbox" value="Kotlin"> Kotlin</label><br>
+                            <label><input type="checkbox" value="Go"> Go</label><br>
+                            <label><input type="checkbox" value="Rust"> Rust</label><br>
+                            <label><input type="checkbox" value="TypeScript"> TypeScript</label><br>
+                            <label><input type="checkbox" value="SQL"> SQL</label><br>
+                            <label><input type="checkbox" value="R"> R</label><br>
+                            <label><input type="checkbox" value="MATLAB"> MATLAB</label><br>
+                            <label><input type="checkbox" value="Perl"> Perl</label><br>
+                            <label><input type="checkbox" value="Scala"> Scala</label><br>
+                            <label><input type="checkbox" value="Haskell"> Haskell</label><br>
+                        </div>
+            
+                        <label for="projects">Описание проектов:</label>
+                        <textarea id="projects" name="projects"></textarea>
+            
+                        <label for="projectLinks">Ссылки на проекты:</label>
+                        <input type="text" id="projectLinks" name="projectLinks">
+                    </div>
+            
+                    <!-- Поля для работодателя -->
+                    <div id="employerFields" style="display: none;">
+                        <label for="companyName">Название компании:</label>
+                        <input type="text" id="companyName" name="companyName" required>
+            
+                        <label for="companyDescription">Описание деятельности:</label>
+                        <textarea id="companyDescription" name="companyDescription" required></textarea>
+            
+                        <label for="legalAddress">Юридический адрес:</label>
+                        <input type="text" id="legalAddress" name="legalAddress">
+            
+                        <label for="companyProjects">Описание проектов:</label>
+                        <textarea id="companyProjects" name="companyProjects"></textarea>
+            
+                        <label for="projectPhotos">Фото проектов:</label>
+                        <input type="file" id="projectPhotos" name="projectPhotos" multiple>
+            
+                        <label for="companyLogo">Логотип компании:</label>
+                        <input type="file" id="companyLogo" name="companyLogo">
+            
+                        <label for="companyWebsite">Сайт компании:</label>
+                        <input type="url" id="companyWebsite" name="companyWebsite">
+                    </div>
+                    <button type="submit" >Зарегистрироваться</button>
+                    
+                </form>
+                <p>Уже есть аккаунт? <a href="login.html">Войти</a></p>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <div class="blocks container">
+            <div>
+                <span class="logo">IT-ОФФЕР</span>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </div>
+            <div>
+                <h4>Contact us</h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p>+908 89097 890</p>
+            </div>
+        </div>
+        <hr>
+        <p>Copyright ® 2021 Lorem All rights Rcerved</p>
+    </footer>
+    <script>
+        document.getElementById('role').addEventListener('change', function() {
+            var candidateFields = document.getElementById('candidateFields');
+            var employerFields = document.getElementById('employerFields');
+            if (this.value === 'notSelected') {
+                candidateFields.style.display = 'none';
+                employerFields.style.display = 'none';
+            } else if (this.value === 'candidate') {
+                candidateFields.style.display = 'block';
+                employerFields.style.display = 'none';
+            } else if (this.value === 'employer') {
+                candidateFields.style.display = 'none';
+                employerFields.style.display = 'block';
+            }
+        });
+    </script>
+    <!-- это скрипт для того чтобы до выбора роли была закрыта возможность ввода информации в поля фио почта номер телефона и тд (общие поля) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const roleSelect = document.getElementById('role');
+            const commonFields = document.getElementById('commonFields');
+            const candidateFields = document.getElementById('candidateFields');
+            const employerFields = document.getElementById('employerFields');
+    
+            roleSelect.addEventListener('change', function() {
+                if (roleSelect.value === 'notSelected') {
+                    commonFields.classList.add('disabled');
+                    commonFields.querySelectorAll('input, textarea').forEach(input => input.disabled = true);
+                    candidateFields.style.display = 'none';
+                    employerFields.style.display = 'none';
+                } else {
+                    commonFields.classList.remove('disabled');
+                    commonFields.querySelectorAll('input, textarea').forEach(input => input.disabled = false);
+    
+                    if (roleSelect.value === 'candidate') {
+                        candidateFields.style.display = 'block';
+                        employerFields.style.display = 'none';
+                    } else if (roleSelect.value === 'employer') {
+                        candidateFields.style.display = 'none';
+                        employerFields.style.display = 'block';
+                    }
+                }
+            });
+    
+            // Инициализация Select2 для ключевых навыков
+            $('#skills').select2({
+                placeholder: 'Выберите ключевые навыки',
+                allowClear: true,
+                width: '100%',
+                templateResult: function (data, container) {
+                    if (data.element) {
+                        return $('<span><input type="checkbox" checked="checked" /> ' + data.text + '</span>');
+                    }
+                    return data.text;
+                },
+                escapeMarkup: function (markup) {
+                    return markup;
+                }
+            });
+        });
+    </script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="assets/css/style_common.css">
+    <link rel="stylesheet" href="assets/css/style_profile.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="container">
+            <span class="logo">IT-ОФФЕР</span>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="vacancies.html">Вакансии</a></li>
+                    <li class="active"><a href="profile.html">Профиль</a></li>
+                    <li>
+                        <button id="toggleButton">Контакты</button>
+                        <div id="dropdown" class="dropdown-content">
+                            <ul class="dropdown-list">
+                                <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+                                <li><a href="mailto:info@example.com">info@example.com</a></li>
+                                <li><a href="https://t.me/example">Telegram</a></li>
+                                <li><a href="https://wa.me/79991234567">WhatsApp</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <script src="scripts/script.js"></script>
+                </ul>
+            </nav>
+            
+        </header>
+        <main>
+            <section class="profile-section">
+                <h3>Ваш профиль</h3>
+                <div id="profile-info">
+                    <!-- Информация о пользователе будет загружена с помощью JavaScript -->
+                </div>
+                <div class="profile-actions">
+                    <button id="editProfileButton" class="edit-button">Редактировать</button>
+                    <button type="profile-button" onclick="location.href='responses.html'">Отклики</button>
+                    <!-- <button type="profile-button" >Чаты</button> -->
+                    <!-- <button type="profile-button" onclick="location.href='resume.html'">Мое резюме</button> -->                    
+                </div>
+                <div id="editProfileForm" style="display: none;">
+                    <form id="profileForm">
+                        <label for="editName">ФИО:</label>
+                        <input type="text" id="editName" name="name"><br>
+                        <label for="editEmail">Email:</label>
+                        <input type="email" id="editEmail" name="email"><br>
+                        <label for="editPhone">Номер телефона:</label>
+                        <input type="tel" id="editPhone" name="phone"><br>
+                        <label for="editEducation">Образование:</label>
+                        <input type="text" id="editEducation" name="education"><br>
+                        <label for="editExperience">Опыт работы:</label>
+                        <textarea id="editExperience" name="experience"></textarea><br>
+                        <label for="editSkills">Ключевые навыки:</label>
+                        <input type="text" id="editSkills" name="skills"><br>
+                        <label for="editProjects">Описание проектов:</label>
+                        <textarea id="editProjects" name="projects"></textarea><br>
+                        <label for="editProjectLinks">Ссылки на проекты:</label>
+                        <input type="text" id="editProjectLinks" name="projectLinks"><br>
+                        <button type="button" id="saveProfileButton" class="save-button">Сохранить</button>
+                        <button type="button" id="cancelEditButton" class="cancel-button">Отмена</button>
+                    </form>
+                </div>
+            </section>
+        </main>        
+    </div>
+    <footer>
+        <div class="blocks container">
+            <div>
+                <span class="logo">IT-ОФФЕР</span>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </div>
+            <div>
+                <h4>Contact us</h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p>+908 89097 890</p>
+            </div>
+        </div>
+        <hr>
+        <p>Copyright ® 2021 Lorem All rights Rcerved</p>
+    </footer>
+    <script>
+        // Пример загрузки данных пользователя (замените на реальную логику)
+        const userData = {
+            name: "Иван Иванов",
+            email: "ivan@example.com",
+            phone: "+7(999)123-45-67",
+            education: "Высшее",
+            experience: "5 лет опыта в разработке веб-приложений",
+            skills: ["HTML", "CSS", "JavaScript", "Python"],
+            projects: "Разработка веб-сайта для компании XYZ",
+            projectLinks: "https://example.com/project"
+        };
+
+        const profileInfo = document.getElementById('profile-info');
+        const editProfileForm = document.getElementById('editProfileForm');
+        const editProfileButton = document.getElementById('editProfileButton');
+        const saveProfileButton = document.getElementById('saveProfileButton');
+        const cancelEditButton = document.getElementById('cancelEditButton');
+
+        function displayProfileInfo() {
+            profileInfo.innerHTML = `
+                <p><strong>ФИО:</strong> <span class="highlight">${userData.name}</span></p>
+                <p><strong>Email:</strong> <span class="highlight">${userData.email}</span></p>
+                <p><strong>Номер телефона:</strong> <span class="highlight">${userData.phone}</span></p>
+                <p><strong>Образование:</strong> <span class="highlight">${userData.education}</span></p>
+                <p><strong>Опыт работы:</strong> <span class="highlight">${userData.experience}</span></p>
+                <p><strong>Ключевые навыки:</strong> <span class="highlight">${userData.skills.join(', ')}</span></p>
+                <p><strong>Описание проектов:</strong> <span class="highlight">${userData.projects}</span></p>
+                <p><strong>Ссылки на проекты:</strong> <span class="highlight"><a href="${userData.projectLinks}" target="_blank">${userData.projectLinks}</a></span></p>
+            `;
+        }
+
+        function displayEditForm() {
+            document.getElementById('editName').value = userData.name;
+            document.getElementById('editEmail').value = userData.email;
+            document.getElementById('editPhone').value = userData.phone;
+            document.getElementById('editEducation').value = userData.education;
+            document.getElementById('editExperience').value = userData.experience;
+            document.getElementById('editSkills').value = userData.skills.join(', ');
+            document.getElementById('editProjects').value = userData.projects;
+            document.getElementById('editProjectLinks').value = userData.projectLinks;
+        }
+
+        function saveProfile() {
+            userData.name = document.getElementById('editName').value;
+            userData.email = document.getElementById('editEmail').value;
+            userData.phone = document.getElementById('editPhone').value;
+            userData.education = document.getElementById('editEducation').value;
+            userData.experience = document.getElementById('editExperience').value;
+            userData.skills = document.getElementById('editSkills').value.split(', ');
+            userData.projects = document.getElementById('editProjects').value;
+            userData.projectLinks = document.getElementById('editProjectLinks').value;
+
+            displayProfileInfo();
+            editProfileForm.style.display = 'none';
+            profileInfo.style.display = 'block';
+        }
+
+        editProfileButton.addEventListener('click', function() {
+            displayEditForm();
+            profileInfo.style.display = 'none';
+            editProfileForm.style.display = 'block';
+        });
+
+        saveProfileButton.addEventListener('click', saveProfile);
+
+        cancelEditButton.addEventListener('click', function() {
+            profileInfo.style.display = 'block';
+            editProfileForm.style.display = 'none';
+        });
+
+        displayProfileInfo();
+    </script>
+</body>
+</html>
