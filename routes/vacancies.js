@@ -8,9 +8,14 @@ router.get('/', async (req, res) => {
     try {
         // Получаем все вакансии из базы данных
         const vacancies = await vacancyModel.getAllVacancies();
+        const vacancySkills = await vacancyModel.getVacancySkills();
         
         // Логируем вакансии для отладки
+        console.log("-----------------");
         console.log(vacancies);
+        console.log("-----------------");
+        console.log(vacancySkills);
+        console.log("-----------------");
 
         // Получаем список навыков из базы данных
         const skills = await skillModel.getAllSkills();
@@ -22,7 +27,8 @@ router.get('/', async (req, res) => {
         res.render('vacancies', { 
             title: 'Вакансии',
             vacancies: vacancies,
-            skills: skills 
+            skills: skills,
+            vacancySkills: vacancySkills,
         });
     } catch (err) {
         console.error('Ошибка при получении данных вакансий:', err);

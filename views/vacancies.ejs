@@ -29,10 +29,13 @@
                     <% vacancies.forEach(function(vacancy) { %>
                         <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= Array.isArray(vacancy.skills) ? vacancy.skills.join(',') : '' %>">
                             <h3><%= vacancy.title %></h3>
-                            <p>Компания: <%= vacancy.company_name %></p> <!-- Добавляем компанию, если есть -->
-                            <p>Зарплата: $<%= vacancy.salary_max %></p>
+                            <p>Компания: <%= vacancy.company_name %></p>
+                            <p>Зарплата: <%= vacancy.salary_max %> ₽</p>
                             <p>Описание: <%= vacancy.description %></p>
-                            <p>Ключевые навыки: <%= Array.isArray(vacancy.skills) ? vacancy.skills.join(', ') : 'Не указаны' %></p>
+                            <p>Ключевые навыки: </p>
+                            <% vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).forEach(function(skill) { %>
+                                <p><%= skill.skill_name %></p>
+                            <% }) %>
                             <div class="extended-description" style="display: none;">
                                 <p>Расширенное описание:</p>
                                 <p><%= vacancy.extended_description || 'Не указано' %></p>
@@ -40,8 +43,8 @@
                             <button class="response-button">Отклик</button>
                             <button class="delete-button">Удалить</button>
                         </div>
-                    <% }) %>                    
-                </div>
+                    <% }) %>
+                </div>                
             </section>            
         </main>
     </div>
