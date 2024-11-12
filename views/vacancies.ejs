@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/assets/css/style_common.css">
+    <link rel="stylesheet" href="/assets/css/style_vacancies.css">
+</head>
+<body>
+    <div class="wrapper">
+        <%- include('partials/header') %> <!-- Включение header -->
+        
+        <main>
+            <section class="vacancies-section">
+                <h2>Список вакансий</h2>
+                <button id="filterButton" class="filter-button">Фильтр</button>
+                <div id="filterOptions" class="filter-options" style="display: none;">
+                    <label for="salaryFilter">Зарплата:</label>
+                    <input type="number" id="salaryFilter" placeholder="Минимальная зарплата">
+                    <div class="checkbox-list" id="checkboxList">
+                        <% skills.forEach(function(skill) { %>
+                            <label><input type="checkbox" value="<%= skill %>"> <%= skill.skill_name %></label><br>
+                        <% }) %>
+                    </div>
+                    <button id="applyFilter" class="apply-filter-button">Применить</button>
+                </div>
+                <div id="vacanciesList" class="vacancies-list">
+                    <% vacancies.forEach(function(vacancy) { %>
+                        <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= Array.isArray(vacancy.skills) ? vacancy.skills.join(',') : '' %>">
+                            <h3><%= vacancy.title %></h3>
+                            <p>Компания: <%= vacancy.company_name %></p> <!-- Добавляем компанию, если есть -->
+                            <p>Зарплата: $<%= vacancy.salary_max %></p>
+                            <p>Описание: <%= vacancy.description %></p>
+                            <p>Ключевые навыки: <%= Array.isArray(vacancy.skills) ? vacancy.skills.join(', ') : 'Не указаны' %></p>
+                            <div class="extended-description" style="display: none;">
+                                <p>Расширенное описание:</p>
+                                <p><%= vacancy.extended_description || 'Не указано' %></p>
+                            </div>
+                            <button class="response-button">Отклик</button>
+                            <button class="delete-button">Удалить</button>
+                        </div>
+                    <% }) %>                    
+                </div>
+            </section>            
+        </main>
+    </div>
+    <%- include('partials/footer') %> <!-- Включение footer -->
+    
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/vacancies.js"></script>
+</body>
+</html>
