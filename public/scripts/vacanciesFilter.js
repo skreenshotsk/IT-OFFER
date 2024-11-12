@@ -10,7 +10,13 @@ document.getElementById('applyFilter').addEventListener('click', () => {
 
     vacancies.forEach(vacancy => {
         const salary = parseInt(vacancy.dataset.salary);
-        const skills = vacancy.dataset.skills.split(', ');
+        const skills = vacancy.dataset.skills.split(',').filter(skill => skill.trim() !== '');
+
+        // Отладка: вывод данных в консоль
+        console.log('Salary:', salary);
+        console.log('Skills:', skills);
+        console.log('Salary Filter:', salaryFilter);
+        console.log('Selected Skills:', selectedSkills);
 
         if ((salary >= salaryFilter || !salaryFilter) &&
             selectedSkills.every(skill => skills.includes(skill))) {

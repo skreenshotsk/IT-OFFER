@@ -20,14 +20,14 @@
                     <input type="number" id="salaryFilter" placeholder="Минимальная зарплата">
                     <div class="checkbox-list" id="checkboxList">
                         <% skills.forEach(function(skill) { %>
-                            <label><input type="checkbox" value="<%= skill %>"> <%= skill.skill_name %></label><br>
+                            <label><input type="checkbox" value="<%= skill.skill_name %>"> <%= skill.skill_name %></label><br>
                         <% }) %>
                     </div>
                     <button id="applyFilter" class="apply-filter-button">Применить</button>
                 </div>
                 <div id="vacanciesList" class="vacancies-list">
                     <% vacancies.forEach(function(vacancy) { %>
-                        <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= Array.isArray(vacancy.skills) ? vacancy.skills.join(',') : '' %>">
+                        <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
                             <h3><%= vacancy.title %></h3>
                             <p>Компания: <%= vacancy.company_name %></p>
                             <p>Зарплата: <%= vacancy.salary_max %> ₽</p>
@@ -44,13 +44,13 @@
                             <button class="delete-button">Удалить</button>
                         </div>
                     <% }) %>
-                </div>                
+                </div>               
             </section>            
         </main>
     </div>
     <%- include('partials/footer') %> <!-- Включение footer -->
     
     <script src="/scripts/script.js"></script>
-    <script src="/scripts/vacancies.js"></script>
+    <script src="/scripts/vacanciesFilter.js"></script>
 </body>
 </html>
