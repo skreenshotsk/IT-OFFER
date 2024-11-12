@@ -17,8 +17,8 @@ CREATE TABLE candidates (
     telegram_id VARCHAR(50),
     education VARCHAR(50),
     experience TEXT,
-    portfolio_links TEXT[],
-    project_description TEXT[]
+    portfolio_links TEXT,
+    project_description TEXT
 );
 
 CREATE TABLE employers (
@@ -30,7 +30,7 @@ CREATE TABLE employers (
     legal_address TEXT,
     project_photo BYTEA,
     company_logo BYTEA,
-    project_description TEXT[]
+    project_description TEXT
 );
 
 CREATE TABLE vacancies (
@@ -89,76 +89,86 @@ CREATE TABLE resume_applications (
     applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Очистка данных
+TRUNCATE TABLE resume_applications CASCADE;
+TRUNCATE TABLE resumes CASCADE;
+TRUNCATE TABLE applications CASCADE;
+TRUNCATE TABLE vacancy_skills CASCADE;
+TRUNCATE TABLE candidate_skills CASCADE;
+TRUNCATE TABLE skills CASCADE;
+TRUNCATE TABLE vacancies CASCADE;
+TRUNCATE TABLE employers CASCADE;
+TRUNCATE TABLE candidates CASCADE;
+TRUNCATE TABLE users CASCADE;
 
--- Добавляем пользователей
-INSERT INTO users (first_name, last_name, email, phone_num, password_hash, user_type) VALUES
-('John', 'Doe', 'johndoe@example.com', '123-456-7890', 'hashed_password_1', 'candidate'),
-('Jane', 'Smith', 'janesmith@example.com', '987-654-3210', 'hashed_password_2', 'employer'),
-('Mike', 'Brown', 'mikebrown@example.com', '555-123-4567', 'hashed_password_3', 'candidate'),
-('Lisa', 'Taylor', 'lisataylor@example.com', '555-987-6543', 'hashed_password_4', 'employer'),
-('Emily', 'Johnson', 'emilyj@example.com', '555-234-5678', 'hashed_password_5', 'candidate');
+-- Таблица users
+INSERT INTO users (first_name, last_name, email, phone_num, password_hash, user_type)
+VALUES
+('Иван', 'Иванов', 'ivanov@example.com', '+79161234567', 'hashed_password_1', 'candidate'),
+('Мария', 'Смирнова', 'smirnova@example.com', '+79261234567', 'hashed_password_2', 'candidate'),
+('Алексей', 'Петров', 'petrov@example.com', '+79361234567', 'hashed_password_3', 'employer'),
+('Елена', 'Кузнецова', 'kuznetsova@example.com', '+79461234567', 'hashed_password_4', 'employer');
 
--- Добавляем кандидатов
-INSERT INTO candidates (user_id, phone, telegram_id, education, experience, portfolio_links, project_description) VALUES
-(1, '123-456-7890', '@johndoe', 'Bachelor of Science in Computer Science', '3 years in software development', ARRAY['https://github.com/johndoe', 'https://johndoeportfolio.com'], ARRAY['Project 1 description', 'Project 2 description']),
-(3, '555-123-4567', '@mikebrown', 'Master of Data Science', '2 years in data analysis', ARRAY['https://github.com/mikebrown', 'https://mikebrownportfolio.com'], ARRAY['Data Analysis Project', 'ML Project']),
-(5, '555-234-5678', '@emilyj', 'Bachelor of Engineering', '4 years in hardware engineering', ARRAY['https://github.com/emilyj', 'https://emilyjportfolio.com'], ARRAY['Hardware Project 1', 'Embedded Systems']);
+-- Таблица candidates
+INSERT INTO candidates (user_id, phone, telegram_id, education, experience, portfolio_links, project_description)
+VALUES
+(1, '+79161234567', '@ivanov', 'Высшее', '5 лет в разработке ПО', 'https://portfolio-ivanov.ru', 'Разработка приложения для анализа данных'),
+(2, '+79261234567', '@smirnova', 'Высшее', '3 года в дизайне', 'https://portfolio-smirnova.ru', 'Создание дизайн-проектов для веб-платформ');
 
--- Добавляем работодателей
-INSERT INTO employers (user_id, company_name, description, website, legal_address, project_photo, company_logo, project_description) VALUES
-(2, 'Tech Solutions Inc.', 'A leading tech company.', 'https://techsolutions.com', '123 Tech Street', NULL, NULL, ARRAY['Tech Project 1', 'Tech Project 2']),
-(4, 'Green Energy Corp.', 'Renewable energy solutions.', 'https://greenenergy.com', '456 Green Ave', NULL, NULL, ARRAY['Solar Panel Project', 'Wind Energy Project']);
+-- Таблица employers
+INSERT INTO employers (user_id, company_name, description, website, legal_address, project_description)
+VALUES
+(3, 'ООО "ТехСтар"', 'Компания-разработчик ПО', 'https://techstar.ru', 'г. Москва, ул. Тверская, д. 10', 'Проектирование сложных IT-систем'),
+(4, 'ООО "ДизайнПро"', 'Дизайн-студия', 'https://designpro.ru', 'г. Санкт-Петербург, Невский проспект, д. 20', 'Разработка брендинга и визуальной айдентики');
 
--- Добавляем вакансии
-INSERT INTO vacancies (employer_id, title, description, salary_min, salary_max, currency, employment_type, location) VALUES
-(1, 'Software Developer', 'Develop and maintain software applications.', 50000, 70000, 'USD', 'Full-time', 'New York'),
-(1, 'Data Analyst', 'Analyze data and create reports.', 45000, 60000, 'USD', 'Part-time', 'San Francisco'),
-(2, 'Electrical Engineer', 'Design and implement electrical systems.', 55000, 75000, 'USD', 'Full-time', 'Austin'),
-(2, 'Mechanical Engineer', 'Work on mechanical systems and devices.', 52000, 72000, 'USD', 'Full-time', 'Dallas');
+-- Таблица vacancies
+INSERT INTO vacancies (employer_id, title, description, salary_min, salary_max, currency, employment_type, location)
+VALUES
+(1, 'Программист Python', 'Разработка и поддержка приложений', 100000, 150000, 'RUB', 'Полная занятость', 'Москва'),
+(2, 'Графический дизайнер', 'Создание графического контента для брендов', 80000, 120000, 'RUB', 'Удаленная работа', 'Санкт-Петербург');
 
--- Добавляем навыки
-INSERT INTO skills (skill_name) VALUES
+-- Таблица skills
+INSERT INTO skills (skill_name)
+VALUES
 ('Python'),
-('JavaScript'),
-('Data Analysis'),
-('Project Management'),
-('Electrical Engineering'),
-('Mechanical Engineering'),
-('Machine Learning');
+('SQL'),
+('Django'),
+('FastAPI'),
+('Adobe Photoshop'),
+('Figma');
 
--- Добавляем навыки кандидатов
-INSERT INTO candidate_skills (candidate_id, skill_id) VALUES
+-- Таблица candidate_skills
+INSERT INTO candidate_skills (candidate_id, skill_id)
+VALUES
 (1, 1), -- Python
-(1, 2), -- JavaScript
-(3, 3), -- Data Analysis
-(3, 7), -- Machine Learning
-(5, 5), -- Electrical Engineering
-(5, 6); -- Mechanical Engineering
+(1, 2), -- SQL
+(1, 3), -- Django
+(2, 5), -- Adobe Photoshop
+(2, 6); -- Figma
 
--- Добавляем навыки вакансий
-INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES
+-- Таблица vacancy_skills
+INSERT INTO vacancy_skills (vacancy_id, skill_id)
+VALUES
 (1, 1), -- Python
-(1, 2), -- JavaScript
-(2, 3), -- Data Analysis
-(3, 5), -- Electrical Engineering
-(4, 6); -- Mechanical Engineering
+(1, 2), -- SQL
+(1, 3), -- Django
+(2, 5), -- Adobe Photoshop
+(2, 6); -- Figma
 
--- Добавляем заявки на вакансии
-INSERT INTO applications (candidate_id, vacancy_id, status) VALUES
+-- Таблица applications
+INSERT INTO applications (candidate_id, vacancy_id, status)
+VALUES
 (1, 1, 'pending'),
-(1, 2, 'accepted'),
-(3, 2, 'rejected'),
-(3, 3, 'pending'),
-(5, 4, 'pending');
+(2, 2, 'approved');
 
--- Добавляем резюме
-INSERT INTO resumes (candidate_id, title, description, expected_salary, currency) VALUES
-(1, 'Software Developer Resume', 'Experienced in full-stack development.', 65000, 'USD'),
-(3, 'Data Analyst Resume', 'Skilled in data science and analytics.', 60000, 'USD'),
-(5, 'Electrical Engineer Resume', 'Expert in electrical and mechanical systems.', 70000, 'USD');
+-- Таблица resumes
+INSERT INTO resumes (candidate_id, title, description, expected_salary, currency)
+VALUES
+(1, 'Программист Python', 'Опыт в разработке сложных веб-приложений', 150000, 'RUB'),
+(2, 'Графический дизайнер', 'Креативный подход к задачам', 120000, 'RUB');
 
--- Добавляем отклики на резюме
-INSERT INTO resume_applications (employer_id, resume_id, status) VALUES
+-- Таблица resume_applications
+INSERT INTO resume_applications (employer_id, resume_id, status)
+VALUES
 (1, 1, 'pending'),
-(2, 2, 'accepted'),
-(2, 3, 'rejected');
+(2, 2, 'approved');
