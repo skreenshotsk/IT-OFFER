@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 
-const vacanciesRoutes = require('./routes/vacancies')
+const vacanciesRoutes = require('./routes/vacancies');
+const registerRoutes = require('./routes/register');
 
 const app = express();
 const PORT = 8000;
@@ -12,9 +13,11 @@ app.set('views', path.join(__dirname, 'views'));  // Установка папк
 app.set('view engine', 'ejs');  // Установка движка шаблонов
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Подключение маршрутов
 app.use('/vacancies', vacanciesRoutes);
+app.use('/register', registerRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
