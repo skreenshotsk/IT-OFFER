@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вакансии</title>
-    <link rel="stylesheet" href="assets/css/style_common.css">
     <link rel="stylesheet" href="assets/css/style_vacancies.css">
+    <link rel="stylesheet" href="assets/css/style_common.css">
+    
 </head>
 <body>
     <div class="wrapper">
@@ -35,7 +36,9 @@
         <main>
             <section class="vacancies-section">
                 <h2>Список вакансий</h2>
-                <button id="filterButton" class="filter-button">Фильтр</button>
+                <div class="filter-button">
+                    <button id="filterButton">Фильтр</button>
+                </div>
                 <div id="filterOptions" class="filter-options" style="display: none;">
                     <label for="salaryFilter">Зарплата:</label>
                     <input type="number" id="salaryFilter" placeholder="Минимальная зарплата">
@@ -61,7 +64,9 @@
                         <label><input type="checkbox" value="Scala"> Scala</label><br>
                         <label><input type="checkbox" value="Haskell"> Haskell</label><br>
                     </div>
-                    <button id="applyFilter" class="apply-filter-button">Применить</button>
+                    <div class="apply-filter-button">
+                        <button id="applyFilter">Применить</button>
+                    </div>
                 </div>
                 <div id="vacanciesList" class="vacancies-list">
                     <!-- Пример вакансий -->
@@ -72,7 +77,6 @@
                         <p>Описание: Мы ищем опытного фронтенд-разработчика...</p>
                         <p>Ключевые навыки: HTML, CSS, JavaScript</p>
                         <div class="extended-description" style="display: none;">
-                            <p>Расширенное описание:</p>
                             <p>Мы ищем опытного фронтенд-разработчика с опытом работы в React и JavaScript. Требования:</p>
                             <ul>
                                 <li>Опыт работы с React не менее 3 лет</li>
@@ -81,7 +85,6 @@
                             </ul>
                         </div>
                         <button class="response-button">Отклик</button>
-                        <button class="delete-button">Удалить</button>
                     </div>
                     <div class="vacancy" data-salary="6000" data-skills="Python,SQL,Java">
                         <h3>Backend Developer</h3>
@@ -90,7 +93,6 @@
                         <p>Описание: Мы ищем опытного бэкенд-разработчика...</p>
                         <p>Ключевые навыки: Python, SQL, Java</p>
                         <div class="extended-description" style="display: none;">
-                            <p>Расширенное описание:</p>
                             <p>Мы ищем опытного бэкенд-разработчика с опытом работы в Node.js и Python. Требования:</p>
                             <ul>
                                 <li>Опыт работы с Node.js не менее 3 лет</li>
@@ -99,7 +101,6 @@
                             </ul>
                         </div>
                         <button class="response-button">Отклик</button>
-                        <button class="delete-button">Удалить</button>
                     </div>
                     <div class="vacancy" data-salary="4500" data-skills="JavaScript,React,TypeScript">
                         <h3>React Developer</h3>
@@ -108,7 +109,6 @@
                         <p>Описание: Мы ищем опытного React-разработчика...</p>
                         <p>Ключевые навыки: JavaScript, React, TypeScript</p>
                         <div class="extended-description" style="display: none;">
-                            <p>Расширенное описание:</p>
                             <p>Мы ищем опытного React-разработчика с опытом работы в TypeScript. Требования:</p>
                             <ul>
                                 <li>Опыт работы с React не менее 2 лет</li>
@@ -117,7 +117,6 @@
                             </ul>
                         </div>
                         <button class="response-button">Отклик</button>
-                        <button class="delete-button">Удалить</button>
                     </div>
                     <div class="vacancy" data-salary="5500" data-skills="Python,Django,SQL">
                         <h3>Django Developer</h3>
@@ -126,7 +125,6 @@
                         <p>Описание: Мы ищем опытного Django-разработчика...</p>
                         <p>Ключевые навыки: Python, Django, SQL</p>
                         <div class="extended-description" style="display: none;">
-                            <p>Расширенное описание:</p>
                             <p>Мы ищем опытного Django-разработчика с опытом работы в Python. Требования:</p>
                             <ul>
                                 <li>Опыт работы с Django не менее 3 лет</li>
@@ -135,7 +133,6 @@
                             </ul>
                         </div>
                         <button class="response-button">Отклик</button>
-                        <button class="delete-button">Удалить</button>
                     </div>
                     <div class="vacancy" data-salary="4800" data-skills="Java,Spring,SQL">
                         <h3>Java Developer</h3>
@@ -144,7 +141,6 @@
                         <p>Описание: Мы ищем опытного Java-разработчика...</p>
                         <p>Ключевые навыки: Java, Spring, SQL</p>
                         <div class="extended-description" style="display: none;">
-                            <p>Расширенное описание:</p>
                             <p>Мы ищем опытного Java-разработчика с опытом работы в Spring. Требования:</p>
                             <ul>
                                 <li>Опыт работы с Java не менее 3 лет</li>
@@ -153,7 +149,6 @@
                             </ul>
                         </div>
                         <button class="response-button">Отклик</button>
-                        <button class="delete-button">Удалить</button>
                     </div>
                     <!-- Добавьте больше вакансий по аналогии -->
                 </div>
