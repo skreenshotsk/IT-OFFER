@@ -1,0 +1,39 @@
+.create-resume-section {
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.create-resume-section h3 {
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.create-resume-section h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.create-resume-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-resume-section label {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.create-resume-section input,
+.create-resume-section textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.create-resume-section textarea {
+    resize: vertical;
+}
