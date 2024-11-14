@@ -11,7 +11,7 @@
 
 /* Стили для списка вакансий */
 /* Стили для секции вакансий */
-.vacancies-section {
+.cvs-section {
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
@@ -19,7 +19,7 @@
     margin: 20px 0;
 }
 
-.vacancies-section h2 {
+.cvs-section h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
@@ -47,12 +47,6 @@
     font-size: 16px;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
 .filter-options .apply-filter-button {
     width: 200px;
 }
@@ -62,14 +56,20 @@ input::-webkit-inner-spin-button {
     margin-bottom: 20px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 /* Стили для списка вакансий */
-.vacancies-list {
+.cv-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
 
-.vacancy {
+.cv {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -79,28 +79,23 @@ input::-webkit-inner-spin-button {
     transition: background-color 0.3s ease;
 }
 
-.vacancy:hover {
+.cv:hover {
     background-color: #c2bdbd;
 }
 
-.vacancy h3 {
+.cv h3 {
     margin-bottom: 10px;
     font-size: 20px;
     color: #333;
 }
 
-.vacancy p {
+.cv p {
     margin: 5px 0;
     font-size: 16px;
     color: #000000;
 }
-.vacancy ul li  {
+.cv ul li  {
     color: #000000;
-}
-
-.vacancy button {
-    margin: 0 auto;
-    margin-top: 10px;
 }
 
 .checkbox-list {
@@ -108,7 +103,12 @@ input::-webkit-inner-spin-button {
     overflow-y: auto; /* Добавьте полосу прокрутки */
     border: 1px solid #000000;
     padding: 10px;
-    width: 200px;
     margin-top: 10px;
+    width: 200px;
     margin-bottom: 25px;
+}
+
+.cv button {
+    margin: 0 auto;
+    margin-top: 10px;
 }
