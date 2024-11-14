@@ -49,26 +49,18 @@
                 </div>
                 <div id="editProfileForm" style="display: none;">
                     <form id="profileForm">
-                        <label for="editSurname">Фамилия:</label>
-                        <input type="text" id="editSurname" surname="surname"><br>
-                        <label for="editName">Имя:</label>
-                        <input type="text" id="editName" name="name"><br>
-                        <label for="editEmail">Email:</label>
-                        <input type="email" id="editEmail" name="email"><br>
-                        <label for="editPhone">Номер телефона:</label>
-                        <input type="tel" id="editPhone" name="phone"><br>
-                        <!-- <label for="editEducation">Образование:</label>
-                        <input type="text" id="editEducation" name="education"><br>
-                        <label for="editExperience">Опыт работы:</label>
-                        <textarea id="editExperience" name="experience"></textarea><br>
-                        <label for="editSkills">Ключевые навыки:</label>
-                        <input type="text" id="editSkills" name="skills"><br>
-                        <label for="editProjects">Описание проектов:</label>
-                        <textarea id="editProjects" name="projects"></textarea><br>
-                        <label for="editProjectLinks">Ссылки на проекты:</label>
-                        <input type="text" id="editProjectLinks" name="projectLinks"><br> -->
-                        <button type="button" id="saveProfileButton" class="save-button">Сохранить</button>
-                        <button type="button" id="cancelEditButton" class="cancel-button">Отмена</button>
+                        <div class="editform">
+                            <label for="editLastName">Фамилия:</label>
+                            <input type="text" id="editLastName" name="lastName"><br>
+                            <label for="editFirstName">Имя:</label>
+                            <input type="text" id="editFirstName" name="firstName"><br>
+                            <label for="editEmail">Email:</label>
+                            <input type="email" id="editEmail" name="email"><br>
+                            <label for="editPhone">Номер телефона:</label>
+                            <input type="tel" id="editPhone" name="phone"><br>
+                            <button type="button" id="saveProfileButton" class="save-button">Сохранить</button>
+                            <button type="button" id="cancelEditButton" class="cancel-button">Отмена</button>
+                        </div>
                     </form>
                 </div>
             </section>
@@ -93,10 +85,10 @@
     <script>
         // Пример загрузки данных пользователя (замените на реальную логику)
         const userData = {
-            surname: "Иванов",
-            name: "Иван",
+            lastName: "Иванов",
+            firstName: "Иван",
             email: "ivan@example.com",
-            phone: "+7(999)123-45-67",
+            phone: "+7(999)123-45-67"
         };
 
         const profileInfo = document.getElementById('profile-info');
@@ -107,35 +99,25 @@
 
         function displayProfileInfo() {
             profileInfo.innerHTML = `
-                <p><strong>Фамилия:</strong> <span class="highlight">${userData.name}</span></p>
-                <p><strong>Имя:</strong> <span class="highlight">${userData.surname}</span></p>
+                <p><strong>Фамилия:</strong> <span class="highlight">${userData.lastName}</span></p>
+                <p><strong>Имя:</strong> <span class="highlight">${userData.firstName}</span></p>
                 <p><strong>Email:</strong> <span class="highlight">${userData.email}</span></p>
                 <p><strong>Номер телефона:</strong> <span class="highlight">${userData.phone}</span></p>
             `;
         }
 
         function displayEditForm() {
-            document.getElementById('editName').value = userData.name;
-            document.getElementById('editSurame').value = userData.surname;
+            document.getElementById('editLastName').value = userData.lastName;
+            document.getElementById('editFirstName').value = userData.firstName;
             document.getElementById('editEmail').value = userData.email;
             document.getElementById('editPhone').value = userData.phone;
-            // document.getElementById('editEducation').value = userData.education;
-            // document.getElementById('editExperience').value = userData.experience;
-            // document.getElementById('editSkills').value = userData.skills.join(', ');
-            // document.getElementById('editProjects').value = userData.projects;
-            // document.getElementById('editProjectLinks').value = userData.projectLinks;
         }
 
         function saveProfile() {
-            userData.name = document.getElementById('editName').value;
-            userData.surname = document.getElementById('editSurname').value;
+            userData.lastName = document.getElementById('editLastName').value;
+            userData.firstName = document.getElementById('editFirstName').value;
             userData.email = document.getElementById('editEmail').value;
             userData.phone = document.getElementById('editPhone').value;
-            // userData.education = document.getElementById('editEducation').value;
-            // userData.experience = document.getElementById('editExperience').value;
-            // userData.skills = document.getElementById('editSkills').value.split(', ');
-            // userData.projects = document.getElementById('editProjects').value;
-            // userData.projectLinks = document.getElementById('editProjectLinks').value;
 
             displayProfileInfo();
             editProfileForm.style.display = 'none';

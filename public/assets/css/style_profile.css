@@ -54,17 +54,12 @@ main .profile-actions button[type ="profile-button"], .edit-button {
 }
 
 
-
-
-
-
-
 #editProfileForm {
     margin-top: 20px;
     padding: 20px;
+    width: 60%;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #editProfileForm label {
@@ -75,25 +70,20 @@ main .profile-actions button[type ="profile-button"], .edit-button {
 }
 
 #editProfileForm input, #editProfileForm textarea {
-    width: 100%;
+    width: 90%;
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
 }
 
-#editProfileForm button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-right: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+#editProfileForm .editform {
+    display: grid;
+    place-items: center;
 }
 
-#editProfileForm button:hover {
-    background-color: #218838;
+#editProfileForm button {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
 }
