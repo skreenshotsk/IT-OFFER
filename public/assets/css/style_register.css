@@ -2,6 +2,7 @@
 .form-section input[type="email"],
 .form-section input[type="tel"],
 .form-section input[type="password"],
+.form-section input[type="url"],
 .form-section select,
 .form-section textarea,
 .form-section input[type="file"] {
@@ -12,17 +13,6 @@
     border-radius: 5px;
     font-size: 16px;
     transition: border-color 0.3s ease;
-}
-
-.form-section input[type="text"]:focus,
-.form-section input[type="email"]:focus,
-.form-section input[type="tel"]:focus,
-.form-section input[type="password"]:focus,
-.form-section select:focus,
-.form-section textarea:focus,
-.form-section input[type="file"]:focus {
-    border-color: #FA8305;
-    outline: none;
 }
 
 .form-section .disabled {

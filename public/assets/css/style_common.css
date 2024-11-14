@@ -50,6 +50,14 @@ header h3 {
     margin-top: 43px;
 }
 
+header .logo a {
+    color: #FFF;
+}
+
+header .logo a::after {
+    color: #FFF;
+}
+
 header .logo,
 footer .blocks .logo {
     text-transform: uppercase;
@@ -301,13 +309,18 @@ footer .blocks h4 {
     font-size: 17px;
 }
 
-footer .blocks ul {
-    list-style: none;
+footer .blocks p a {
+    color: #FFF;
+    position: relative;
 }
 
-footer .blocks ul li {
-    margin-top: 7px;
-    opacity: 0.8;
+footer .blocks p a:hover {
+    color: #a8a8a8;
+    transition: all 500ms ease;
+}
+
+footer .blocks p a::after {
+    color: #FFF;
 }
 
 footer hr {
