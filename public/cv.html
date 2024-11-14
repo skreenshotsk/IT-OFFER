@@ -30,139 +30,141 @@
                     <script src="scripts/script.js"></script>
                 </ul>
             </nav>
-            <h3>Резюме</h3>
+            <h3>Активные резюме</h3>
         </header>
-        <main>
-            <section class="cvs-section">
-                <h2>Список резюме</h2>
-                <div class="filter-button">
-                    <button id="filterButton">Фильтр</button>
-                </div>
-                <div id="filterOptions" class="filter-options" style="display: none;">
-                    <label for="salaryFilter">Зарплата:</label>
-                    <input type="number" id="salaryFilter" placeholder="Минимальная зарплата">
-                    <div class="checkbox-list" id="checkboxList">
-                        <label><input type="checkbox" value="HTML"> HTML</label><br>
-                        <label><input type="checkbox" value="CSS"> CSS</label><br>
-                        <label><input type="checkbox" value="JavaScript"> JavaScript</label><br>
-                        <label><input type="checkbox" value="Python"> Python</label><br>
-                        <label><input type="checkbox" value="Java"> Java</label><br>
-                        <label><input type="checkbox" value="C++"> C++</label><br>
-                        <label><input type="checkbox" value="C#"> C#</label><br>
-                        <label><input type="checkbox" value="Ruby"> Ruby</label><br>
-                        <label><input type="checkbox" value="PHP"> PHP</label><br>
-                        <label><input type="checkbox" value="Swift"> Swift</label><br>
-                        <label><input type="checkbox" value="Kotlin"> Kotlin</label><br>
-                        <label><input type="checkbox" value="Go"> Go</label><br>
-                        <label><input type="checkbox" value="Rust"> Rust</label><br>
-                        <label><input type="checkbox" value="TypeScript"> TypeScript</label><br>
-                        <label><input type="checkbox" value="SQL"> SQL</label><br>
-                        <label><input type="checkbox" value="R"> R</label><br>
-                        <label><input type="checkbox" value="MATLAB"> MATLAB</label><br>
-                        <label><input type="checkbox" value="Perl"> Perl</label><br>
-                        <label><input type="checkbox" value="Scala"> Scala</label><br>
-                        <label><input type="checkbox" value="Haskell"> Haskell</label><br>
+        
+        <div class="container">
+            <main>
+                <section class="cvs-section">
+                    <div class="filter-button">
+                        <button id="filterButton">Фильтр</button>
                     </div>
-                    <div class="apply-filter-button">
-                        <button id="applyFilter">Применить</button>
-                    </div>
-                </div>
-                <div id="cvList" class="cv-list">
-                    <!-- Пример резюме -->
-                    <div class="cv" data-salary="5000" data-skills="HTML,CSS,JavaScript">
-                        <h3>Иванов Иван Иванович</h3>
-                        <p>Желаемая зарплата: $5000</p>
-                        <p>Ключевые навыки: HTML, CSS, JavaScript</p>
-                        <div class="extended-description" style="display: none;">
-                            <p>Расширенное описание:</p>
-                            <p>Опыт работы:</p>
-                            <ul>
-                                <li>Frontend Developer в TechCorp (2018-2021)</li>
-                                <li>Junior Frontend Developer в WebTech (2016-2018)</li>
-                            </ul>
-                            <p>Образование:</p>
-                            <ul>
-                                <li>Бакалавр информационных технологий, МГУ (2012-2016)</li>
-                            </ul>
+                    <div id="filterOptions" class="filter-options" style="display: none;">
+                        <label for="salaryFilter">Зарплата:</label>
+                        <input type="number" id="salaryFilter" placeholder="Минимальная зарплата">
+                        <div class="checkbox-list" id="checkboxList">
+                            <label><input type="checkbox" value="HTML"> HTML</label><br>
+                            <label><input type="checkbox" value="CSS"> CSS</label><br>
+                            <label><input type="checkbox" value="JavaScript"> JavaScript</label><br>
+                            <label><input type="checkbox" value="Python"> Python</label><br>
+                            <label><input type="checkbox" value="Java"> Java</label><br>
+                            <label><input type="checkbox" value="C++"> C++</label><br>
+                            <label><input type="checkbox" value="C#"> C#</label><br>
+                            <label><input type="checkbox" value="Ruby"> Ruby</label><br>
+                            <label><input type="checkbox" value="PHP"> PHP</label><br>
+                            <label><input type="checkbox" value="Swift"> Swift</label><br>
+                            <label><input type="checkbox" value="Kotlin"> Kotlin</label><br>
+                            <label><input type="checkbox" value="Go"> Go</label><br>
+                            <label><input type="checkbox" value="Rust"> Rust</label><br>
+                            <label><input type="checkbox" value="TypeScript"> TypeScript</label><br>
+                            <label><input type="checkbox" value="SQL"> SQL</label><br>
+                            <label><input type="checkbox" value="R"> R</label><br>
+                            <label><input type="checkbox" value="MATLAB"> MATLAB</label><br>
+                            <label><input type="checkbox" value="Perl"> Perl</label><br>
+                            <label><input type="checkbox" value="Scala"> Scala</label><br>
+                            <label><input type="checkbox" value="Haskell"> Haskell</label><br>
                         </div>
-                        <button class="contact-button">Связаться</button>
-                    </div>
-                    <div class="cv" data-salary="6000" data-skills="Python,SQL,Java">
-                        <h3>Петров Петр Петрович</h3>
-                        <p>Желаемая зарплата: $6000</p>
-                        <p>Ключевые навыки: Python, SQL, Java</p>
-                        <div class="extended-description" style="display: none;">
-                            <p>Расширенное описание:</p>
-                            <p>Опыт работы:</p>
-                            <ul>
-                                <li>Backend Developer в DevSolutions (2019-2022)</li>
-                                <li>Junior Backend Developer в CodeMasters (2017-2019)</li>
-                            </ul>
-                            <p>Образование:</p>
-                            <ul>
-                                <li>Магистр информационных технологий, МФТИ (2013-2017)</li>
-                            </ul>
+                        <div class="apply-filter-button">
+                            <button id="applyFilter">Применить</button>
                         </div>
-                        <button class="contact-button">Связаться</button>
                     </div>
-                    <div class="cv" data-salary="4500" data-skills="JavaScript,React,TypeScript">
-                        <h3>Сидоров Сидор Сидорович</h3>
-                        <p>Желаемая зарплата: $4500</p>
-                        <p>Ключевые навыки: JavaScript, React, TypeScript</p>
-                        <div class="extended-description" style="display: none;">
-                            <p>Расширенное описание:</p>
-                            <p>Опыт работы:</p>
-                            <ul>
-                                <li>React Developer в WebTech (2020-2022)</li>
-                                <li>Junior React Developer в CodeMasters (2018-2020)</li>
-                            </ul>
-                            <p>Образование:</p>
-                            <ul>
-                                <li>Бакалавр информационных технологий, МГТУ (2014-2018)</li>
-                            </ul>
+                    <div id="cvList" class="cv-list">
+                        <!-- Пример резюме -->
+                        <div class="cv" data-salary="5000" data-skills="HTML,CSS,JavaScript">
+                            <h3>Иванов Иван Иванович</h3>
+                            <p>Желаемая зарплата: $5000</p>
+                            <p>Ключевые навыки: HTML, CSS, JavaScript</p>
+                            <div class="extended-description" style="display: none;">
+                                <p>Расширенное описание:</p>
+                                <p>Опыт работы:</p>
+                                <ul>
+                                    <li>Frontend Developer в TechCorp (2018-2021)</li>
+                                    <li>Junior Frontend Developer в WebTech (2016-2018)</li>
+                                </ul>
+                                <p>Образование:</p>
+                                <ul>
+                                    <li>Бакалавр информационных технологий, МГУ (2012-2016)</li>
+                                </ul>
+                            </div>
+                            <button class="contact-button">Связаться</button>
                         </div>
-                        <button class="contact-button">Связаться</button>
-                    </div>
-                    <div class="cv" data-salary="5500" data-skills="Python,Django,SQL">
-                        <h3>Кузнецов Кузьма Кузьмич</h3>
-                        <p>Желаемая зарплата: $5500</p>
-                        <p>Ключевые навыки: Python, Django, SQL</p>
-                        <div class="extended-description" style="display: none;">
-                            <p>Расширенное описание:</p>
-                            <p>Опыт работы:</p>
-                            <ul>
-                                <li>Django Developer в CodeMasters (2019-2022)</li>
-                                <li>Junior Django Developer в DevSolutions (2017-2019)</li>
-                            </ul>
-                            <p>Образование:</p>
-                            <ul>
-                                <li>Магистр информационных технологий, МГУ (2013-2017)</li>
-                            </ul>
+                        <div class="cv" data-salary="6000" data-skills="Python,SQL,Java">
+                            <h3>Петров Петр Петрович</h3>
+                            <p>Желаемая зарплата: $6000</p>
+                            <p>Ключевые навыки: Python, SQL, Java</p>
+                            <div class="extended-description" style="display: none;">
+                                <p>Расширенное описание:</p>
+                                <p>Опыт работы:</p>
+                                <ul>
+                                    <li>Backend Developer в DevSolutions (2019-2022)</li>
+                                    <li>Junior Backend Developer в CodeMasters (2017-2019)</li>
+                                </ul>
+                                <p>Образование:</p>
+                                <ul>
+                                    <li>Магистр информационных технологий, МФТИ (2013-2017)</li>
+                                </ul>
+                            </div>
+                            <button class="contact-button">Связаться</button>
                         </div>
-                        <button class="contact-button">Связаться</button>
-                    </div>
-                    <div class="cv" data-salary="4800" data-skills="Java,Spring,SQL">
-                        <h3>Васильев Василий Васильевич</h3>
-                        <p>Желаемая зарплата: $4800</p>
-                        <p>Ключевые навыки: Java, Spring, SQL</p>
-                        <div class="extended-description" style="display: none;">
-                            <p>Расширенное описание:</p>
-                            <p>Опыт работы:</p>
-                            <ul>
-                                <li>Java Developer в SoftSolutions (2018-2022)</li>
-                                <li>Junior Java Developer в CodeMasters (2016-2018)</li>
-                            </ul>
-                            <p>Образование:</p>
-                            <ul>
-                                <li>Бакалавр информационных технологий, МГТУ (2012-2016)</li>
-                            </ul>
+                        <div class="cv" data-salary="4500" data-skills="JavaScript,React,TypeScript">
+                            <h3>Сидоров Сидор Сидорович</h3>
+                            <p>Желаемая зарплата: $4500</p>
+                            <p>Ключевые навыки: JavaScript, React, TypeScript</p>
+                            <div class="extended-description" style="display: none;">
+                                <p>Расширенное описание:</p>
+                                <p>Опыт работы:</p>
+                                <ul>
+                                    <li>React Developer в WebTech (2020-2022)</li>
+                                    <li>Junior React Developer в CodeMasters (2018-2020)</li>
+                                </ul>
+                                <p>Образование:</p>
+                                <ul>
+                                    <li>Бакалавр информационных технологий, МГТУ (2014-2018)</li>
+                                </ul>
+                            </div>
+                            <button class="contact-button">Связаться</button>
                         </div>
-                        <button class="contact-button">Связаться</button>
+                        <div class="cv" data-salary="5500" data-skills="Python,Django,SQL">
+                            <h3>Кузнецов Кузьма Кузьмич</h3>
+                            <p>Желаемая зарплата: $5500</p>
+                            <p>Ключевые навыки: Python, Django, SQL</p>
+                            <div class="extended-description" style="display: none;">
+                                <p>Расширенное описание:</p>
+                                <p>Опыт работы:</p>
+                                <ul>
+                                    <li>Django Developer в CodeMasters (2019-2022)</li>
+                                    <li>Junior Django Developer в DevSolutions (2017-2019)</li>
+                                </ul>
+                                <p>Образование:</p>
+                                <ul>
+                                    <li>Магистр информационных технологий, МГУ (2013-2017)</li>
+                                </ul>
+                            </div>
+                            <button class="contact-button">Связаться</button>
+                        </div>
+                        <div class="cv" data-salary="4800" data-skills="Java,Spring,SQL">
+                            <h3>Васильев Василий Васильевич</h3>
+                            <p>Желаемая зарплата: $4800</p>
+                            <p>Ключевые навыки: Java, Spring, SQL</p>
+                            <div class="extended-description" style="display: none;">
+                                <p>Расширенное описание:</p>
+                                <p>Опыт работы:</p>
+                                <ul>
+                                    <li>Java Developer в SoftSolutions (2018-2022)</li>
+                                    <li>Junior Java Developer в CodeMasters (2016-2018)</li>
+                                </ul>
+                                <p>Образование:</p>
+                                <ul>
+                                    <li>Бакалавр информационных технологий, МГТУ (2012-2016)</li>
+                                </ul>
+                            </div>
+                            <button class="contact-button">Связаться</button>
+                        </div>
+                        <!-- Добавьте больше резюме по аналогии -->
                     </div>
-                    <!-- Добавьте больше резюме по аналогии -->
-                </div>
-            </section>
-        </main>
+                </section>
+            </main>
+        </div>
     </div>
 
     <footer>

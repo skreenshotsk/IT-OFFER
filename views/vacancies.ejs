@@ -11,42 +11,43 @@
     <div class="wrapper">
         <%- include('partials/header') %> <!-- Включение header -->
         
-        <main>
-            <section class="vacancies-section">
-                <h2>Список вакансий</h2>
-                <button id="filterButton" class="filter-button">Фильтр</button>
-                <div id="filterOptions" class="filter-options" style="display: none;">
-                    <label for="salaryFilter">Зарплата:</label>
-                    <input type="number" id="salaryFilter" placeholder="Минимальная зарплата">
-                    <div class="checkbox-list" id="checkboxList">
-                        <% skills.forEach(function(skill) { %>
-                            <label><input type="checkbox" value="<%= skill.skill_name %>"> <%= skill.skill_name %></label><br>
-                        <% }) %>
-                    </div>
-                    <button id="applyFilter" class="apply-filter-button">Применить</button>
-                </div>
-                <div id="vacanciesList" class="vacancies-list">
-                    <% vacancies.forEach(function(vacancy) { %>
-                        <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
-                            <h3><%= vacancy.title %></h3>
-                            <p>Компания: <%= vacancy.company_name %></p>
-                            <p>Зарплата: <%= vacancy.salary_max %> ₽</p>
-                            <p>Описание: <%= vacancy.description %></p>
-                            <p>Ключевые навыки: </p>
-                            <% vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).forEach(function(skill) { %>
-                                <p><%= skill.skill_name %></p>
+        <div class="container">
+            <main>
+                <section class="vacancies-section">
+                    <button id="filterButton" class="filter-button">Фильтр</button>
+                    <div id="filterOptions" class="filter-options" style="display: none;">
+                        <label for="salaryFilter">Зарплата:</label>
+                        <input type="number" id="salaryFilter" placeholder="Минимальная зарплата">
+                        <div class="checkbox-list" id="checkboxList">
+                            <% skills.forEach(function(skill) { %>
+                                <label><input type="checkbox" value="<%= skill.skill_name %>"> <%= skill.skill_name %></label><br>
                             <% }) %>
-                            <div class="extended-description" style="display: none;">
-                                <p>Расширенное описание:</p>
-                                <p><%= vacancy.extended_description || 'Не указано' %></p>
-                            </div>
-                            <button class="response-button">Отклик</button>
-                            <button class="delete-button">Удалить</button>
                         </div>
-                    <% }) %>
-                </div>               
-            </section>            
-        </main>
+                        <button id="applyFilter" class="apply-filter-button">Применить</button>
+                    </div>
+                    <div id="vacanciesList" class="vacancies-list">
+                        <% vacancies.forEach(function(vacancy) { %>
+                            <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
+                                <h3><%= vacancy.title %></h3>
+                                <p>Компания: <%= vacancy.company_name %></p>
+                                <p>Зарплата: <%= vacancy.salary_max %> ₽</p>
+                                <p>Описание: <%= vacancy.description %></p>
+                                <p>Ключевые навыки: </p>
+                                <% vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).forEach(function(skill) { %>
+                                    <p><%= skill.skill_name %></p>
+                                <% }) %>
+                                <div class="extended-description" style="display: none;">
+                                    <p>Расширенное описание:</p>
+                                    <p><%= vacancy.extended_description || 'Не указано' %></p>
+                                </div>
+                                <button class="response-button">Отклик</button>
+                                <button class="delete-button">Удалить</button>
+                            </div>
+                        <% }) %>
+                    </div>               
+                </section>            
+            </main>
+        </div>
     </div>
     <%- include('partials/footer') %> <!-- Включение footer -->
     

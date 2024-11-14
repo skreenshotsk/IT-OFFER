@@ -32,39 +32,42 @@
             </nav>
             
         </header>
-        <main>
-            <section class="profile-section">
-                <h3>Ваш профиль</h3>
-                <div id="profile-info">
-                    <!-- Информация о пользователе будет загружена с помощью JavaScript -->
-                </div>
-                <div class="profile-actions">
-                    <button id="editProfileButton" class="edit-button">Редактировать</button>
-                    <button type="profile-button" onclick="location.href='responses.html'">Отклики</button>
-                    <button id="editProfileButton" class="edit-button">Создать резюме</button>
-                    <button id="editProfileButton" class="edit-button">Создать вакансию</button>
-                    <!-- <button type="profile-button" >Чаты</button> -->
-                    <button type="profile-button" onclick="location.href='profile-cv.html'">Мое резюме</button>
-                    <button type="profile-button">Выйти из аккаунта</button>
-                </div>
-                <div id="editProfileForm" style="display: none;">
-                    <form id="profileForm">
-                        <div class="editform">
-                            <label for="editLastName">Фамилия:</label>
-                            <input type="text" id="editLastName" name="lastName"><br>
-                            <label for="editFirstName">Имя:</label>
-                            <input type="text" id="editFirstName" name="firstName"><br>
-                            <label for="editEmail">Email:</label>
-                            <input type="email" id="editEmail" name="email"><br>
-                            <label for="editPhone">Номер телефона:</label>
-                            <input type="tel" id="editPhone" name="phone"><br>
-                            <button type="button" id="saveProfileButton" class="save-button">Сохранить</button>
-                            <button type="button" id="cancelEditButton" class="cancel-button">Отмена</button>
-                        </div>
-                    </form>
-                </div>
-            </section>
-        </main>        
+        
+        <div class="container">
+            <main>
+                <section class="profile-section">
+                    <h3>Ваш профиль</h3>
+                    <div id="profile-info">
+                        <!-- Информация о пользователе будет загружена с помощью JavaScript -->
+                    </div>
+                    <div class="profile-actions">
+                        <button id="editProfileButton" class="edit-button">Редактировать</button>
+                        <button type="profile-button" onclick="location.href='responses.html'">Отклики</button>
+                        <button id="editProfileButton" class="edit-button" onclick="location.href='add_cv.html'">Создать резюме</button>
+                        <button id="editProfileButton" class="edit-button" onclick="location.href='add_vacancy.html'">Создать вакансию</button>
+                        <!-- <button type="profile-button" >Чаты</button> -->
+                        <button type="profile-button" onclick="location.href='profile-cv.html'">Мое резюме</button>
+                        <button type="profile-button">Выйти из аккаунта</button>
+                    </div>
+                    <div id="editProfileForm" style="display: none;">
+                        <form id="profileForm">
+                            <div class="editform">
+                                <label for="editLastName">Фамилия:</label>
+                                <input type="text" id="editLastName" name="lastName"><br>
+                                <label for="editFirstName">Имя:</label>
+                                <input type="text" id="editFirstName" name="firstName"><br>
+                                <label for="editEmail">Email:</label>
+                                <input type="email" id="editEmail" name="email"><br>
+                                <label for="editPhone">Номер телефона:</label>
+                                <input type="tel" id="editPhone" name="phone"><br>
+                                <button type="button" id="saveProfileButton" class="save-button">Сохранить</button>
+                                <button type="button" id="cancelEditButton" class="cancel-button">Отмена</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
 
     <footer>

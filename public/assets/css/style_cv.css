@@ -8,21 +8,11 @@
 }
 
 
-
 /* Стили для списка вакансий */
 /* Стили для секции вакансий */
 .cvs-section {
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
-}
-
-.cvs-section h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
 }
 
 /* Стили для опций фильтра */
@@ -30,7 +20,6 @@
     margin-bottom: 20px;
     padding: 10px;
     background-color: #fff;
-    border: 1px solid #ffffff;
     border-radius: 4px;
 }
 
@@ -67,6 +56,7 @@ input::-webkit-inner-spin-button {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+
 }
 
 .cv {
@@ -74,7 +64,6 @@ input::-webkit-inner-spin-button {
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
