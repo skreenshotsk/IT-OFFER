@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вакансии</title>
     <link rel="stylesheet" href="assets/css/style_common.css">
-    <link rel="stylesheet" href="assets/css/style_vacancies.css">
+    <link rel="stylesheet" href="assets/css/style_cv.css">
 </head>
 <body>
     <div class="wrapper">
@@ -30,12 +30,14 @@
                     <script src="scripts/script.js"></script>
                 </ul>
             </nav>
-            <h3>Вакансии</h3>
+            <h3>Резюме</h3>
         </header>
         <main>
-            <section class="vacancies-section">
-                <h2>Список вакансий</h2>
-                <button id="filterButton" class="filter-button">Фильтр</button>
+            <section class="cvs-section">
+                <h2>Список резюме</h2>
+                <div class="filter-button">
+                    <button id="filterButton">Фильтр</button>
+                </div>
                 <div id="filterOptions" class="filter-options" style="display: none;">
                     <label for="salaryFilter">Зарплата:</label>
                     <input type="number" id="salaryFilter" placeholder="Минимальная зарплата">
@@ -61,101 +63,103 @@
                         <label><input type="checkbox" value="Scala"> Scala</label><br>
                         <label><input type="checkbox" value="Haskell"> Haskell</label><br>
                     </div>
-                    <button id="applyFilter" class="apply-filter-button">Применить</button>
+                    <div class="apply-filter-button">
+                        <button id="applyFilter">Применить</button>
+                    </div>
                 </div>
-                <div id="vacanciesList" class="vacancies-list">
-                    <!-- Пример вакансий -->
-                    <div class="vacancy" data-salary="5000" data-skills="HTML,CSS,JavaScript">
-                        <h3>Frontend Developer</h3>
-                        <p>Компания: TechCorp</p>
-                        <p>Зарплата: $5000</p>
-                        <p>Описание: Мы ищем опытного фронтенд-разработчика...</p>
+                <div id="cvList" class="cv-list">
+                    <!-- Пример резюме -->
+                    <div class="cv" data-salary="5000" data-skills="HTML,CSS,JavaScript">
+                        <h3>Иванов Иван Иванович</h3>
+                        <p>Желаемая зарплата: $5000</p>
                         <p>Ключевые навыки: HTML, CSS, JavaScript</p>
                         <div class="extended-description" style="display: none;">
                             <p>Расширенное описание:</p>
-                            <p>Мы ищем опытного фронтенд-разработчика с опытом работы в React и JavaScript. Требования:</p>
+                            <p>Опыт работы:</p>
                             <ul>
-                                <li>Опыт работы с React не менее 3 лет</li>
-                                <li>Знание JavaScript, HTML, CSS</li>
-                                <li>Опыт работы с REST API</li>
+                                <li>Frontend Developer в TechCorp (2018-2021)</li>
+                                <li>Junior Frontend Developer в WebTech (2016-2018)</li>
+                            </ul>
+                            <p>Образование:</p>
+                            <ul>
+                                <li>Бакалавр информационных технологий, МГУ (2012-2016)</li>
                             </ul>
                         </div>
-                        <button class="response-button">Отклик</button>
-                        <button class="delete-button">Удалить</button>
+                        <button class="contact-button">Связаться</button>
                     </div>
-                    <div class="vacancy" data-salary="6000" data-skills="Python,SQL,Java">
-                        <h3>Backend Developer</h3>
-                        <p>Компания: DevSolutions</p>
-                        <p>Зарплата: $6000</p>
-                        <p>Описание: Мы ищем опытного бэкенд-разработчика...</p>
+                    <div class="cv" data-salary="6000" data-skills="Python,SQL,Java">
+                        <h3>Петров Петр Петрович</h3>
+                        <p>Желаемая зарплата: $6000</p>
                         <p>Ключевые навыки: Python, SQL, Java</p>
                         <div class="extended-description" style="display: none;">
                             <p>Расширенное описание:</p>
-                            <p>Мы ищем опытного бэкенд-разработчика с опытом работы в Node.js и Python. Требования:</p>
+                            <p>Опыт работы:</p>
                             <ul>
-                                <li>Опыт работы с Node.js не менее 3 лет</li>
-                                <li>Знание Python, SQL</li>
-                                <li>Опыт работы с базами данных</li>
+                                <li>Backend Developer в DevSolutions (2019-2022)</li>
+                                <li>Junior Backend Developer в CodeMasters (2017-2019)</li>
+                            </ul>
+                            <p>Образование:</p>
+                            <ul>
+                                <li>Магистр информационных технологий, МФТИ (2013-2017)</li>
                             </ul>
                         </div>
-                        <button class="response-button">Отклик</button>
-                        <button class="delete-button">Удалить</button>
+                        <button class="contact-button">Связаться</button>
                     </div>
-                    <div class="vacancy" data-salary="4500" data-skills="JavaScript,React,TypeScript">
-                        <h3>React Developer</h3>
-                        <p>Компания: WebTech</p>
-                        <p>Зарплата: $4500</p>
-                        <p>Описание: Мы ищем опытного React-разработчика...</p>
+                    <div class="cv" data-salary="4500" data-skills="JavaScript,React,TypeScript">
+                        <h3>Сидоров Сидор Сидорович</h3>
+                        <p>Желаемая зарплата: $4500</p>
                         <p>Ключевые навыки: JavaScript, React, TypeScript</p>
                         <div class="extended-description" style="display: none;">
                             <p>Расширенное описание:</p>
-                            <p>Мы ищем опытного React-разработчика с опытом работы в TypeScript. Требования:</p>
+                            <p>Опыт работы:</p>
                             <ul>
-                                <li>Опыт работы с React не менее 2 лет</li>
-                                <li>Знание TypeScript, JavaScript</li>
-                                <li>Опыт работы с Redux</li>
+                                <li>React Developer в WebTech (2020-2022)</li>
+                                <li>Junior React Developer в CodeMasters (2018-2020)</li>
+                            </ul>
+                            <p>Образование:</p>
+                            <ul>
+                                <li>Бакалавр информационных технологий, МГТУ (2014-2018)</li>
                             </ul>
                         </div>
-                        <button class="response-button">Отклик</button>
-                        <button class="delete-button">Удалить</button>
+                        <button class="contact-button">Связаться</button>
                     </div>
-                    <div class="vacancy" data-salary="5500" data-skills="Python,Django,SQL">
-                        <h3>Django Developer</h3>
-                        <p>Компания: CodeMasters</p>
-                        <p>Зарплата: $5500</p>
-                        <p>Описание: Мы ищем опытного Django-разработчика...</p>
+                    <div class="cv" data-salary="5500" data-skills="Python,Django,SQL">
+                        <h3>Кузнецов Кузьма Кузьмич</h3>
+                        <p>Желаемая зарплата: $5500</p>
                         <p>Ключевые навыки: Python, Django, SQL</p>
                         <div class="extended-description" style="display: none;">
                             <p>Расширенное описание:</p>
-                            <p>Мы ищем опытного Django-разработчика с опытом работы в Python. Требования:</p>
+                            <p>Опыт работы:</p>
                             <ul>
-                                <li>Опыт работы с Django не менее 3 лет</li>
-                                <li>Знание Python, SQL</li>
-                                <li>Опыт работы с базами данных</li>
+                                <li>Django Developer в CodeMasters (2019-2022)</li>
+                                <li>Junior Django Developer в DevSolutions (2017-2019)</li>
+                            </ul>
+                            <p>Образование:</p>
+                            <ul>
+                                <li>Магистр информационных технологий, МГУ (2013-2017)</li>
                             </ul>
                         </div>
-                        <button class="response-button">Отклик</button>
-                        <button class="delete-button">Удалить</button>
+                        <button class="contact-button">Связаться</button>
                     </div>
-                    <div class="vacancy" data-salary="4800" data-skills="Java,Spring,SQL">
-                        <h3>Java Developer</h3>
-                        <p>Компания: SoftSolutions</p>
-                        <p>Зарплата: $4800</p>
-                        <p>Описание: Мы ищем опытного Java-разработчика...</p>
+                    <div class="cv" data-salary="4800" data-skills="Java,Spring,SQL">
+                        <h3>Васильев Василий Васильевич</h3>
+                        <p>Желаемая зарплата: $4800</p>
                         <p>Ключевые навыки: Java, Spring, SQL</p>
                         <div class="extended-description" style="display: none;">
                             <p>Расширенное описание:</p>
-                            <p>Мы ищем опытного Java-разработчика с опытом работы в Spring. Требования:</p>
+                            <p>Опыт работы:</p>
                             <ul>
-                                <li>Опыт работы с Java не менее 3 лет</li>
-                                <li>Знание Spring, SQL</li>
-                                <li>Опыт работы с базами данных</li>
+                                <li>Java Developer в SoftSolutions (2018-2022)</li>
+                                <li>Junior Java Developer в CodeMasters (2016-2018)</li>
+                            </ul>
+                            <p>Образование:</p>
+                            <ul>
+                                <li>Бакалавр информационных технологий, МГТУ (2012-2016)</li>
                             </ul>
                         </div>
-                        <button class="response-button">Отклик</button>
-                        <button class="delete-button">Удалить</button>
+                        <button class="contact-button">Связаться</button>
                     </div>
-                    <!-- Добавьте больше вакансий по аналогии -->
+                    <!-- Добавьте больше резюме по аналогии -->
                 </div>
             </section>
         </main>
@@ -187,7 +191,7 @@
             }
         });
 
-        // Пример JavaScript для фильтрации вакансий
+        // Пример JavaScript для фильтрации резюме
         document.getElementById('applyFilter').addEventListener('click', function() {
             var salaryFilter = document.getElementById('salaryFilter').value;
             var skillCheckboxes = document.querySelectorAll('#checkboxList input[type="checkbox"]');
@@ -199,29 +203,29 @@
                 }
             });
 
-            var vacancies = document.querySelectorAll('.vacancy');
+            var cvs = document.querySelectorAll('.cv');
 
-            vacancies.forEach(function(vacancy) {
-                var salary = vacancy.getAttribute('data-salary');
-                var skills = vacancy.getAttribute('data-skills').split(',');
+            cvs.forEach(function(cv) {
+                var salary = cv.getAttribute('data-salary');
+                var skills = cv.getAttribute('data-skills').split(',');
 
-                var salaryMatch = salary >= salaryFilter;
+                var salaryMatch = salary <= salaryFilter;
                 var skillsMatch = selectedSkills.every(function(skill) {
                     return skills.includes(skill);
                 });
 
                 if (salaryMatch && skillsMatch) {
-                    vacancy.style.display = 'block';
+                    cv.style.display = 'block';
                 } else {
-                    vacancy.style.display = 'none';
+                    cv.style.display = 'none';
                 }
             });
         });
 
-        // Пример JavaScript для отображения расширенного описания вакансии
-        document.querySelectorAll('.vacancy').forEach(function(vacancy) {
-            vacancy.addEventListener('click', function() {
-                var extendedDescription = vacancy.querySelector('.extended-description');
+        // Пример JavaScript для отображения расширенного описания резюме
+        document.querySelectorAll('.cv').forEach(function(cv) {
+            cv.addEventListener('click', function() {
+                var extendedDescription = cv.querySelector('.extended-description');
                 if (extendedDescription.style.display === 'none') {
                     extendedDescription.style.display = 'block';
                 } else {
@@ -230,21 +234,11 @@
             });
         });
 
-        // Пример JavaScript для кнопки "Отклик"
-        document.querySelectorAll('.response-button').forEach(function(button) {
+        // Пример JavaScript для кнопки "Связаться"
+        document.querySelectorAll('.contact-button').forEach(function(button) {
             button.addEventListener('click', function(event) {
                 event.stopPropagation(); // Предотвращаем всплытие события
-                alert('Вы откликнулись на вакансию: ' + button.parentElement.querySelector('h3').textContent);
-            });
-        });
-
-        // Пример JavaScript для кнопки "Удалить"
-        document.querySelectorAll('.delete-button').forEach(function(button) {
-            button.addEventListener('click', function(event) {
-                event.stopPropagation(); // Предотвращаем всплытие события
-                var vacancy = button.parentElement;
-                vacancy.remove();
-                alert('Вакансия удалена: ' + vacancy.querySelector('h3').textContent);
+                alert('Вы связались с кандидатом: ' + button.parentElement.querySelector('h3').textContent);
             });
         });
     </script>
