@@ -3,17 +3,6 @@
     border-radius: 5px;
 }
 
-.create-resume-section h3 {
-    padding: 20px;
-    border-radius: 5px;
-}
-
-.create-resume-section h3 {
-    margin-top: 0;
-    font-size: 24px;
-    color: #ffffff;
-}
-
 .create-resume-section form {
     display: flex;
     flex-direction: column;
@@ -25,15 +14,26 @@
     color: #ffffff;
 }
 
-.create-resume-section input,
-.create-resume-section textarea {
+.create-resume-section input[type="text"],
+.create-resume-section input[type="email"],
+.create-resume-section input[type="tel"],
+.create-resume-section input[type="url"],
+.create-resume-section textarea,
+.create-resume-section select {
+    width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #000000;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
-.create-resume-section textarea {
-    resize: vertical;
+.checkbox-list {
+    max-height: 150px; /* Установите максимальную высоту для отображения части списка */
+    overflow-y: auto; /* Добавьте полосу прокрутки */
+    border: 1px solid #000000;
+    padding: 10px;
+    width: 200px;
+    margin-bottom: 25px;
 }

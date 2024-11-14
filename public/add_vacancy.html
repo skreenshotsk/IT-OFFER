@@ -30,17 +30,27 @@
                     <script src="scripts/script.js"></script>
                 </ul>
             </nav>
-            
+            <h3>Создать вакансию</h3>
         </header>
-        <main>
-            <section class="profile-cv-section">
-                <h3>Мои резюме</h3>
-                <div id="profile-cv-info">
-                    <!-- Информация о пользователе будет загружена с помощью JavaScript -->
-                </div>
-                
-            </section>
-        </main>        
+        <div class="wrapper">
+            <div class="container">
+                <main>
+                    <form id="vacancyForm">
+                        <label for="vacancyTitle">Название вакансии:</label>
+                        <input type="text" id="vacancyTitle" name="title" required><br>
+                        <label for="vacancyCompany">Компания:</label>
+                        <input type="text" id="vacancyCompany" name="company" required><br>
+                        <label for="vacancySalary">Зарплата:</label>
+                        <input type="number" id="vacancySalary" name="salary" required><br>
+                        <label for="vacancyDescription">Описание вакансии:</label>
+                        <textarea id="vacancyDescription" name="description" required></textarea><br>
+                        <label for="vacancySkills">Ключевые навыки:</label>
+                        <input type="text" id="vacancySkills" name="skills" required><br>
+                        <button type="submit" id="submitVacancyButton" class="submit-button">Сохранить вакансию</button>
+                    </form>
+                </main> 
+            </div>
+        </div>       
     </div>
 
     <footer>

@@ -1,0 +1,47 @@
+.create-vacancy-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.create-vacancy-section h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.create-vacancy-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-vacancy-section label {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.create-vacancy-section input,
+.create-vacancy-section textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.create-vacancy-section textarea {
+    resize: vertical;
+}
+
+.create-vacancy-section button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}

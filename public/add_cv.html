@@ -30,39 +30,69 @@
                     <script src="scripts/script.js"></script>
                 </ul>
             </nav>
+            <h3>Создать резюме</h3>
+        </header>        
+        <div class="container">
+            <main>
+                <section class="create-resume-section">                        
+                    <form id="resumeForm">
+                        <label for="resumeLastName">Фамилия:</label>
+                        <input type="text" id="resumeLastName" name="lastName"><br>
+
+                        <label for="resumeFirstName">Имя:</label>
+                        <input type="text" id="resumeFirstName" name="firstName"><br>
+
+                        <label for="resumeEmail">Email:</label>
+                        <input type="email" id="resumeEmail" name="email"><br>
+
+                        <label for="resumePhone">Номер телефона:</label>
+                        <input type="tel" id="resumePhone" name="phone"><br>
+
+                        <label for="education">Образование:</label>
+                        <select id="education" name="education">
+                            <option value="none">Без образования</option>
+                            <option value="secondary">Среднее-профессиональное</option>
+                            <option value="higher">Высшее</option>
+                        </select>
+
+                        <label for="resumeExperience">Опыт работы:</label>
+                        <textarea id="resumeExperience" name="experience"></textarea><br>
+
+                        <label for="skills">Ключевые навыки:</label>
+                        <div class="checkbox-list" id="checkboxList">
+                            <label><input type="checkbox" value="HTML"> HTML</label><br>
+                            <label><input type="checkbox" value="CSS"> CSS</label><br>
+                            <label><input type="checkbox" value="JavaScript"> JavaScript</label><br>
+                            <label><input type="checkbox" value="Python"> Python</label><br>
+                            <label><input type="checkbox" value="Java"> Java</label><br>
+                            <label><input type="checkbox" value="C++"> C++</label><br>
+                            <label><input type="checkbox" value="C#"> C#</label><br>
+                            <label><input type="checkbox" value="Ruby"> Ruby</label><br>
+                            <label><input type="checkbox" value="PHP"> PHP</label><br>
+                            <label><input type="checkbox" value="Swift"> Swift</label><br>
+                            <label><input type="checkbox" value="Kotlin"> Kotlin</label><br>
+                            <label><input type="checkbox" value="Go"> Go</label><br>
+                            <label><input type="checkbox" value="Rust"> Rust</label><br>
+                            <label><input type="checkbox" value="TypeScript"> TypeScript</label><br>
+                            <label><input type="checkbox" value="SQL"> SQL</label><br>
+                            <label><input type="checkbox" value="R"> R</label><br>
+                            <label><input type="checkbox" value="MATLAB"> MATLAB</label><br>
+                            <label><input type="checkbox" value="Perl"> Perl</label><br>
+                            <label><input type="checkbox" value="Scala"> Scala</label><br>
+                            <label><input type="checkbox" value="Haskell"> Haskell</label><br>
+                        </div>
+                        <label for="projects">Описание проектов:</label>
+                        <textarea id="projects" name="projects"></textarea>
             
-        </header>
-        <div class="wrapper">
-            <div class="container">
-                <main>
-                    <section class="create-resume-section">
-                        <h3>Создать резюме</h3>
-                        <form id="resumeForm">
-                            <label for="resumeLastName">Фамилия:</label>
-                            <input type="text" id="resumeLastName" name="lastName" required><br>
-                            <label for="resumeFirstName">Имя:</label>
-                            <input type="text" id="resumeFirstName" name="firstName" required><br>
-                            <label for="resumeEmail">Email:</label>
-                            <input type="email" id="resumeEmail" name="email" required><br>
-                            <label for="resumePhone">Номер телефона:</label>
-                            <input type="tel" id="resumePhone" name="phone" required><br>
-                            <label for="resumeEducation">Образование:</label>
-                            <input type="text" id="resumeEducation" name="education" required><br>
-                            <label for="resumeExperience">Опыт работы:</label>
-                            <textarea id="resumeExperience" name="experience" required></textarea><br>
-                            <label for="resumeSkills">Ключевые навыки:</label>
-                            <input type="text" id="resumeSkills" name="skills" required><br>
-                            <label for="resumeProjects">Описание проектов:</label>
-                            <textarea id="resumeProjects" name="projects" required></textarea><br>
-                            <label for="resumeProjectLinks">Ссылки на проекты:</label>
-                            <input type="text" id="resumeProjectLinks" name="projectLinks" required><br>
-                            <button type="submit" id="submitResumeButton" class="submit-button">Сохранить резюме</button>
-                        </form>
-                        
-                    </section>
-                </main> 
-            </div>
-        </div>       
+                        <label for="projectLinks">Ссылки на проекты:</label>
+                        <input type="text" id="projectLinks" name="projectLinks">
+
+                        <button type="submit" id="submitResumeButton" class="submit-button">Сохранить резюме</button>
+                    </form>
+                    
+                </section>
+            </main> 
+        </div>     
     </div>
 
     <footer>
