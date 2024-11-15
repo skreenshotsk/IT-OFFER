@@ -8,7 +8,7 @@
     flex-direction: column;
 }
 
-.create-resume-section label {
+.create-resume-section label {    
     margin-top: 10px;
     font-size: 16px;
     color: #ffffff;
@@ -17,16 +17,36 @@
 .create-resume-section input[type="text"],
 .create-resume-section input[type="email"],
 .create-resume-section input[type="tel"],
-.create-resume-section input[type="url"],
 .create-resume-section textarea,
-.create-resume-section select {
-    width: 100%;
+.create-resume-section select
+ {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.experience-item input[type="text"],
+.experience-item textarea,
+.experience-item select
+ {
+    width: 300px;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
     transition: border-color 0.3s ease;
+}
+
+.experience-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 800px;
+    margin-top: 10px;
+    padding: 15px 10px;
 }
 
 .checkbox-list {
@@ -36,4 +56,45 @@
     padding: 10px;
     width: 200px;
     margin-bottom: 25px;
+}
+
+
+#selectedSkillsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Пространство между элементами */
+}
+
+.skill-item {
+    list-style: none;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 200px;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #000000;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.skill-item .skill-name {
+    margin-right: 10px;
+}
+
+.skill-item .skill-level {
+    padding: 5px;
+    margin: 0 auto;
+    width: 130px;
+    margin-left: 5px;
+    font-size: 14px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-button, #addExperienceButton, .remove-experience-button {
+    width: 300px;
 }

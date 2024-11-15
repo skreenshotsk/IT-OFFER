@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль</title>
+    <title>Создать вакансию</title>
     <link rel="stylesheet" href="assets/css/style_common.css">
     <link rel="stylesheet" href="assets/css/style_add_vacancy.css">
 </head>
@@ -32,26 +32,154 @@
             </nav>
             <h3>Создать вакансию</h3>
         </header>
-        <div class="wrapper">
-            <div class="container">
-                <main>
+        
+        <div class="container">
+            <main>
+                <section class="create-vacancy-section">
                     <form id="vacancyForm">
                         <label for="vacancyTitle">Название вакансии:</label>
-                        <input type="text" id="vacancyTitle" name="title" required><br>
+                        <input type="text" id="vacancyTitle" name="title" ><br>
+    
                         <label for="vacancyCompany">Компания:</label>
-                        <input type="text" id="vacancyCompany" name="company" required><br>
+                        <input type="text" id="vacancyCompany" name="company" ><br>
+    
+                        <label for="vacancyLocation">Местоположение:</label>
+                        <input type="text" id="vacancyLocation" name="location" ><br>
+    
                         <label for="vacancySalary">Зарплата:</label>
-                        <input type="number" id="vacancySalary" name="salary" required><br>
-                        <label for="vacancyDescription">Описание вакансии:</label>
-                        <textarea id="vacancyDescription" name="description" required></textarea><br>
+                        <input type="number" id="vacancySalary" name="salary" ><br>
+    
+                        <label for="vacancyEmploymentType">Тип занятости:</label>
+                        <select id="vacancyEmploymentType" name="employmentType" >
+                            <option value="full_time">Полная занятость</option>
+                            <option value="part_time">Частичная занятость</option>
+                            <option value="freelance">Фриланс</option>
+                            <option value="internship">Стажировка</option>
+                        </select><br>
+
+                        <label for="resumeEducation">Образование:</label>
+                        <select id="resumeEducation" name="education" >
+                            <option value="secondary">Среднее</option>
+                            <option value="secondary_special">Среднее специальное</option>
+                            <option value="incomplete_higher">Неоконченное высшее</option>
+                            <option value="higher">Высшее</option>
+                            <option value="bachelor">Бакалавр</option>
+                            <option value="master">Магистр</option>
+                            <option value="candidate_sciences">Кандидат наук</option>
+                            <option value="doctor_sciences">Доктор наук</option>
+                        </select><br>
+    
+                        <label for="vacancyExperience">Требуемый опыт работы:</label>
+                        <select id="vacancyExperience" name="experience" >
+                            <option value="no_experience">Без опыта</option>
+                            <option value="1_3_years">1-3 года</option>
+                            <option value="3_5_years">3-5 лет</option>
+                            <option value="5_plus_years">Более 5 лет</option>
+                        </select><br>
+    
                         <label for="vacancySkills">Ключевые навыки:</label>
-                        <input type="text" id="vacancySkills" name="skills" required><br>
-                        <button type="submit" id="submitVacancyButton" class="submit-button">Сохранить вакансию</button>
+                        <div class="checkbox-list" id="vacancyCheckboxList">
+                            <label><input type="checkbox" value="HTML"> HTML</label><br>
+                            <label><input type="checkbox" value="CSS"> CSS</label><br>
+                            <label><input type="checkbox" value="JavaScript"> JavaScript</label><br>
+                            <label><input type="checkbox" value="Python"> Python</label><br>
+                            <label><input type="checkbox" value="Java"> Java</label><br>
+                            <label><input type="checkbox" value="C++"> C++</label><br>
+                            <label><input type="checkbox" value="C#"> C#</label><br>
+                            <label><input type="checkbox" value="Ruby"> Ruby</label><br>
+                            <label><input type="checkbox" value="PHP"> PHP</label><br>
+                            <label><input type="checkbox" value="Swift"> Swift</label><br>
+                            <label><input type="checkbox" value="Kotlin"> Kotlin</label><br>
+                            <label><input type="checkbox" value="Go"> Go</label><br>
+                            <label><input type="checkbox" value="Rust"> Rust</label><br>
+                            <label><input type="checkbox" value="TypeScript"> TypeScript</label><br>
+                            <label><input type="checkbox" value="SQL"> SQL</label><br>
+                            <label><input type="checkbox" value="R"> R</label><br>
+                            <label><input type="checkbox" value="MATLAB"> MATLAB</label><br>
+                            <label><input type="checkbox" value="Perl"> Perl</label><br>
+                            <label><input type="checkbox" value="Scala"> Scala</label><br>
+                            <label><input type="checkbox" value="Haskell"> Haskell</label><br>
+                        </div>
+                        <div id="vacancySelectedSkills">
+                            <label>Выбранные навыки:</label>
+                            <div id="vacancySelectedSkillsList"></div>
+                        </div>
+    
+                        <label for="vacancyResponsibilities">Обязанности:</label>
+                        <textarea id="vacancyResponsibilities" name="responsibilities" ></textarea><br>
+    
+                        <label for="vacancyRequirements">Требования:</label>
+                        <textarea id="vacancyRequirements" name="requirements" ></textarea><br>
+    
+                        <button type="submit" id="submitVacancyButton" class="submit-button">Опубликовать вакансию</button>
                     </form>
-                </main> 
-            </div>
-        </div>       
+                </section>
+            </main> 
+        </div>
     </div>
+
+    <script>
+        // Пример JavaScript для добавления выбранных навыков с уровнями
+        const vacancyCheckboxList = document.getElementById('vacancyCheckboxList');
+        const vacancySelectedSkillsList = document.getElementById('vacancySelectedSkillsList');
+
+        vacancyCheckboxList.addEventListener('change', function(event) {
+            if (event.target.type === 'checkbox') {
+                const skillName = event.target.value;
+
+                // Если чекбокс выбран
+                if (event.target.checked) {
+                    // Создаем элемент для отображения выбранного навыка
+                    const skillItem = document.createElement('ul');
+                    skillItem.className = 'skill-item';
+                    skillItem.innerHTML = `
+                        <li>${skillName}</li>
+                        <select class="skill-level">
+                            <option value="beginner">Начальный</option>
+                            <option value="intermediate">Средний</option>
+                            <option value="advanced">Продвинутый</option>
+                            <option value="expert">Эксперт</option>
+                        </select>
+                    `;
+                    vacancySelectedSkillsList.appendChild(skillItem);
+                } else {
+                    // Убираем элемент из списка выбранных навыков, если чекбокс снят
+                    const skillItems = vacancySelectedSkillsList.querySelectorAll('.skill-item');
+                    skillItems.forEach(item => {
+                        if (item.querySelector('li').textContent === skillName) {
+                            item.remove();
+                        }
+                    });
+                }
+            }
+        });
+
+        // Обработка отправки формы
+        document.getElementById('vacancyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const vacancyData = {
+                title: document.getElementById('vacancyTitle').value,
+                company: document.getElementById('vacancyCompany').value,
+                location: document.getElementById('vacancyLocation').value,
+                salary: document.getElementById('vacancySalary').value,
+                employmentType: document.getElementById('vacancyEmploymentType').value,
+                experience: document.getElementById('vacancyExperience').value,
+                skills: [],
+                responsibilities: document.getElementById('vacancyResponsibilities').value,
+                requirements: document.getElementById('vacancyRequirements').value
+            };
+
+            // Получаем все выбранные навыки
+            const skillItems = vacancySelectedSkillsList.querySelectorAll('.skill-item');
+            skillItems.forEach(item => {
+                vacancyData.skills.push(item.querySelector('span').textContent);
+            });
+
+            console.log('Данные вакансии:', vacancyData);
+            alert('Вакансия успешно опубликована!');
+        });
+    </script>
 
     <footer>
         <div class="blocks container">

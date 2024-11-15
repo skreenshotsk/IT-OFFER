@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль</title>
+    <title>Создать резюме</title>
     <link rel="stylesheet" href="assets/css/style_common.css">
     <link rel="stylesheet" href="assets/css/style_add_cv.css">
 </head>
@@ -37,63 +37,230 @@
                 <section class="create-resume-section">                        
                     <form id="resumeForm">
                         <label for="resumeLastName">Фамилия:</label>
-                        <input type="text" id="resumeLastName" name="lastName"><br>
+                        <input type="text" id="resumeLastName" name="lastName" ><br>
 
                         <label for="resumeFirstName">Имя:</label>
-                        <input type="text" id="resumeFirstName" name="firstName"><br>
+                        <input type="text" id="resumeFirstName" name="firstName" ><br>
 
-                        <label for="resumeEmail">Email:</label>
-                        <input type="email" id="resumeEmail" name="email"><br>
+                        <label for="resumePatronymic">Отчество:</label>
+                        <input type="text" id="resumePatronymic" name="patronymic"><br>
+
+                        <label for="resumeGender">Пол:</label>
+                        <select id="resumeGender" name="gender" >
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                        </select><br>
+
+                        <label for="resumeLocation">Город или регион проживания:</label>
+                        <input type="text" id="resumeLocation" name="location" ><br>
+
+                        <label for="resumeBirthDate">Дата рождения:</label>
+                        <input type="text" id="resumeBirthDate" name="birthDate" placeholder="дд.мм.гггг" ><br>
 
                         <label for="resumePhone">Номер телефона:</label>
-                        <input type="tel" id="resumePhone" name="phone"><br>
+                        <input type="tel" id="resumePhone" name="phone" ><br>
 
-                        <label for="education">Образование:</label>
-                        <select id="education" name="education">
-                            <option value="none">Без образования</option>
-                            <option value="secondary">Среднее-профессиональное</option>
+                        <label for="resumeEducation">Образование:</label>
+                        <select id="resumeEducation" name="education" >
+                            <option value="secondary">Среднее</option>
+                            <option value="secondary_special">Среднее специальное</option>
+                            <option value="incomplete_higher">Неоконченное высшее</option>
                             <option value="higher">Высшее</option>
-                        </select>
+                            <option value="bachelor">Бакалавр</option>
+                            <option value="master">Магистр</option>
+                            <option value="candidate_sciences">Кандидат наук</option>
+                            <option value="doctor_sciences">Доктор наук</option>
+                        </select><br>
 
-                        <label for="resumeExperience">Опыт работы:</label>
-                        <textarea id="resumeExperience" name="experience"></textarea><br>
+                        <label for="resumeCitizenship">Гражданство:</label>
+                        <input type="text" id="resumeCitizenship" name="citizenship" ><br>
 
-                        <label for="skills">Ключевые навыки:</label>
-                        <div class="checkbox-list" id="checkboxList">
-                            <label><input type="checkbox" value="HTML"> HTML</label><br>
-                            <label><input type="checkbox" value="CSS"> CSS</label><br>
-                            <label><input type="checkbox" value="JavaScript"> JavaScript</label><br>
-                            <label><input type="checkbox" value="Python"> Python</label><br>
-                            <label><input type="checkbox" value="Java"> Java</label><br>
-                            <label><input type="checkbox" value="C++"> C++</label><br>
-                            <label><input type="checkbox" value="C#"> C#</label><br>
-                            <label><input type="checkbox" value="Ruby"> Ruby</label><br>
-                            <label><input type="checkbox" value="PHP"> PHP</label><br>
-                            <label><input type="checkbox" value="Swift"> Swift</label><br>
-                            <label><input type="checkbox" value="Kotlin"> Kotlin</label><br>
-                            <label><input type="checkbox" value="Go"> Go</label><br>
-                            <label><input type="checkbox" value="Rust"> Rust</label><br>
-                            <label><input type="checkbox" value="TypeScript"> TypeScript</label><br>
-                            <label><input type="checkbox" value="SQL"> SQL</label><br>
-                            <label><input type="checkbox" value="R"> R</label><br>
-                            <label><input type="checkbox" value="MATLAB"> MATLAB</label><br>
-                            <label><input type="checkbox" value="Perl"> Perl</label><br>
-                            <label><input type="checkbox" value="Scala"> Scala</label><br>
-                            <label><input type="checkbox" value="Haskell"> Haskell</label><br>
+                        <div id="experienceFields">
+                            <label for="experience">Опыт работы:</label>
+                            <div id="experienceList"></div>
+                            <button type="button" id="addExperienceButton">Добавить опыт работы</button>
                         </div>
-                        <label for="projects">Описание проектов:</label>
-                        <textarea id="projects" name="projects"></textarea>
-            
-                        <label for="projectLinks">Ссылки на проекты:</label>
-                        <input type="text" id="projectLinks" name="projectLinks">
+
+                        <div id="skillsFields">
+                            <label for="skills">Ключевые навыки:</label>
+                            <div class="checkbox-list" id="checkboxList">
+                                <label><input type="checkbox" value="HTML"> HTML</label><br>
+                                <label><input type="checkbox" value="CSS"> CSS</label><br>
+                                <label><input type="checkbox" value="JavaScript"> JavaScript</label><br>
+                                <label><input type="checkbox" value="Python"> Python</label><br>
+                                <label><input type="checkbox" value="Java"> Java</label><br>
+                                <label><input type="checkbox" value="C++"> C++</label><br>
+                                <label><input type="checkbox" value="C#"> C#</label><br>
+                                <label><input type="checkbox" value="Ruby"> Ruby</label><br>
+                                <label><input type="checkbox" value="PHP"> PHP</label><br>
+                                <label><input type="checkbox" value="Swift"> Swift</label><br>
+                                <label><input type="checkbox" value="Kotlin"> Kotlin</label><br>
+                                <label><input type="checkbox" value="Go"> Go</label><br>
+                                <label><input type="checkbox" value="Rust"> Rust</label><br>
+                                <label><input type="checkbox" value="TypeScript"> TypeScript</label><br>
+                                <label><input type="checkbox" value="SQL"> SQL</label><br>
+                                <label><input type="checkbox" value="R"> R</label><br>
+                                <label><input type="checkbox" value="MATLAB"> MATLAB</label><br>
+                                <label><input type="checkbox" value="Perl"> Perl</label><br>
+                                <label><input type="checkbox" value="Scala"> Scala</label><br>
+                                <label><input type="checkbox" value="Haskell"> Haskell</label><br>
+                            </div>
+                            <div id="selectedSkills">
+                                <label>Выбранные навыки:</label>
+                                <div id="selectedSkillsList"></div>
+                            </div>
+                        </div>
 
                         <button type="submit" id="submitResumeButton" class="submit-button">Сохранить резюме</button>
                     </form>
-                    
                 </section>
             </main> 
         </div>     
     </div>
+
+    <script>
+        // Пример JavaScript для добавления выбранных навыков с уровнем владения
+        const checkboxList = document.getElementById('checkboxList');
+        const selectedSkillsList = document.getElementById('selectedSkillsList');
+
+        checkboxList.addEventListener('change', function(event) {
+            if (event.target.type === 'checkbox') {
+                const skillName = event.target.value;
+
+                // Если чекбокс выбран
+                if (event.target.checked) {
+                    // Создаем элемент для отображения выбранного навыка и его уровня
+                    const skillItem = document.createElement('div');
+                    skillItem.className = 'skill-item';
+                    skillItem.innerHTML = `
+                        <span>${skillName}</span>
+                        <select class="skill-level">
+                            <option value="beginner">Начальный</option>
+                            <option value="intermediate">Средний</option>
+                            <option value="advanced">Продвинутый</option>
+                            <option value="expert">Эксперт</option>
+                        </select>
+                    `;
+                    selectedSkillsList.appendChild(skillItem);
+                } else {
+                    // Убираем элемент из списка выбранных навыков, если чекбокс снят
+                    const skillItems = selectedSkillsList.querySelectorAll('.skill-item');
+                    skillItems.forEach(item => {
+                        if (item.querySelector('span').textContent === skillName) {
+                            item.remove();
+                        }
+                    });
+                }
+            }
+        });
+
+        // Добавление нового опыта работы
+        document.getElementById('addExperienceButton').addEventListener('click', function() {
+            const experienceList = document.getElementById('experienceList');
+            const experienceItem = document.createElement('div');
+            experienceItem.classList.add('experience-item');
+            experienceItem.innerHTML = `
+                <label>Компания:</label>
+                <input type="text" name="companyName[]" placeholder="Название компании" ><br>
+
+                <label>Должность:</label>
+                <input type="text" name="jobTitle[]" placeholder="Должность" ><br>
+
+                <label>Обязанности:</label>
+                <textarea name="jobResponsibilities[]" placeholder="Ваши обязанности и достижения" ></textarea><br>
+
+                <label for="jobStartDate">Начало работы:</label>
+                <select name="jobStartMonth[]">
+                    <option value="01">Январь</option>
+                    <option value="02">Февраль</option>
+                    <option value="03">Март</option>
+                    <option value="04">Апрель</option>
+                    <option value="05">Май</option>
+                    <option value="06">Июнь</option>
+                    <option value="07">Июль</option>
+                    <option value="08">Август</option>
+                    <option value="09">Сентябрь</option>
+                    <option value="10">Октябрь</option>
+                    <option value="11">Ноябрь</option>
+                    <option value="12">Декабрь</option>
+                </select>
+                <input type="text" name="jobStartYear[]" placeholder="Год начала работы" ><br>
+
+                <label for="jobEndDate">Конец работы:</label>
+                <select name="jobEndMonth[]">
+                    <option value="01">Январь</option>
+                    <option value="02">Февраль</option>
+                    <option value="03">Март</option>
+                    <option value="04">Апрель</option>
+                    <option value="05">Май</option>
+                    <option value="06">Июнь</option>
+                    <option value="07">Июль</option>
+                    <option value="08">Август</option>
+                    <option value="09">Сентябрь</option>
+                    <option value="10">Октябрь</option>
+                    <option value="11">Ноябрь</option>
+                    <option value="12">Декабрь</option>
+                </select>
+                <input type="text" name="jobEndYear[]" placeholder="Год окончания работы"><br>
+
+                <button type="button" class="remove-experience-button">Удалить опыт</button>
+            `;
+            experienceList.appendChild(experienceItem);
+        });
+
+        // Удаление опыта работы
+        document.getElementById('experienceList').addEventListener('click', function(event) {
+            if (event.target.classList.contains('remove-experience-button')) {
+                event.target.closest('.experience-item').remove();
+            }
+        });
+
+        // Обработка отправки формы
+        document.getElementById('resumeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const resumeData = {
+                lastName: document.getElementById('resumeLastName').value,
+                firstName: document.getElementById('resumeFirstName').value,
+                patronymic: document.getElementById('resumePatronymic').value,
+                gender: document.getElementById('resumeGender').value,
+                location: document.getElementById('resumeLocation').value,
+                birthDate: document.getElementById('resumeBirthDate').value,
+                phone: document.getElementById('resumePhone').value,
+                education: document.getElementById('resumeEducation').value,
+                citizenship: document.getElementById('resumeCitizenship').value,
+                workPermission: document.getElementById('resumeWorkPermission').value,
+                skills: [],
+                experience: []
+            };
+
+            // Получаем все выбранные навыки с уровнями
+            const skillItems = selectedSkillsList.querySelectorAll('.skill-item');
+            skillItems.forEach(item => {
+                resumeData.skills.push({
+                    name: item.querySelector('span').textContent,
+                    level: item.querySelector('.skill-level').value
+                });
+            });
+
+            // Получаем данные об опыте работы
+            const experienceItems = document.querySelectorAll('.experience-item');
+            experienceItems.forEach(item => {
+                resumeData.experience.push({
+                    company: item.querySelector('[name="companyName[]"]').value,
+                    jobTitle: item.querySelector('[name="jobTitle[]"]').value,
+                    jobResponsibilities: item.querySelector('[name="jobResponsibilities[]"]').value,
+                    jobStartMonth: item.querySelector('[name="jobStartMonth[]"]').value,
+                    jobStartYear: item.querySelector('[name="jobStartYear[]"]').value,
+                    jobEndMonth: item.querySelector('[name="jobEndMonth[]"]').value,
+                    jobEndYear: item.querySelector('[name="jobEndYear[]"]').value
+                });
+            });
+
+            console.log('Данные резюме:', resumeData);
+            alert('Резюме успешно сохранено!');
+        });
+    </script>
 
     <footer>
         <div class="blocks container">

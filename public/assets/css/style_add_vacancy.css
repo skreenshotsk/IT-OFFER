@@ -1,14 +1,6 @@
 .create-vacancy-section {
-    background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.create-vacancy-section h3 {
-    margin-top: 0;
-    font-size: 24px;
-    color: #333;
 }
 
 .create-vacancy-section form {
@@ -17,31 +9,67 @@
 }
 
 .create-vacancy-section label {
-    margin-top: 10px;
     font-size: 16px;
-    color: #333;
+    color: #ffffff;
 }
 
-.create-vacancy-section input,
-.create-vacancy-section textarea {
+.create-vacancy-section input[type="text"],
+.create-vacancy-section input[type="number"],
+.create-vacancy-section textarea,
+.create-vacancy-section select {
+    width: 300px;
     padding: 10px;
-    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
-.create-vacancy-section textarea {
-    resize: vertical;
-}
-
-.create-vacancy-section button {
-    margin-top: 20px;
+.checkbox-list {
+    max-height: 150px; /* Установите максимальную высоту для отображения части списка */
+    overflow-y: auto; /* Добавьте полосу прокрутки */
+    border: 1px solid #000000;
     padding: 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+    width: 200px;
+    margin-bottom: 25px;
+}
+
+
+#vacancySelectedSkillsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Пространство между элементами */
+}
+
+.skill-item {
+    list-style: none;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 300px;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #000000;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.skill-item .skill-name {
+    margin: 0 auto;
+}
+
+.skill-item select {
+    margin-left: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.submit-button {
+    width: 300px;
 }
