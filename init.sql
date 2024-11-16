@@ -18,7 +18,7 @@ CREATE TABLE candidates (
     education VARCHAR(50),
     experience TEXT,
     portfolio_links TEXT,
-    project_description TEXT
+    project_description_candidate TEXT
 );
 
 CREATE TABLE employers (
@@ -110,7 +110,7 @@ VALUES
 ('Елена', 'Кузнецова', 'kuznetsova@example.com', '+79461234567', 'hashed_password_4', 'employer');
 
 -- Таблица candidates
-INSERT INTO candidates (user_id, phone, telegram_id, education, experience, portfolio_links, project_description)
+INSERT INTO candidates (user_id, phone, telegram_id, education, experience, portfolio_links, project_description_candidate)
 VALUES
 (1, '+79161234567', '@ivanov', 'Высшее', '5 лет в разработке ПО', 'https://portfolio-ivanov.ru', 'Разработка приложения для анализа данных'),
 (2, '+79261234567', '@smirnova', 'Высшее', '3 года в дизайне', 'https://portfolio-smirnova.ru', 'Создание дизайн-проектов для веб-платформ');

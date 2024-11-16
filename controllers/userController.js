@@ -7,8 +7,8 @@ const bcrypt = require('bcrypt');
 // Обработка регистрации пользователя
 const registerUser = async (req, res) => {
     try {
-        const { first_name, last_name, email, phone_num, password, user_type, education, experience, portfolio_links, project_description, company_name, description, website, legal_address, project_photo, company_logo } = req.body;
-
+        const { first_name, last_name, email, phone_num, password, user_type, telegram_id, education, experience, portfolio_links, project_description_candidate, company_name, description, website, legal_address, project_photo, company_logo, project_description } = req.body;
+        console.log(req.body);
         // Хэширование пароля
         const saltRounds = 10;
         const password_hash = await bcrypt.hash(password, saltRounds);
@@ -31,14 +31,15 @@ const registerUser = async (req, res) => {
             const candidate = {
                 user_id: newUser.user_id,
                 phone: phone_num,
-                telegram_id: '', // добавить поле Telegram ID в register.ejs
+                telegram_id,
                 education,
                 experience,
                 portfolio_links,
-                project_description
+                project_description_candidate
             };
             await candidateModel.createCandidate(candidate);
         } else if (user_type === 'employer') {
+            console.log('123');
             const employer = {
                 user_id: newUser.user_id,
                 company_name,
@@ -49,6 +50,7 @@ const registerUser = async (req, res) => {
                 company_logo,
                 project_description
             };
+            console.log('Employer data uc:', employer);
             await employerModel.createEmployer(employer);
         }
 
