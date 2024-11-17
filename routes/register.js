@@ -1,12 +1,19 @@
-// routes/register.js
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
+const skillModel = require('../models/skillModel');
 
-// Маршрут для отображения формы регистрации
-router.get('/', (req, res) => {
-    const skills = ['HTML', 'CSS', 'JavaScript', 'Python', 'Java', 'C++', 'C#', 'Ruby', 'PHP', 'Swift', 'Kotlin', 'Go', 'Rust', 'TypeScript', 'SQL', 'R', 'MATLAB', 'Perl', 'Scala', 'Haskell'];
-    res.render('register', { skills });
+
+// Маршрут для отображения формы регистрации, указать как асинхронная async
+router.get('/', async (req, res) => {
+    try {
+        const skills = await skillModel.getAllSkills();
+        //console.log('sk: ', skills);
+        res.render('register', { skills });
+    } catch (err) {
+        console.error('Ошибка при получении данных навыков:', err);
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // Маршрут для обработки регистрации пользователя

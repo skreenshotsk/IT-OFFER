@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const vacancyModel = require('../models/vacancyModel'); // Подключаем модель для вакансий
-const skillModel = require('../models/skillModel');   // Подключаем модель для навыков (если такая существует)
+const vacancyModel = require('../models/vacancyModel'); // Подключаем модели
+const skillModel = require('../models/skillModel');
 
 // Рендеринг страницы вакансий
 router.get('/', async (req, res) => {
@@ -11,17 +11,17 @@ router.get('/', async (req, res) => {
         const vacancySkills = await vacancyModel.getVacancySkills();
         
         // Логируем вакансии для отладки
-        console.log("-----------------");
+        /*console.log("-----------------");
         console.log(vacancies);
         console.log("-----------------");
         console.log(vacancySkills);
-        console.log("-----------------");
+        console.log("-----------------");*/
 
         // Получаем список навыков из базы данных
         const skills = await skillModel.getAllSkills();
         
         // Логируем список навыков для отладки
-        console.log(skills);
+        //console.log(skills);
 
         // Отправляем данные в шаблон
         res.render('vacancies', { 

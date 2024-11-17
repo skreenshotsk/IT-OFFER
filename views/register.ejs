@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
+
 <body>
     <div class="wrapper">
         <header class="container">
@@ -44,7 +46,7 @@
                         <option value="candidate">Соискатель</option>
                         <option value="employer">Работодатель</option>
                     </select>
-            
+
                     <!-- Общие поля -->
                     <div id="commonFields" class="disabled">
                         <label for="name">Имя:</label>
@@ -52,74 +54,79 @@
 
                         <label for="surname">Фамилия:</label>
                         <input type="text" id="surname" name="last_name" required disabled>
-            
+
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" required disabled placeholder="example@rtxty.com">
-            
+
                         <label for="phone">Номер телефона:</label>
-                        <input type="tel" id="phone" name="phone_num" pattern="[0-9]{11}" required disabled placeholder="8__________">
-            
+                        <input type="tel" id="phone" name="phone_num" pattern="[0-9]{11}" required disabled
+                            placeholder="8__________">
+
                         <label for="password">Пароль:</label>
-                        <input type="password" id="password" name="password" required disabled placeholder="Должен состоять минимум из 8 символов">
-            
+                        <input type="password" id="password" name="password" required disabled
+                            placeholder="Должен состоять минимум из 8 символов">
+
                         <label for="confirm-password">Подтверждение пароля:</label>
                         <input type="password" id="confirm-password" name="confirm-password" required disabled>
                     </div>
-            
+
                     <!-- Поля для кандидата -->
                     <div id="candidateFields" style="display: none;">
                         <label for="tgId">Telegram ID:</label>
                         <input type="text" id="telegram_id" name="telegram_id">
-                        
+
                         <label for="education">Образование:</label>
                         <select id="education" name="education" required>
                             <option value="none">Без образования</option>
                             <option value="secondary">Среднее-профессиональное</option>
                             <option value="higher">Высшее</option>
                         </select>
-            
+
                         <label for="experience">Опыт работы:</label>
                         <textarea id="experience" name="experience"></textarea>
-            
+
                         <label for="skills">Ключевые навыки:</label>
                         <div class="checkbox-list" id="checkboxList">
                             <% skills.forEach(function(skill) { %>
-                                <label><input type="checkbox" name="skills" value="<%= skill %>"> <%= skill %></label><br>
+                                <label>
+                                    <input type="checkbox" name="skills" value="<%= skill.skill_id %>">
+                                    <%= skill.skill_name %>
+                                </label><br>
                             <% }); %>
                         </div>
-            
+                        
                         <label for="projects">Описание проектов:</label>
                         <textarea id="project_description_candidate" name="project_description_candidate"></textarea>
-            
+
                         <label for="projectLinks">Ссылки на проекты:</label>
                         <input type="text" id="portfolio_links" name="portfolio_links">
                     </div>
-            
+
                     <!-- Поля для работодателя -->
                     <div id="employerFields" style="display: none;">
                         <label for="companyName">Название компании:</label>
                         <input type="text" id="company_name" name="company_name">
-            
+
                         <label for="companyDescription">Описание деятельности:</label>
                         <textarea id="description" name="description"></textarea>
-            
+
                         <label for="legalAddress">Юридический адрес:</label>
                         <input type="text" id="legal_address" name="legal_address">
-            
+
                         <label for="companyProjects">Описание проектов:</label>
                         <textarea id="project_description" name="project_description"></textarea>
-            
+
                         <label for="projectPhotos">Фото проектов:</label>
                         <input type="file" id="project_photo" name="project_photo" multiple>
-            
+
                         <label for="companyLogo">Логотип компании:</label>
                         <input type="file" id="company_logo" name="company_logo">
-            
+
                         <label for="companyWebsite">Сайт компании:</label>
                         <input type="url" id="website" name="website">
                     </div>
                     <button type="submit">Зарегистрироваться</button>
-                    
+
                 </form>
                 <p>Уже есть аккаунт? <a href="login.html">Войти</a></p>
             </section>
@@ -141,7 +148,7 @@
         <p>Copyright ® 2021 Lorem All rights Rcerved</p>
     </footer>
     <script>
-        document.getElementById('role').addEventListener('change', function() {
+        document.getElementById('role').addEventListener('change', function () {
             var candidateFields = document.getElementById('candidateFields');
             var employerFields = document.getElementById('employerFields');
             if (this.value === 'notSelected') {
@@ -158,13 +165,13 @@
     </script>
     <!-- это скрипт для того чтобы до выбора роли была закрыта возможность ввода информации в поля фио почта номер телефона и тд (общие поля) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const roleSelect = document.getElementById('role');
             const commonFields = document.getElementById('commonFields');
             const candidateFields = document.getElementById('candidateFields');
             const employerFields = document.getElementById('employerFields');
-    
-            roleSelect.addEventListener('change', function() {
+
+            roleSelect.addEventListener('change', function () {
                 if (roleSelect.value === 'notSelected') {
                     commonFields.classList.add('disabled');
                     commonFields.querySelectorAll('input, textarea').forEach(input => input.disabled = true);
@@ -173,7 +180,7 @@
                 } else {
                     commonFields.classList.remove('disabled');
                     commonFields.querySelectorAll('input, textarea').forEach(input => input.disabled = false);
-    
+
                     if (roleSelect.value === 'candidate') {
                         candidateFields.style.display = 'block';
                         employerFields.style.display = 'none';
@@ -183,9 +190,9 @@
                     }
                 }
             });
-    
+
             // Инициализация Select2 для ключевых навыков
-            $('#skills').select2({
+            /*$('#skills').select2({
                 placeholder: 'Выберите ключевые навыки',
                 allowClear: true,
                 width: '100%',
@@ -198,11 +205,11 @@
                 escapeMarkup: function (markup) {
                     return markup;
                 }
-            });
+            });*/
         });
     </script>
     <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        document.getElementById('registrationForm').addEventListener('submit', function (event) {
             // Включаем все поля перед отправкой формы
             document.querySelectorAll('#commonFields input, #commonFields textarea').forEach(input => input.disabled = false);
             document.querySelectorAll('#candidateFields input, #candidateFields textarea').forEach(input => input.disabled = false);
@@ -244,4 +251,5 @@
         document.getElementById('registrationForm').addEventListener('submit', registerUser);
     </script>
 </body>
+
 </html>
