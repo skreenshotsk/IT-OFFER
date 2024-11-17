@@ -40,11 +40,34 @@ const registerUser = async (req, res) => {
             const newCandidate = await candidateModel.createCandidate(candidate);
             //await candidateModel.createCandidate(candidate);//*
             // Запись выбранных навыков в таблицу candidate_skills
-            if (skills && skills.length > 0) {
-                for (const skillId of skills) {
-                    await candidateSkillModel.addSkillToCandidate(newCandidate.candidate_id, skillId);
-                }
+            // Приведение переменной skills к массиву
+            let processedSkills = [];
+            if (typeof skills === 'string') {                                          //изменено
+                // Если skills — это строка, преобразуем в массив чисел
+                processedSkills = skills.split(',').map(skill => parseInt(skill.trim(), 10)).filter(skill => !isNaN(skill));
+            } else if (Array.isArray(skills)) {
+                // Если это массив, убедимся, что все элементы — числа
+                processedSkills = skills.map(skill => parseInt(skill, 10)).filter(skill => !isNaN(skill));
             }
+            console.log('Навыки для вставки:', processedSkills);
+            if (processedSkills.length > 0) {
+                try {
+                    // Используем Promise.all для одновременной обработки всех навыков
+                    await Promise.all(
+                        processedSkills.map(async (skillId) => {
+                            await candidateSkillModel.addSkillToCandidate(newCandidate.candidate_id, skillId);
+                            console.log(`Успешно добавлен навык: ${skillId}`);
+                        })
+                    );
+                } catch (error) {
+                    console.error('Ошибка при добавлении навыков:', error);
+                }
+            } else {
+                console.error('Навыки отсутствуют или имеют некорректный формат:', skills);
+            }
+            
+
+            
         } else if (user_type === 'employer') {
             console.log('123');
             const employer = {

@@ -13,14 +13,20 @@ const candidateSkillModel = {
     },
 
     // Добавление навыка кандидату
-    addSkillToCandidate: async (candidateId, skillId) => {
-        const query = `
-            INSERT INTO candidate_skills (candidate_id, skill_id)
-            VALUES ($1, $2);
-        `;
-        const values = [candidateId, skillId];
-        await pool.query(query, values);
+    addSkillToCandidate: async (candidateId, skillId) => {                   //изменено
+        try {
+            const query = `
+                INSERT INTO candidate_skills (candidate_id, skill_id)
+                VALUES ($1, $2);
+            `;
+            const values = [candidateId, skillId];
+            await pool.query(query, values);
+        } catch (err) {
+            console.error('Ошибка при добавлении навыка кандидату:', err);
+            throw err;
+        }
     },
+    
 
     // Удаление навыка у кандидата
     removeSkillFromCandidate: async (candidateId, skillId) => {

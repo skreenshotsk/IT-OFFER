@@ -89,7 +89,7 @@
                         <div class="checkbox-list" id="checkboxList">
                             <% skills.forEach(function(skill) { %>
                                 <label>
-                                    <input type="checkbox" name="skills" value="<%= skill.skill_id %>">
+                                    <input type="checkbox" name="skills[]" value="<%= skill.skill_id %>">
                                     <%= skill.skill_name %>
                                 </label><br>
                             <% }); %>
@@ -223,6 +223,10 @@
 
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
+
+            // Обработка множественных значений чекбоксов
+            const skills = formData.getAll('skills[]'); // Получаем все выбранные навыки
+            data.skills = skills; // Добавляем массив навыков в данные
 
             try {
                 const response = await fetch('/register', {
