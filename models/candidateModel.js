@@ -1,4 +1,3 @@
-// models/candidateModel.js
 const pool = require('../config/db');
 
 // Создать кандидата

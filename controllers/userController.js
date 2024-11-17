@@ -1,13 +1,13 @@
-// controllers/userController.js
 const userModel = require('../models/userModel');
 const candidateModel = require('../models/candidateModel');
 const employerModel = require('../models/employerModel');
+const candidateSkillModel = require('../models/candidateSkillModel');
 const bcrypt = require('bcrypt');
 
 // Обработка регистрации пользователя
 const registerUser = async (req, res) => {
     try {
-        const { first_name, last_name, email, phone_num, password, user_type, telegram_id, education, experience, portfolio_links, project_description_candidate, company_name, description, website, legal_address, project_photo, company_logo, project_description } = req.body;
+        const { first_name, last_name, email, phone_num, password, user_type, telegram_id, education, experience, skills, portfolio_links, project_description_candidate, company_name, description, website, legal_address, project_photo, company_logo, project_description } = req.body;
         console.log(req.body);
         // Хэширование пароля
         const saltRounds = 10;
@@ -37,7 +37,14 @@ const registerUser = async (req, res) => {
                 portfolio_links,
                 project_description_candidate
             };
-            await candidateModel.createCandidate(candidate);
+            const newCandidate = await candidateModel.createCandidate(candidate);
+            //await candidateModel.createCandidate(candidate);//*
+            // Запись выбранных навыков в таблицу candidate_skills
+            if (skills && skills.length > 0) {
+                for (const skillId of skills) {
+                    await candidateSkillModel.addSkillToCandidate(newCandidate.candidate_id, skillId);
+                }
+            }
         } else if (user_type === 'employer') {
             console.log('123');
             const employer = {

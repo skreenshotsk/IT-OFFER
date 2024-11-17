@@ -1,4 +1,3 @@
-// models/employerModel.js
 const pool = require('../config/db');
 
 // Создать работодателя
