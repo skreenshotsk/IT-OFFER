@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-<%= nonce %>' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://localhost:8000 https://example.com;">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="assets/css/style_common.css">
+    <link rel="stylesheet" href="assets/css/style_login.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="container">
+            <span class="logo"><a href="/">IT-ОФФЕР</a></span>
+            <nav>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/vacancies">Вакансии</a></li>
+                    <li><a href="/cv">Резюме</a></li>
+                    <li><a href="/profile">Профиль</a></li>
+                    <li>
+                        <button id="toggleButton">Контакты</button>
+                        <div id="dropdown" class="dropdown-content">
+                            <ul class="dropdown-list">
+                                <li><a href="tel:+79120214817">+7-912-021-48-17</a></li>
+                                <li><a href="mailto:itoffer.team@gmail.com">itoffer.team@gmail.com</a></li>
+                                <li><a href="https://t.me/skreenshot_sk">Telegram</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <script src="scripts/script.js" nonce="<%= nonce %>"></script>
+                </ul>
+            </nav>
+            <h3>Авторизация</h3>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <form action="/auth/login" method="post">
+                    <div class="input-group">                        
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+    
+                    <div class="input-group">                        
+                        <input type="password" id="password" name="password" required placeholder="Enter your password">
+                        <img src="assets/images/eyeclose.png" id="eyeicon">
+                    </div>
+    
+                    <div class="input-group">
+                        <label for="rememberMe">
+                            <input type="checkbox" id="rememberMe" name="rememberMe"> Запомнить меня
+                        </label>
+                    </div>
+    
+                    <button type="submit">Войти</button>
+                </form>
+                <p><a href="/auth/register">Зарегистрироваться</a></p>
+                <p><a href="/auth/forgot-password">Забыли пароль?</a></p>
+            </section>            
+        </main>
+    </div>
+
+    <footer>
+        <div class="blocks container">
+            <div>
+                <span class="logo">IT-ОФФЕР</span>
+            </div>
+            <div>
+                <h4>Contact us</h4>
+                <p>itoffer.team@gmail.com</p>
+                <p><a href="https://t.me/skreenshot_sk">Telegram</a></p>
+            </div>
+        </div>
+        <hr>
+        <p>Copyright ® 2024 IT-OFFER</p>
+    </footer>
+
+    <script nonce="<%= nonce %>">
+        let eyeicon = document.getElementById("eyeicon");
+        let password = document.getElementById("password");
+        eyeicon.onclick = function(){
+            if (password.type=="password"){
+                password.type="text";
+                eyeicon.src = "assets/images/eyeopen.png"
+            }
+            else{
+                password.type="password";
+                eyeicon.src = "assets/images/eyeclose.png"
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
-// models/userModel.js
 const pool = require('../config/db');
+const bcrypt = require('bcryptjs');
 
 // Создать нового пользователя
 const createUser = async (user) => {
@@ -20,6 +20,19 @@ const getUserById = async (userId) => {
     const values = [userId];
     const res = await pool.query(query, values);
     return res.rows[0];
+};
+
+// Получить пользователя по email
+const getUserByEmail = async (email) => {
+    const query = 'SELECT * FROM users WHERE email = $1';
+    const values = [email];
+    const res = await pool.query(query, values);
+    return res.rows[0];
+};
+
+// Сравнить пароль
+const comparePassword = async (candidatePassword, userPassword) => {
+    return bcrypt.compare(candidatePassword, userPassword);
 };
 
 // Получить всех пользователей
@@ -53,6 +66,8 @@ const deleteUser = async (userId) => {
 module.exports = {
     createUser,
     getUserById,
+    getUserByEmail,
+    comparePassword,
     getAllUsers,
     updateUser,
     deleteUser,
