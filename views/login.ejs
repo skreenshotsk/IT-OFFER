@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-<%= nonce %>' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://localhost:8000 https://example.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-<%= nonce %>' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://localhost:8000 https://example.com; img-src 'self' data:;">
     <title>Авторизация</title>
-    <link rel="stylesheet" href="assets/css/style_common.css">
-    <link rel="stylesheet" href="assets/css/style_login.css">
+    <link rel="stylesheet" href="/assets/css/style_common.css">
+    <link rel="stylesheet" href="/assets/css/style_login.css">
 </head>
 <body>
     <div class="wrapper">
@@ -28,7 +28,7 @@
                             </ul>
                         </div>
                     </li>
-                    <script src="scripts/script.js" nonce="<%= nonce %>"></script>
+                    <script src="/scripts/script.js" nonce="<%= nonce %>"></script>
                 </ul>
             </nav>
             <h3>Авторизация</h3>
@@ -43,7 +43,7 @@
     
                     <div class="input-group">                        
                         <input type="password" id="password" name="password" required placeholder="Enter your password">
-                        <img src="assets/images/eyeclose.png" id="eyeicon">
+                        <img src="/assets/images/eyeclose.png" id="eyeicon">
                     </div>
     
                     <div class="input-group">
@@ -81,11 +81,11 @@
         eyeicon.onclick = function(){
             if (password.type=="password"){
                 password.type="text";
-                eyeicon.src = "assets/images/eyeopen.png"
+                eyeicon.src = "/assets/images/eyeopen.png"
             }
             else{
                 password.type="password";
-                eyeicon.src = "assets/images/eyeclose.png"
+                eyeicon.src = "/assets/images/eyeclose.png"
             }
         }
     </script>
