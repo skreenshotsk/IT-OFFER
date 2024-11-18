@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-<%= nonce %>' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://localhost:8000 https://example.com;">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     <link rel="stylesheet" href="assets/css/style_common.css">
     <link rel="stylesheet" href="assets/css/style_register.css">
@@ -16,6 +16,9 @@
     <div class="wrapper">
         <header class="container">
             <span class="logo">IT-ОФФЕР</span>
+            <script nonce="<%= nonce %>">
+                console.log('Hello, world!');
+            </script>
             <nav>
                 <ul>
                     <li><a href="index.html">Главная</a></li>
@@ -32,7 +35,7 @@
                             </ul>
                         </div>
                     </li>
-                    <script src="scripts/script.js"></script>
+                    <script src="scripts/script.js" nonce="<%= nonce %>"></script>
                 </ul>
             </nav>
             <h3>Регистрация</h3>
@@ -140,6 +143,7 @@
             </div>
             <div>
                 <h4>Contact us</h4>
+                <p>Это ejs</p>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <p>+908 89097 890</p>
             </div>
@@ -147,7 +151,7 @@
         <hr>
         <p>Copyright ® 2021 Lorem All rights Rcerved</p>
     </footer>
-    <script>
+    <script nonce="<%= nonce %>">
         document.getElementById('role').addEventListener('change', function () {
             var candidateFields = document.getElementById('candidateFields');
             var employerFields = document.getElementById('employerFields');
@@ -164,7 +168,7 @@
         });
     </script>
     <!-- это скрипт для того чтобы до выбора роли была закрыта возможность ввода информации в поля фио почта номер телефона и тд (общие поля) -->
-    <script>
+    <script nonce="<%= nonce %>">
         document.addEventListener('DOMContentLoaded', function () {
             const roleSelect = document.getElementById('role');
             const commonFields = document.getElementById('commonFields');
@@ -208,7 +212,7 @@
             });*/
         });
     </script>
-    <script>
+    <script nonce="<%= nonce %>">
         document.getElementById('registrationForm').addEventListener('submit', function (event) {
             // Включаем все поля перед отправкой формы
             document.querySelectorAll('#commonFields input, #commonFields textarea').forEach(input => input.disabled = false);
@@ -216,7 +220,7 @@
             document.querySelectorAll('#employerFields input, #employerFields textarea').forEach(input => input.disabled = false);
         });
     </script>
-    <script>
+    <script nonce="<%= nonce %>">
         // Функция для отправки запроса на регистрацию
         async function registerUser(event) {
             event.preventDefault();
