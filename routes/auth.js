@@ -38,7 +38,7 @@ router.post('/login', (req, res, next) => {
           return next(err);
         }
         console.log(`Пользователь ${user.email} успешно вошел в аккаунт.`);
-        return res.redirect('/profile');
+        return res.redirect('/auth/profile');
       });
     })(req, res, next);
   });
@@ -62,9 +62,9 @@ router.get('/profile', async (req, res) => {
 // Обработка сохранения изменений профиля
 router.post('/profile', async (req, res) => {
   if (req.isAuthenticated()) {
-    const { last_name, first_name, email, phone_num } = req.body;
+    const { last_name, first_name, email, phone_num, password_hash } = req.body;
     const userId = req.user.user_id;
-    const user = { last_name, first_name, email, phone_num };
+    const user = { last_name, first_name, email, phone_num, password_hash };
     try {
       await updateUser(userId, user);
       res.json({ success: true });
