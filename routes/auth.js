@@ -62,9 +62,9 @@ router.get('/profile', async (req, res) => {
 // Обработка сохранения изменений профиля
 router.post('/profile', async (req, res) => {
   if (req.isAuthenticated()) {
-    const { last_name, first_name, email, phone_num, password_hash } = req.body;
+    const { last_name, first_name, email, phone_num, password_hash, user_type } = req.body;
     const userId = req.user.user_id;
-    const user = { last_name, first_name, email, phone_num, password_hash };
+    const user = { last_name, first_name, email, phone_num, password_hash, user_type };
     try {
       await updateUser(userId, user);
       res.json({ success: true });

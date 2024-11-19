@@ -47,9 +47,13 @@
                     <div class="profile-actions">
                         <button id="editProfileButton" class="edit-button">Редактировать</button>
                         <button type="profile-button" onclick="location.href='/responses'">Отклики</button>
-                        <button id="editProfileButton" class="edit-button" onclick="location.href='/add_cv'">Создать резюме</button>
-                        <button id="editProfileButton" class="edit-button" onclick="location.href='/add_vacancy'">Создать вакансию</button>
+                        <% if (user.user_type === 'candidate') { %>
+                            <button id="editProfileButton" class="edit-button" onclick="location.href='/add_cv'">Создать резюме</button>
+                        <% } else if (user.user_type === 'employer') { %>
+                            <button id="editProfileButton" class="edit-button" onclick="location.href='/add_vacancy'">Создать вакансию</button>
+                        <% } if (user.user_type === 'candidate') { %>
                         <button type="profile-button" onclick="location.href='/profile-cv'">Мое резюме</button>
+                        <% } %>
                         <button type="profile-button" onclick="location.href='/auth/logout'">Выйти из аккаунта</button>
                     </div>
                     <div id="editProfileForm" style="display: none;">
@@ -63,7 +67,8 @@
                                 <input type="email" id="editEmail" name="email" value="<%= user.email %>"><br>
                                 <label for="editPhone">Номер телефона:</label>
                                 <input type="tel" id="editPhone" name="phone" value="<%= user.phone_num %>"><br>
-                                <!-- Скрытое поле для password_hash -->
+                                <!-- Скрытое поле для password_hash, user_type -->
+                                <input type="hidden" id="userType" name="userType" value="<%= user.user_type %>">
                                 <input type="hidden" id="passwordHash" name="passwordHash" value="<%= user.password_hash %>">
                                 <button type="button" id="saveProfileButton" class="save-button">Сохранить</button>
                                 <button type="button" id="cancelEditButton" class="cancel-button">Отмена</button>
