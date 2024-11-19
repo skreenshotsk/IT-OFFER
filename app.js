@@ -53,8 +53,13 @@ app.use(express.static(path.join(__dirname, 'public'), {
 }));
 
 // Настройка маршрутов
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});*/
+
+// Главная страница
+app.get('/', (req, res) => {
+  res.render('index');
 });
 
 app.listen(PORT, () => {

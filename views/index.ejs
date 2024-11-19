@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-<%= nonce %>' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://localhost:8000 https://example.com; img-src 'self' data:;">
+    <link rel="stylesheet" href="/assets/css/style_index.css">
+    <link rel="stylesheet" href="/assets/css/style_common.css">
+    <title>IT-ОФФЕР - быстрый поиск работы для айтишников</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="container">
+            <span class="logo"><a href="/">IT-ОФФЕР</a></span>
+            <nav>
+                <ul>
+                    <li class="active"><a href="/">Главная</a></li>
+                    <li><a href="/vacancies">Вакансии</a></li>
+                    <li><a href="/cv">Резюме</a></li>
+                    <li><a href="/profile">Профиль</a></li>
+                    <li>
+                        <button id="toggleButton">Контакты</button>
+                        <div id="dropdown" class="dropdown-content">
+                            <ul class="dropdown-list">
+                                <li><a href="tel:+79120214817">+7-912-021-48-17</a></li>
+                                <li><a href="mailto:itoffer.team@gmail.com">itoffer.team@gmail.com</a></li>
+                                <li><a href="https://t.me/skreenshot_sk">Telegram</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <script src="/scripts/script.js" nonce="<%= nonce %>"></script>
+                </ul>
+            </nav>
+        </header>
+        <div class="hero container">
+            <div class="hero--info">
+                <h2>Уникальная платформа для поиска работы и найма</h2>
+                <h1>Быстрый поиск работы для IT-специалистов</h1>
+                <p>Присоединяйтесь к сообществу профессионалов: находите работу мечты или талантливых специалистов для вашего проекта.</p>
+                <a href="/auth/login"><button class="btn">Авторизация</button></a>
+            </div>
+            <img src="/assets/images/index.png" alt="">
+        </div>        
+    </div>
+
+    <footer>
+        <div class="blocks container">
+            <div>
+                <span class="logo">IT-ОФФЕР</span>
+            </div>
+            <div>
+                <h4>Contact us</h4>
+                <p>это ejs</p>
+                <p>itoffer.team@gmail.com</p>
+                <p><a href="https://t.me/skreenshot_sk">Telegram</a></p>
+            </div>
+        </div>
+        <hr>
+        <p>Copyright ® 2024 IT-OFFER</p>
+    </footer>
+</body>
+</html>
