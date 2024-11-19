@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
-const { createUser } = require('../models/userModel');
+const { createUser, getUserByEmail, updateUser } = require('../models/userModel');
 
 const router = express.Router();
 
@@ -38,7 +38,7 @@ router.post('/login', (req, res, next) => {
           return next(err);
         }
         console.log(`Пользователь ${user.email} успешно вошел в аккаунт.`);
-        return res.redirect('/');
+        return res.redirect('/profile');
       });
     })(req, res, next);
   });
@@ -49,4 +49,36 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
+// Страница профиля
+router.get('/profile', async (req, res) => {
+  if (req.isAuthenticated()) {
+    const user = await getUserByEmail(req.user.email);
+    res.render('profile', { user });
+  } else {
+    res.redirect('/auth/login');
+  }
+});
+
+// Обработка сохранения изменений профиля
+router.post('/profile', async (req, res) => {
+  if (req.isAuthenticated()) {
+    const { last_name, first_name, email, phone_num } = req.body;
+    const userId = req.user.user_id;
+    const user = { last_name, first_name, email, phone_num };
+    try {
+      await updateUser(userId, user);
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Ошибка при обновлении пользователя:', error);
+      res.status(500).json({ success: false, message: 'Ошибка при обновлении пользователя' });
+    }
+  } else {
+    res.status(401).json({ success: false, message: 'Пользователь не аутентифицирован' });
+  }
+});
+
 module.exports = router;
+
+
+//все маршруты связанные с ауф писать через ауф
+//  /auth/login  /auth/profile

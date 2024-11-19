@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-<%= nonce %>' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://localhost:8000 https://example.com; img-src 'self' data:;">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="/assets/css/style_common.css">
+    <link rel="stylesheet" href="/assets/css/style_profile.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="container">
+            <span class="logo"><a href="/">IT-ОФФЕР</a></span>
+            <nav>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/vacancies">Вакансии</a></li>
+                    <li><a href="/cv">Резюме</a></li>
+                    <li class="active"><a href="/profile">Профиль</a></li>
+                    <li>
+                        <button id="toggleButton">Контакты</button>
+                        <div id="dropdown" class="dropdown-content">
+                            <ul class="dropdown-list">
+                                <li><a href="tel:+79120214817">+7-912-021-48-17</a></li>
+                                <li><a href="mailto:itoffer.team@gmail.com">itoffer.team@gmail.com</a></li>
+                                <li><a href="https://t.me/skreenshot_sk">Telegram</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <script src="/assets/scripts/script.js" nonce="<%= nonce %>"></script>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="container">
+            <main>
+                <section class="profile-section">
+                    <h3>Ваш профиль</h3>
+                    <div id="profile-info">
+                        <!-- Информация о пользователе будет загружена с помощью EJS -->
+                        <p><strong>Фамилия:</strong> <span class="highlight"><%= user.last_name %></span></p>
+                        <p><strong>Имя:</strong> <span class="highlight"><%= user.first_name %></span></p>
+                        <p><strong>Email:</strong> <span class="highlight"><%= user.email %></span></p>
+                        <p><strong>Номер телефона:</strong> <span class="highlight"><%= user.phone_num %></span></p>
+                    </div>
+                    <div class="profile-actions">
+                        <button id="editProfileButton" class="edit-button">Редактировать</button>
+                        <button type="profile-button" onclick="location.href='/responses'">Отклики</button>
+                        <button id="editProfileButton" class="edit-button" onclick="location.href='/add_cv'">Создать резюме</button>
+                        <button id="editProfileButton" class="edit-button" onclick="location.href='/add_vacancy'">Создать вакансию</button>
+                        <button type="profile-button" onclick="location.href='/profile-cv'">Мое резюме</button>
+                        <button type="profile-button" onclick="location.href='/auth/logout'">Выйти из аккаунта</button>
+                    </div>
+                    <div id="editProfileForm" style="display: none;">
+                        <form id="profileForm">
+                            <div class="editform">
+                                <label for="editLastName">Фамилия:</label>
+                                <input type="text" id="editLastName" name="lastName" value="<%= user.last_name %>"><br>
+                                <label for="editFirstName">Имя:</label>
+                                <input type="text" id="editFirstName" name="firstName" value="<%= user.first_name %>"><br>
+                                <label for="editEmail">Email:</label>
+                                <input type="email" id="editEmail" name="email" value="<%= user.email %>"><br>
+                                <label for="editPhone">Номер телефона:</label>
+                                <input type="tel" id="editPhone" name="phone" value="<%= user.phone_num %>"><br>
+                                <button type="button" id="saveProfileButton" class="save-button">Сохранить</button>
+                                <button type="button" id="cancelEditButton" class="cancel-button">Отмена</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <div class="blocks container">
+            <div>
+                <span class="logo">IT-ОФФЕР</span>
+            </div>
+            <div>
+                <h4>Contact us</h4>
+                <p>itoffer.team@gmail.com</p>
+                <p><a href="https://t.me/skreenshot_sk">Telegram</a></p>
+            </div>
+        </div>
+        <hr>
+        <p>Copyright ® 2024 IT-OFFER</p>
+    </footer>
+
+    <script nonce="<%= nonce %>">
+        const editProfileForm = document.getElementById('editProfileForm');
+        const editProfileButton = document.getElementById('editProfileButton');
+        const saveProfileButton = document.getElementById('saveProfileButton');
+        const cancelEditButton = document.getElementById('cancelEditButton');
+
+        editProfileButton.addEventListener('click', function() {
+            editProfileForm.style.display = 'block';
+        });
+
+        saveProfileButton.addEventListener('click', function() {
+            const formData = new FormData(document.getElementById('profileForm'));
+            const userData = {
+                last_name: formData.get('lastName'),
+                first_name: formData.get('firstName'),
+                email: formData.get('email'),
+                phone_num: formData.get('phone')
+            };
+
+            fetch('/profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Профиль сохранен');
+                    editProfileForm.style.display = 'none';
+                    // Обновляем данные на странице
+                    document.getElementById('profile-info').innerHTML = `
+                        <p><strong>Фамилия:</strong> <span class="highlight">${userData.last_name}</span></p>
+                        <p><strong>Имя:</strong> <span class="highlight">${userData.first_name}</span></p>
+                        <p><strong>Email:</strong> <span class="highlight">${userData.email}</span></p>
+                        <p><strong>Номер телефона:</strong> <span class="highlight">${userData.phone_num}</span></p>
+                    `;
+                } else {
+                    alert('Ошибка при сохранении профиля');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Ошибка при сохранении профиля');
+            });
+        });
+
+        cancelEditButton.addEventListener('click', function() {
+            editProfileForm.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
