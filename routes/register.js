@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     try {
         const skills = await skillModel.getAllSkills();
         //console.log('sk: ', skills);
-        res.render('register', { skills });
+        res.render('register', { skills, user: req.user });
     } catch (err) {
         console.error('Ошибка при получении данных навыков:', err);
         res.status(500).json({ error: err.message });

@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Страница регистрации
 router.get('/register', (req, res) => {
-  res.render('register');
+  res.render('register', { user: req.user, skills });
 });
 
 // Обработка регистрации
@@ -21,7 +21,7 @@ router.post('/register', async (req, res) => {
 
 // Страница входа
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', { user: req.user });
 });
 
 // Обработка входа
@@ -55,7 +55,7 @@ router.get('/profile', async (req, res) => {
     const user = await getUserByEmail(req.user.email);
     res.render('profile', { user });
   } else {
-    res.redirect('/auth/login');
+    res.redirect('/auth/login', { user: req.user });
   }
 });
 
