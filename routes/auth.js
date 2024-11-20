@@ -55,7 +55,7 @@ router.get('/profile', async (req, res) => {
     const user = await getUserByEmail(req.user.email);
     res.render('profile', { user });
   } else {
-    res.redirect('/auth/login', { user: req.user });
+    res.redirect('/auth/login');
   }
 });
 
