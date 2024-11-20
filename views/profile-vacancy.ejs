@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои резюме</title>
+    <link rel="stylesheet" href="assets/css/style_common.css">
+    <link rel="stylesheet" href="assets/css/style_vacancies.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <%- include('partials/header') %>
+            <main>
+                <h3>Мои вакансии</h3>
+                <section class="vacancies-section">
+                    <div id="vacanciesList" class="vacancies-list">
+                        <% vacancies.forEach(function(vacancy) { %>
+                            <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
+                                <h3><%= vacancy.title %></h3>
+                                <p>Компания: <%= vacancy.company_name %></p>
+                                <p>Зарплата: <%= vacancy.salary_max %> ₽</p>
+                                <p>Описание: <%= vacancy.description %></p>
+                                <p>Ключевые навыки: </p>
+                                <% vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).forEach(function(skill) { %>
+                                    <p><%= skill.skill_name %></p>
+                                <% }) %>
+                                <div class="extended-description" style="display: none;">
+                                    <p>Расширенное описание:</p>
+                                    <p><%= vacancy.extended_description || 'Не указано' %></p>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>                
+                </section>
+            </main>
+        </div>        
+    </div>
+
+    <%- include('partials/footer') %>
+    
+</body>
+</html>

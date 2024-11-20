@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мои резюме</title>
     <link rel="stylesheet" href="assets/css/style_common.css">
-    <link rel="stylesheet" href="assets/css/style_profile-cv.css">
+    <link rel="stylesheet" href="assets/css/style_vacancies.css">
 </head>
 <body>
     <div class="wrapper">
@@ -30,19 +30,19 @@
                         </li>
                         <script src="scripts/script.js"></script>
                     </ul>
-                </nav>                
+                </nav>
+                
             </header>
-            
             <main>
-                <section class="profile-cv-section">
-                    <h3>Мои резюме</h3>
-                    <div id="cvList" class="cv-list">
-                        <% resumes.forEach(function(resume) { %>
-                            <div class="resume" data-salary="<%= resume.expected_salary %>" data-skills="<%= resumeSkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
+                <h3>Мои вакансии</h3>
+                <section class="vacancies-section">
+                    <div id="vacanciesList" class="vacancies-list">
+                        <% vacancies.forEach(function(vacancy) { %>
+                            <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
                                 <h3><%= vacancy.title %></h3>
-                                <p>Фамилия: <%= user.last_name %></p>
-                                <p>Имя: <%= user.first_name %></p>
-                                <p>Образование: <%= user.last_name %></p>   
+                                <p>Компания: <%= vacancy.company_name %></p>
+                                <p>Зарплата: <%= vacancy.salary_max %> ₽</p>
+                                <p>Описание: <%= vacancy.description %></p>
                                 <p>Ключевые навыки: </p>
                                 <% vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).forEach(function(skill) { %>
                                     <p><%= skill.skill_name %></p>
@@ -53,11 +53,10 @@
                                 </div>
                             </div>
                         <% }) %>
-                    </div>
-                    
+                    </div>                
                 </section>
             </main>
-        </div>
+        </div>        
     </div>
 
     <footer>
