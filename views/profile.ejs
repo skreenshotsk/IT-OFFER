@@ -10,33 +10,12 @@
 </head>
 <body>
     <div class="wrapper">
-        <header class="container">
-            <span class="logo"><a href="/">IT-ОФФЕР</a></span>
-            <nav>
-                <ul>
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/vacancies">Вакансии</a></li>
-                    <li><a href="/cv">Резюме</a></li>
-                    <li class="active"><a href="/profile">Профиль</a></li>
-                    <li>
-                        <button id="toggleButton">Контакты</button>
-                        <div id="dropdown" class="dropdown-content">
-                            <ul class="dropdown-list">
-                                <li><a href="tel:+79120214817">+7-912-021-48-17</a></li>
-                                <li><a href="mailto:itoffer.team@gmail.com">itoffer.team@gmail.com</a></li>
-                                <li><a href="https://t.me/skreenshot_sk">Telegram</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <script src="/scripts/script.js" nonce="<%= nonce %>"></script>
-                </ul>
-            </nav>
-        </header>
+        <%- include('partials/header') %>
         
         <div class="container">
             <main>
-                <section class="profile-section">
-                    <h3>Ваш профиль</h3>
+                <h3>Мой профиль</h3>
+                <section class="profile-section">                    
                     <div id="profile-info">
                         <!-- Информация о пользователе будет загружена с помощью EJS -->
                         <p><strong>Фамилия:</strong> <span class="highlight"><%= user.last_name %></span></p>
@@ -52,7 +31,9 @@
                         <% } else if (user.user_type === 'employer') { %>
                             <button id="editProfileButton" class="edit-button" onclick="location.href='/add_vacancy'">Создать вакансию</button>
                         <% } if (user.user_type === 'candidate') { %>
-                        <button type="profile-button" onclick="location.href='/profile-cv'">Мое резюме</button>
+                            <button type="profile-button" onclick="location.href='/profile-cv'">Мое резюме</button>
+                        <% } else if (user.user_type === 'employer') { %>
+                            <button type="profile-button" onclick="location.href='/profile-vacancy'">Мои вакансии</button>
                         <% } %>
                         <button type="profile-button" onclick="location.href='/auth/logout'">Выйти из аккаунта</button>
                     </div>
@@ -80,20 +61,7 @@
         </div>
     </div>
 
-    <footer>
-        <div class="blocks container">
-            <div>
-                <span class="logo">IT-ОФФЕР</span>
-            </div>
-            <div>
-                <h4>Contact us</h4>
-                <p>itoffer.team@gmail.com</p>
-                <p><a href="https://t.me/skreenshot_sk">Telegram</a></p>
-            </div>
-        </div>
-        <hr>
-        <p>Copyright ® 2024 IT-OFFER</p>
-    </footer>
+    <%- include('partials/footer') %>
 
     <script nonce="<%= nonce %>">
         const editProfileForm = document.getElementById('editProfileForm');
