@@ -14,32 +14,8 @@
 
 <body>
     <div class="wrapper">
-        <header class="container">
-            <span class="logo">IT-ОФФЕР</span>
-            <script nonce="<%= nonce %>">
-                console.log('Hello, world!');
-            </script>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="vacancies.html">Вакансии</a></li>
-                    <li><a href="profile.html">Профиль</a></li>
-                    <li>
-                        <button id="toggleButton">Контакты</button>
-                        <div id="dropdown" class="dropdown-content">
-                            <ul class="dropdown-list">
-                                <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
-                                <li><a href="mailto:info@example.com">info@example.com</a></li>
-                                <li><a href="https://t.me/example">Telegram</a></li>
-                                <li><a href="https://wa.me/79991234567">WhatsApp</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <script src="scripts/script.js" nonce="<%= nonce %>"></script>
-                </ul>
-            </nav>
-            <h3>Регистрация</h3>
-        </header>
+        <%- include('partials/header') %>
+
         <main>
             <section class="form-section">
                 <form action="/register" method="post" id="registrationForm">
@@ -135,22 +111,9 @@
             </section>
         </main>
     </div>
-    <footer>
-        <div class="blocks container">
-            <div>
-                <span class="logo">IT-ОФФЕР</span>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            </div>
-            <div>
-                <h4>Contact us</h4>
-                <p>Это ejs</p>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                <p>+908 89097 890</p>
-            </div>
-        </div>
-        <hr>
-        <p>Copyright ® 2021 Lorem All rights Rcerved</p>
-    </footer>
+    
+    <%- include('partials/footer') %>
+
     <script nonce="<%= nonce %>">
         document.getElementById('role').addEventListener('change', function () {
             var candidateFields = document.getElementById('candidateFields');
