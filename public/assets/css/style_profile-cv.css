@@ -19,81 +19,37 @@
     color: #ffffff;
 }
 
-.profile-cv-section strong {
-    font-weight: bold;
-    color: #ffffff;
+.cv-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+
 }
 
-.profile-cv-section .highlight {
-    background-color: #886866; 
-    padding: 2px 5px;
+.resume {
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    color: #ffffff;
-}
-
-.profile-cv-actions {
-    margin-top: 20px; 
-    padding: 0;   
-}
-
-main .profile-cv-actions button[type ="profile-button"], .edit-button {
-    position: relative;
-    display: flex;
-    font-size: 26px;
-    font-weight: 600;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 300px;
-    border: none;
-    padding: 10px 15px;
-    margin: 10px 0;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;    
-}
-
-
-
-
-
-
-
-#editProfile-cvForm {
-    margin-top: 20px;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#editProfile-cvForm label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 16px;
-    color: #ffffff;
-}
-
-#editProfile-cvForm input, #editProfileForm textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-#editProfile-cvForm button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-right: 10px;
-    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-#editProfile-cvForm button:hover {
-    background-color: #218838;
+.resume:hover {
+    background-color: #c2bdbd;
+}
+
+.resume h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.resume p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #000000;
+}
+.resume ul li  {
+    color: #000000;
 }
