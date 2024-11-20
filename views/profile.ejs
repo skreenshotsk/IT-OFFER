@@ -49,7 +49,7 @@
                                 <label for="editPhone">Номер телефона:</label>
                                 <input type="tel" id="editPhone" name="phone" value="<%= user.phone_num %>"><br>
                                 <!-- Скрытое поле для password_hash, user_type -->
-                                <input type="hidden" id="userType" name="userType" value="<%= user.user_type %>">
+                                <input type="hidden" id="userType" name="user_type" value="<%= user.user_type %>">
                                 <input type="hidden" id="passwordHash" name="passwordHash" value="<%= user.password_hash %>">
                                 <button type="button" id="saveProfileButton" class="save-button">Сохранить</button>
                                 <button type="button" id="cancelEditButton" class="cancel-button">Отмена</button>
@@ -80,8 +80,9 @@
                 first_name: formData.get('firstName'),
                 email: formData.get('email'),
                 phone_num: formData.get('phone'),
-                password_hash: formData.get('passwordHash') // Добавляем password_hash
-            };
+                password_hash: formData.get('passwordHash'),
+                user_type: formData.get('user_type')
+            };            
     
             fetch('/auth/profile', {
                 method: 'POST',
