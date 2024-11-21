@@ -25,50 +25,23 @@
                             <label for="resumeFirstName">Имя:</label>
                             <input type="text" id="resumeFirstName" name="firstName" value="<%= user.first_name %>"><br>
 
-                            <!--<label for="resumeLocation">Укажите свои местоимения:</label>
-                            <select id="resumeEducation" name="education">
-                                <option value="man" <%= user.education === 'candidate_sciences' ? 'selected' : '' %>>Кандидат наук</option>
-                                <option value="woman" <%= user.education === 'doctor_sciences' ? 'selected' : '' %>>Доктор наук</option>
-                            </select><br>-->
-
                             <label for="resumeLocation">Город или регион проживания:</label>
-                            <input type="text" id="resumeLocation" name="location" value="<%= resume.location %>"><br>
+                            <input type="text" id="resumeLocation" name="location" value="<%= resume ? resume.location : '' %>"><br>
 
                             <label for="resumeBirthDate">Дата рождения:</label>
                             <input type="text" id="resumeBirthDate" name="birthDate" placeholder="дд.мм.гггг"
-                                value="<%= resume.birth_date %>"><br>
+                            value="<%= resume ? resume.birth_date : '' %>"><br>
 
                             <label for="resumePhone">Номер телефона:</label>
-                            <input type="tel" id="resumePhone" name="phone" value="<%= resume.phone %>"><br>
-
-                            <label for="resumeEducation">Образование:</label>
-                            <!--<select id="resumeEducation" name="education">
-                                <option value="secondary" <%=resume.education==='secondary' ? 'selected' : '' %>>Среднее
-                                </option>
-                                <option value="secondary_special" <%=resume.education==='secondary_special' ? 'selected'
-                                    : '' %>>Среднее специальное</option>
-                                <option value="incomplete_higher" <%=resume.education==='incomplete_higher' ? 'selected'
-                                    : '' %>>Неоконченное высшее</option>
-                                <option value="higher" <%=resume.education==='higher' ? 'selected' : '' %>>Высшее
-                                </option>
-                                <option value="bachelor" <%=resume.education==='bachelor' ? 'selected' : '' %>>Бакалавр
-                                </option>
-                                <option value="master" <%=resume.education==='master' ? 'selected' : '' %>>Магистр
-                                </option>
-                                <option value="candidate_sciences" <%=resume.education==='candidate_sciences'
-                                    ? 'selected' : '' %>>Кандидат наук</option>
-                                <option value="doctor_sciences" <%=resume.education==='doctor_sciences' ? 'selected'
-                                    : '' %>>Доктор наук</option>
-                            </select><br>-->
+                            <input type="tel" id="resumePhone" name="phone" value="<%= resume ? resume.phone : '' %>"><br>
 
                             <label for="resumeCitizenship">Гражданство:</label>
-                            <input type="text" id="resumeCitizenship" name="citizenship"
-                                value="<%= resume.citizenship %>"><br>
+                            <input type="text" id="resumeCitizenship" name="citizenship" value="<%= resume ? resume.citizenship : '' %>"><br>
+
 
                             <div id="experienceFields">
                                 <label for="experience">Опыт работы:</label>
                                 <div id="experienceList"></div>
-                                <!--<button type="button" id="addExperienceButton">Добавить опыт работы</button>-->
                             </div>
 
                             <div id="skillsFields">
@@ -135,7 +108,6 @@
                 location: document.getElementById('resumeLocation').value,
                 birthDate: document.getElementById('resumeBirthDate').value,
                 phone: document.getElementById('resumePhone').value,
-                education: document.getElementById('resumeEducation').value,
                 citizenship: document.getElementById('resumeCitizenship').value,
                 skills: [],
                 experience: []

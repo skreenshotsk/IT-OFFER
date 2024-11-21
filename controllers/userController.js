@@ -104,49 +104,45 @@ const registerUser = async (req, res) => {
 // Получение данных пользователя и резюме
 const getUserResume = async (req, res) => {
     console.log('1: Entering getUserResume');
-    try {
-        const userId = req.session.userId;
-        console.log('2: userId:', userId);
+    console.log('Пользователь из Passport:', req.user);
 
-        if (!userId) {
-            console.log('3: userId is not set in session');
+    try {
+        const user = req.user; // Используем req.user из Passport.js
+        if (!user) {
+            console.log('2: User not authenticated');
             return res.status(401).json({ success: false, message: 'Unauthorized' });
         }
 
-        const user = await userModel.getUserById(userId);
-        console.log('4: user:', user);
-
-        if (!user) {
-            console.log('5: User not found');
-            return res.status(404).json({ success: false, message: 'User not found' });
-        }
-
-        const candidate = await candidateModel.getCandidateByUserId(userId);
-        console.log('6: candidate:', candidate);
+        const candidate = await candidateModel.getCandidateByUserId(user.user_id); // Используем user.id
+        console.log('3: candidate:', candidate);
+        if (!candidate) {
+            console.log('Candidate not found for user_id:', user.user_id);
+            return res.status(404).json({ success: false, message: 'Candidate not found' });
+        }        
 
         const resume = await resumeModel.getResumeByCandidateId(candidate.candidate_id);
-        console.log('7: resume:', resume);
+        console.log('4: resume:', resume);
 
-        // Объединяем данные пользователя, кандидата и резюме
         const resumeData = {
             firstName: user.first_name,
             lastName: user.last_name,
-            location: resume.location,
-            birthDate: resume.birth_date,
-            phone: candidate.phone,
-            education: candidate.education,
-            citizenship: resume.citizenship,
-            experience: candidate.experience
+            location: resume ? resume.location : '',
+            birthDate: resume ? resume.birth_date : '',
+            phone: candidate ? candidate.phone : '',
+            education: candidate ? candidate.education : '',
+            citizenship: resume ? resume.citizenship : '',
+            experience: candidate ? candidate.experience : ''
         };
 
-        console.log('8: resumeData:', resumeData);
+        console.log('5: resumeData:', resumeData);
 
-        res.render('add_cv', { resumeData });
+        res.render('add_cv', { resume: resumeData, user: req.user });
     } catch (error) {
         console.error('Error fetching user resume:', error);
         res.status(500).json({ success: false, message: error.message });
     }
 };
+
 
 // Обновление данных пользователя
 const updateUserResume = async (req, res) => {
