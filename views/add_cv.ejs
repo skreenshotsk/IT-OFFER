@@ -123,7 +123,23 @@
             });
 
             console.log('Данные резюме:', resumeData);
-            alert('Резюме успешно сохранено!');
+            // Отправка данных на сервер
+            fetch('/resume', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(resumeData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Успех:', data);
+                alert('Резюме успешно сохранено!');
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                alert('Ошибка при сохранении резюме!');
+            });
         });
     </script>
 

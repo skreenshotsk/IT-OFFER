@@ -71,7 +71,6 @@ const registerUser = async (req, res) => {
 
             
         } else if (user_type === 'employer') {
-            console.log('123');
             const employer = {
                 user_id: newUser.user_id,
                 company_name,
@@ -101,27 +100,50 @@ const registerUser = async (req, res) => {
     }
 };
 
-// Получение данных пользователя и резюме
-const getUserResume = async (req, res) => {
-    console.log('1: Entering getUserResume');
-    console.log('Пользователь из Passport:', req.user);
-
+// Создание нового резюме
+const createUserResume = async (req, res) => {
     try {
-        const user = req.user; // Используем req.user из Passport.js
+        const user = req.user;
         if (!user) {
-            console.log('2: User not authenticated');
             return res.status(401).json({ success: false, message: 'Unauthorized' });
         }
 
-        const candidate = await candidateModel.getCandidateByUserId(user.user_id); // Используем user.id
-        console.log('3: candidate:', candidate);
+        const candidate = await candidateModel.getCandidateByUserId(user.user_id);
+        if (!candidate) {
+            console.log('Candidate not found for user_id:', user.user_id);
+            return res.status(404).json({ success: false, message: 'Candidate not found' });
+        }
+
+        const resumeData = {
+            candidate_id: candidate.candidate_id,
+            location: req.body.location,
+            birth_date: req.body.birthDate,
+            citizenship: req.body.citizenship,
+        };
+
+        const newResume = await resumeModel.createResume(resumeData);
+        res.status(201).json({ success: true, resume: newResume });
+    } catch (error) {
+        console.error('Error creating user resume:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// Получение данных пользователя и резюме
+const getUserResume = async (req, res) => {
+    try {
+        const user = req.user; // Используем req.user из Passport.js
+        if (!user) {
+            return res.status(401).json({ success: false, message: 'Unauthorized' });
+        }
+
+        const candidate = await candidateModel.getCandidateByUserId(user.user_id);
         if (!candidate) {
             console.log('Candidate not found for user_id:', user.user_id);
             return res.status(404).json({ success: false, message: 'Candidate not found' });
         }        
 
         const resume = await resumeModel.getResumeByCandidateId(candidate.candidate_id);
-        console.log('4: resume:', resume);
 
         const resumeData = {
             firstName: user.first_name,
@@ -168,6 +190,7 @@ const updateUserResume = async (req, res) => {
 };
 
 module.exports = {
+    createUserResume,
     registerUser,
     getUserResume,
     updateUserResume,
