@@ -27,9 +27,9 @@
                         <button id="editProfileButton" class="edit-button">Редактировать</button>
                         <button type="profile-button" onclick="location.href='/responses'">Отклики</button>
                         <% if (user.user_type === 'candidate') { %>
-                            <button id="editProfileButton" class="edit-button" onclick="location.href='/add_cv'">Создать резюме</button>
+                            <button id="editProfileButton" class="edit-button" data-action="create-resume">Создать резюме</button>
                         <% } else if (user.user_type === 'employer') { %>
-                            <button id="editProfileButton" class="edit-button" onclick="location.href='/add_vacancy'">Создать вакансию</button>
+                            <button id="editProfileButton" class="edit-button" data-action="edit-profile">Создать вакансию</button>
                         <% } if (user.user_type === 'candidate') { %>
                             <button type="profile-button" onclick="location.href='/profile-cv'">Мое резюме</button>
                         <% } else if (user.user_type === 'employer') { %>
@@ -60,6 +60,8 @@
             </main>
         </div>
     </div>
+
+    <script src="/scripts/profileToAdd_cv.js" nonce="<%= nonce %>"></script>
 
     <%- include('partials/footer') %>
 

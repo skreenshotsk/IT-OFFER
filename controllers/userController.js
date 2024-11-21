@@ -2,6 +2,8 @@ const userModel = require('../models/userModel');
 const candidateModel = require('../models/candidateModel');
 const employerModel = require('../models/employerModel');
 const candidateSkillModel = require('../models/candidateSkillModel');
+const resumeModel = require('../models/resumeModel');
+
 const bcrypt = require('bcrypt');
 
 // Обработка регистрации пользователя
@@ -99,11 +101,82 @@ const registerUser = async (req, res) => {
     }
 };
 
-module.exports = {
-    registerUser,
+// Получение данных пользователя и резюме
+const getUserResume = async (req, res) => {
+    console.log('1: Entering getUserResume');
+    try {
+        const userId = req.session.userId;
+        console.log('2: userId:', userId);
+
+        if (!userId) {
+            console.log('3: userId is not set in session');
+            return res.status(401).json({ success: false, message: 'Unauthorized' });
+        }
+
+        const user = await userModel.getUserById(userId);
+        console.log('4: user:', user);
+
+        if (!user) {
+            console.log('5: User not found');
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        const candidate = await candidateModel.getCandidateByUserId(userId);
+        console.log('6: candidate:', candidate);
+
+        const resume = await resumeModel.getResumeByCandidateId(candidate.candidate_id);
+        console.log('7: resume:', resume);
+
+        // Объединяем данные пользователя, кандидата и резюме
+        const resumeData = {
+            firstName: user.first_name,
+            lastName: user.last_name,
+            location: resume.location,
+            birthDate: resume.birth_date,
+            phone: candidate.phone,
+            education: candidate.education,
+            citizenship: resume.citizenship,
+            experience: candidate.experience
+        };
+
+        console.log('8: resumeData:', resumeData);
+
+        res.render('add_cv', { resumeData });
+    } catch (error) {
+        console.error('Error fetching user resume:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
 };
 
-//сделать заполнение навыков (таблицы скиллс для кд и рд), и пополнить инит скл
-//для работы бэка убирать html из ссылки (позже исправить)
+// Обновление данных пользователя
+const updateUserResume = async (req, res) => {
+    try {
+        const userId = req.session.userId;
+        const { first_name, last_name, email, phone_num, user_type, ...additionalData } = req.body;
+
+        // Обновление основных данных пользователя
+        const updatedUser = await userModel.updateUser(userId, { first_name, last_name, email, phone_num, user_type });
+
+        // Обновление дополнительных данных в зависимости от типа пользователя
+        if (user_type === 'candidate') {
+            await candidateModel.updateCandidate(userId, additionalData);
+        } else if (user_type === 'employer') {
+            await employerModel.updateEmployer(userId, additionalData);
+        }
+
+        res.status(200).json({ success: true, message: 'User data updated successfully', user: updatedUser });
+    } catch (error) {
+        console.error('Error updating user resume:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+module.exports = {
+    registerUser,
+    getUserResume,
+    updateUserResume,
+};
+
+//сделать заполнение навыков (таблицы скиллс для рд), и пополнить инит скл
 //для запуска бд очистка: docker-compose down -v запуск бд: docker-compose up -d
 //запуск сервера node app.js

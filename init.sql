@@ -74,10 +74,9 @@ CREATE TABLE applications (
 CREATE TABLE resumes (
     resume_id SERIAL PRIMARY KEY,
     candidate_id INT REFERENCES candidates(candidate_id) ON DELETE CASCADE,
-    title VARCHAR(100),
-    description TEXT,
-    expected_salary DECIMAL(10, 2),
-    currency VARCHAR(10),
+    location VARCHAR(100),
+    birth_date DATE,
+    citizenship VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -191,10 +190,10 @@ VALUES
 (2, 2, 'approved');
 
 -- Таблица resumes
-INSERT INTO resumes (candidate_id, title, description, expected_salary, currency)
+INSERT INTO resumes (candidate_id, location, birth_date, citizenship)
 VALUES
-(1, 'Программист Python', 'Опыт в разработке сложных веб-приложений', 150000, 'RUB'),
-(2, 'Графический дизайнер', 'Креативный подход к задачам', 120000, 'RUB');
+(1, 'Москва', '1990-05-15', 'Россия'),
+(2, 'Санкт-Петербург', '1985-10-20', 'Россия');
 
 -- Таблица resume_applications
 INSERT INTO resume_applications (employer_id, resume_id, status)
