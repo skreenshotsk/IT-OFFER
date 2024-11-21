@@ -2,6 +2,8 @@ const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const { createUser, getUserByEmail, updateUser } = require('../models/userModel');
+const candidateModel = require('../models/candidateModel'); // Добавьте эту строку
+const resumeModel = require('../models/resumeModel'); // Добавьте эту строку
 
 const router = express.Router();
 
@@ -25,7 +27,7 @@ router.get('/login', (req, res) => {
 });
 
 // Обработка входа
-router.post('/login', (req, res, next) => {
+router.post('/login', async (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
       if (err) {
         return next(err);
@@ -33,11 +35,24 @@ router.post('/login', (req, res, next) => {
       if (!user) {
         return res.redirect('/auth/login');
       }
-      req.logIn(user, (err) => {
+      req.logIn(user, async (err) => {
         if (err) {
           return next(err);
         }
         console.log(`Пользователь ${user.email} успешно вошел в аккаунт.`);
+        // Проверка наличия резюме
+        let hasResume = false;
+        if (user.user_type === 'candidate') {
+            const candidate = await candidateModel.getCandidateByUserId(user.user_id);
+            if (candidate) {
+                const resume = await resumeModel.getResumeByCandidateId(candidate.candidate_id);
+                hasResume = !!resume;
+            }
+        }
+
+        // Сохранение информации о наличии резюме в сессии
+        req.session.hasResume = hasResume;
+
         return res.redirect('/auth/profile');
       });
     })(req, res, next);
@@ -53,7 +68,8 @@ router.get('/logout', (req, res) => {
 router.get('/profile', async (req, res) => {
   if (req.isAuthenticated()) {
     const user = await getUserByEmail(req.user.email);
-    res.render('profile', { user });
+    const hasResume = req.session.hasResume || false; // Получение hasResume из сесси
+    res.render('profile', { user, hasResume });
   } else {
     res.redirect('/auth/login');
   }

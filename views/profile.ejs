@@ -27,12 +27,13 @@
                         <button id="editProfileButton" class="edit-button">Редактировать</button>
                         <button type="profile-button" onclick="location.href='/responses'">Отклики</button>
                         <% if (user.user_type === 'candidate') { %>
-                            <button id="editProfileButton" class="edit-button" data-action="create-resume">Создать резюме</button>
+                            <% if (!hasResume) { %>
+                                <button id="editProfileButton" class="edit-button" data-action="create-resume">Создать резюме</button>
+                            <% } else { %>
+                                <button type="profile-button" onclick="location.href='/profile-cv'">Мое резюме</button>
+                            <% } %>
                         <% } else if (user.user_type === 'employer') { %>
                             <button id="editProfileButton" class="edit-button" data-action="edit-profile">Создать вакансию</button>
-                        <% } if (user.user_type === 'candidate') { %>
-                            <button type="profile-button" onclick="location.href='/profile-cv'">Мое резюме</button>
-                        <% } else if (user.user_type === 'employer') { %>
                             <button type="profile-button" onclick="location.href='/profile-vacancy'">Мои вакансии</button>
                         <% } %>
                         <button type="profile-button" onclick="location.href='/auth/logout'">Выйти из аккаунта</button>
