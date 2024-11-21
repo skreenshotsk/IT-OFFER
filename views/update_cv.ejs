@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-<%= nonce %>' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://localhost:8000 https://example.com; img-src 'self' data:;">
+    <title>Обновить резюме</title>
+    <link rel="stylesheet" href="/assets/css/style_common.css">
+    <link rel="stylesheet" href="/assets/css/style_add_cv.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <%- include('partials/header') %>
+
+            <div class="container">
+                <h3>Обновить резюме</h3>
+                <main>
+                    <section class="create-resume-section">
+                        <form id="resumeForm" action="/resume/update" method="POST">
+                            <label for="resumeLastName">Фамилия:</label>
+                            <input type="text" id="resumeLastName" name="lastName" value="<%= user.last_name %>"><br>
+
+                            <label for="resumeFirstName">Имя:</label>
+                            <input type="text" id="resumeFirstName" name="firstName" value="<%= user.first_name %>"><br>
+
+                            <label for="resumeLocation">Город или регион проживания:</label>
+                            <input type="text" id="resumeLocation" name="location" value="<%= resume ? resume.location : '' %>"><br>
+
+                            <label for="resumeBirthDate">Дата рождения:</label>
+                            <input type="text" id="resumeBirthDate" name="birthDate" placeholder="дд.мм.гггг"
+                            value="<%= resume ? resume.birth_date : '' %>"><br>
+
+                            <label for="resumePhone">Номер телефона:</label>
+                            <input type="tel" id="resumePhone" name="phone" value="<%= resume ? resume.phone : '' %>"><br>
+
+                            <label for="resumeCitizenship">Гражданство:</label>
+                            <input type="text" id="resumeCitizenship" name="citizenship" value="<%= resume ? resume.citizenship : '' %>"><br>
+
+
+                            <div id="experienceFields">
+                                <label for="experience">Опыт работы:</label>
+                                <div id="experienceList"></div>
+                            </div>
+
+                            <div id="skillsFields">
+                                <label for="skills">Ключевые навыки:</label>
+                                <div class="checkbox-list" id="checkboxList">
+                                </div>
+                                <div id="selectedSkills">
+                                    <label>Выбранные навыки:</label>
+                                    <div id="selectedSkillsList"></div>
+                                </div>
+                            </div>
+
+                            <button type="submit" id="submitResumeButton" class="submit-button">Обновить
+                                резюме</button>
+                        </form>
+                    </section>
+                </main>
+            </div>
+    </div>
+
+    <script nonce="<%= nonce %>">
+        // Пример JavaScript для добавления выбранных навыков с уровнем владения
+        const checkboxList = document.getElementById('checkboxList');
+        const selectedSkillsList = document.getElementById('selectedSkillsList');
+
+        checkboxList.addEventListener('change', function (event) {
+            if (event.target.type === 'checkbox') {
+                const skillName = event.target.value;
+
+                // Если чекбокс выбран
+                if (event.target.checked) {
+                    // Создаем элемент для отображения выбранного навыка и его уровня
+                    const skillItem = document.createElement('div');
+                    skillItem.className = 'skill-item';
+                    skillItem.innerHTML = `
+                                                <span>${skillName}</span>
+                                                <select class="skill-level">
+                                                    <option value="beginner">Начальный</option>
+                                                    <option value="intermediate">Средний</option>
+                                                    <option value="advanced">Продвинутый</option>
+                                                    <option value="expert">Эксперт</option>
+                                                </select>
+                                            `;
+                    selectedSkillsList.appendChild(skillItem);
+                } else {
+                    // Убираем элемент из списка выбранных навыков, если чекбокс снят
+                    const skillItems = selectedSkillsList.querySelectorAll('.skill-item');
+                    skillItems.forEach(item => {
+                        if (item.querySelector('span').textContent === skillName) {
+                            item.remove();
+                        }
+                    });
+                }
+            }
+        });
+
+        // Обработка отправки формы
+        document.getElementById('resumeForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const resumeData = {
+                lastName: document.getElementById('resumeLastName').value,
+                firstName: document.getElementById('resumeFirstName').value,
+                location: document.getElementById('resumeLocation').value,
+                birthDate: document.getElementById('resumeBirthDate').value,
+                phone: document.getElementById('resumePhone').value,
+                citizenship: document.getElementById('resumeCitizenship').value,
+                skills: [],
+                experience: []
+            };
+
+            // Получаем все выбранные навыки с уровнями
+            const skillItems = selectedSkillsList.querySelectorAll('.skill-item');
+            skillItems.forEach(item => {
+                resumeData.skills.push({
+                    name: item.querySelector('span').textContent,
+                    level: item.querySelector('.skill-level').value
+                });
+            });
+
+            console.log('Данные резюме:', resumeData);
+            // Отправка данных на сервер
+            fetch('/resume/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(resumeData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Успех:', data);
+                alert('Резюме успешно обновлено!');
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                alert('Ошибка при обновлении резюме!');
+            });
+        });
+    </script>
+
+    <%- include('partials/footer') %>
+
+</body>
+
+</html>

@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             console.log('scriptsrabotal');
             const action = button.getAttribute('data-action');
-            if (action === 'create-resume') {
-                location.href = '/resume';
-            } else if (action === 'edit-profile') {
+            if (action === 'update-resume') {
+                location.href = '/resume/update';
+            } else if (action === 'update-edit-profile') {
                 location.href = '/vacancy';
             }
         });

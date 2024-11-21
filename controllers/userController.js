@@ -169,20 +169,26 @@ const getUserResume = async (req, res) => {
 // Обновление данных пользователя
 const updateUserResume = async (req, res) => {
     try {
-        const userId = req.session.userId;
-        const { first_name, last_name, email, phone_num, user_type, ...additionalData } = req.body;
-
-        // Обновление основных данных пользователя
-        const updatedUser = await userModel.updateUser(userId, { first_name, last_name, email, phone_num, user_type });
-
-        // Обновление дополнительных данных в зависимости от типа пользователя
-        if (user_type === 'candidate') {
-            await candidateModel.updateCandidate(userId, additionalData);
-        } else if (user_type === 'employer') {
-            await employerModel.updateEmployer(userId, additionalData);
+        const user = req.user;
+        if (!user) {
+            return res.status(401).json({ success: false, message: 'Unauthorized' });
         }
 
-        res.status(200).json({ success: true, message: 'User data updated successfully', user: updatedUser });
+        const candidate = await candidateModel.getCandidateByUserId(user.user_id);
+        if (!candidate) {
+            console.log('Candidate not found for user_id:', user.user_id);
+            return res.status(404).json({ success: false, message: 'Candidate not found' });
+        }
+
+        const resumeData = {
+            candidate_id: candidate.candidate_id,
+            location: req.body.location,
+            birth_date: req.body.birthDate,
+            citizenship: req.body.citizenship,
+        };
+
+        const updatedResume = await resumeModel.updateResume(candidate.candidate_id, resumeData);
+        res.status(200).json({ success: true, resume: updatedResume });
     } catch (error) {
         console.error('Error updating user resume:', error);
         res.status(500).json({ success: false, message: error.message });

@@ -93,6 +93,9 @@ router.post('/profile', async (req, res) => {
   }
 });
 
+// Маршрут для обновления резюме
+//router.post('/resume/update', userController.updateUserResume);
+
 module.exports = router;
 
 
