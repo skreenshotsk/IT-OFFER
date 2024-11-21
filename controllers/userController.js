@@ -122,6 +122,7 @@ const createUserResume = async (req, res) => {
         };
 
         const newResume = await resumeModel.createResume(resumeData);
+        req.session.hasResume = true;
         res.status(201).json({ success: true, resume: newResume });
     } catch (error) {
         console.error('Error creating user resume:', error);
