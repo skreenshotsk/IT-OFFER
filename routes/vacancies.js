@@ -29,6 +29,7 @@ router.get('/', async (req, res) => {
             vacancies: vacancies,
             skills: skills,
             vacancySkills: vacancySkills,
+            user: req.user,
         });
     } catch (err) {
         console.error('Ошибка при получении данных вакансий:', err);
