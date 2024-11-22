@@ -22,7 +22,7 @@ router.get('/update', async (req, res) => {
             return res.status(404).json({ success: false, message: 'Candidate not found' });
         }
         const resume = await resumeModel.getResumeByCandidateId(candidate.candidate_id);
-        res.render('update_cv', { user, resume });
+        res.render('update_cv', { user, resume, phone: candidate.phone });
     } else {
         res.redirect('/auth/login');
     }
@@ -49,7 +49,6 @@ router.post('/update', async (req, res) => {
 
             // Обновление данных резюме в базе данных
            await resumeModel.updateResume(resume.resume_id, resumeData);
-           console.log('123', resumeData);
 
             res.json({ success: true, message: 'Resume updated successfully' });
         } catch (error) {

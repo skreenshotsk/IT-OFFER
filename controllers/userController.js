@@ -180,6 +180,9 @@ const updateUserResume = async (req, res) => {
             console.log('Candidate not found for user_id:', user.user_id);
             return res.status(404).json({ success: false, message: 'Candidate not found' });
         }
+        const candidateData = { phone: req.body.phone };
+        await candidateModel.updateCandidatePhone(candidate.candidate_id, candidateData);
+
 
         const resumeData = {
             candidate_id: candidate.candidate_id,

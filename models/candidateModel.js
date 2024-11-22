@@ -35,8 +35,23 @@ const getCandidateByUserId = async (userId) => {
     return res.rows[0];
 };
 
+const updateCandidatePhone = async (candidateId, candidateData) => {
+    const { phone } = candidateData;
+    const query = `
+        UPDATE candidates
+        SET phone = $1
+        WHERE candidate_id = $2
+        RETURNING *;
+    `;
+    const values = [phone, candidateId];
+    const res = await pool.query(query, values);
+    return res.rows[0];
+};
+
+
 module.exports = {
     createCandidate,
     updateCandidate,
     getCandidateByUserId,
+    updateCandidatePhone,
 };
