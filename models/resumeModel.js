@@ -24,6 +24,7 @@ const getResumeByCandidateId = async (candidateId) => {
 // Обновить резюме
 const updateResume = async (resumeId, resumeData) => {
     const { location, birth_date, citizenship } = resumeData;
+    console.log('12345', resumeData);
     const query = `
         UPDATE resumes
         SET location = $1, birth_date = $2, citizenship = $3

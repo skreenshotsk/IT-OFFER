@@ -13,7 +13,7 @@ router.get('/', userController.getUserResume);
 
 //router.post('/', userController.updateUserResume);
 
-// Маршрут для обновления данных резюме
+// Маршрут для отображения данных резюме
 router.get('/update', async (req, res) => {
     if (req.isAuthenticated()) {
         const user = await userModel.getUserByEmail(req.user.email);
@@ -25,6 +25,40 @@ router.get('/update', async (req, res) => {
         res.render('update_cv', { user, resume });
     } else {
         res.redirect('/auth/login');
+    }
+});
+
+// Маршрут для обновления данных резюме
+router.post('/update', async (req, res) => {
+    if (req.isAuthenticated()) {
+        try {
+            console.log('123');
+            const user = await userModel.getUserByEmail(req.user.email);
+            const candidate = await candidateModel.getCandidateByUserId(user.user_id);
+            if (!candidate) {
+                return res.status(404).json({ success: false, message: 'Candidate not found' });
+            }
+            const resume = await resumeModel.getResumeByCandidateId(candidate.candidate_id);
+
+            // Обработка данных резюме
+            const resumeData = req.body;
+            console.log('123', resumeData);
+
+            // Проверка валидности данных
+            /*if (!resumeData.lastName || !resumeData.firstName || !resumeData.location || !resumeData.birthDate || !resumeData.phone || !resumeData.citizenship) {
+                return res.status(400).json({ success: false, message: 'All fields are required' });
+            }*/
+
+            // Обновление данных резюме в базе данных
+            await resumeModel.updateResume(resume.resume_id, resumeData);
+
+            res.json({ success: true, message: 'Resume updated successfully' });
+        } catch (error) {
+            console.error('Error updating resume:', error);
+            res.status(500).json({ success: false, message: 'Internal server error' });
+        }
+    } else {
+        res.status(401).json({ success: false, message: 'Unauthorized' });
     }
 });
 

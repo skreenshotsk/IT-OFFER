@@ -75,7 +75,7 @@ CREATE TABLE resumes (
     resume_id SERIAL PRIMARY KEY,
     candidate_id INT REFERENCES candidates(candidate_id) ON DELETE CASCADE,
     location VARCHAR(100),
-    birth_date DATE,
+    birth_date VARCHAR(50),
     citizenship VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
