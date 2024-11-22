@@ -23,14 +23,15 @@ const getResumeByCandidateId = async (candidateId) => {
 
 // Обновить резюме
 const updateResume = async (resumeId, resumeData) => {
-    const { location, birth_date, citizenship } = resumeData;
-    console.log('12345', resumeData);
+    const { location, birthDate, citizenship } = resumeData;
+    const birth_date = birthDate;
     const query = `
         UPDATE resumes
         SET location = $1, birth_date = $2, citizenship = $3
         WHERE resume_id = $4
         RETURNING *;
     `;
+    console.log('12345', resumeData);
     const values = [location, birth_date, citizenship, resumeId];
     const res = await pool.query(query, values);
     return res.rows[0];

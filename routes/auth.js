@@ -59,10 +59,17 @@ router.post('/login', async (req, res, next) => {
   });
 
 // Выход
-router.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
+router.get('/logout', (req, res, next) => {
+  console.log(`Пользователь вышел из аккаунта.`);
+  req.logout((err) => {
+    if (err) {
+      console.error('Ошибка при выходе из аккаунта:', err);
+      return next(err); // Передаем ошибку в обработчик ошибок
+    }
+    res.redirect('/'); // Перенаправляем на главную страницу
+  });
 });
+
 
 // Страница профиля
 router.get('/profile', async (req, res) => {

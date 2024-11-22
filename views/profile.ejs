@@ -36,7 +36,7 @@
                             <button type="profile-button" onclick="location.href='/profile-cv'">Создать вакансию</button>
                             <button type="profile-button" onclick="location.href='/profile-vacancy'">Мои вакансии</button>
                         <% } %>
-                        <button type="profile-button" onclick="location.href='/auth/logout'">Выйти из аккаунта</button>
+                        <button type="profile-button" id="logout-button">Выйти из аккаунта</button>
                     </div>
                     <div id="editProfileForm" style="display: none;">
                         <form id="profileForm">
@@ -64,6 +64,7 @@
 
     <script src="/scripts/profileToAdd_cv.js" nonce="<%= nonce %>"></script>
     <script src="/scripts/profileToUpdate_cv.js" nonce="<%= nonce %>"></script>
+    <script src="/scripts/profileLogout.js"></script>
 
     <%- include('partials/footer') %>
 

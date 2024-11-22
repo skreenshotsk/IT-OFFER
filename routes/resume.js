@@ -32,7 +32,6 @@ router.get('/update', async (req, res) => {
 router.post('/update', async (req, res) => {
     if (req.isAuthenticated()) {
         try {
-            console.log('123');
             const user = await userModel.getUserByEmail(req.user.email);
             const candidate = await candidateModel.getCandidateByUserId(user.user_id);
             if (!candidate) {
@@ -42,7 +41,6 @@ router.post('/update', async (req, res) => {
 
             // Обработка данных резюме
             const resumeData = req.body;
-            console.log('123', resumeData);
 
             // Проверка валидности данных
             /*if (!resumeData.lastName || !resumeData.firstName || !resumeData.location || !resumeData.birthDate || !resumeData.phone || !resumeData.citizenship) {
@@ -50,7 +48,8 @@ router.post('/update', async (req, res) => {
             }*/
 
             // Обновление данных резюме в базе данных
-            await resumeModel.updateResume(resume.resume_id, resumeData);
+           await resumeModel.updateResume(resume.resume_id, resumeData);
+           console.log('123', resumeData);
 
             res.json({ success: true, message: 'Resume updated successfully' });
         } catch (error) {
