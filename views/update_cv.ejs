@@ -17,11 +17,10 @@
             <div class="container">
                 <h3>Обновить резюме</h3>
                 <style>
-                    /* Переопределяем стили для полей с атрибутом disabled */
                     input[disabled] {
-                        background-color: #f0f0f0; /* Светло-серый фон */
-                        color: #000; /* Черный цвет текста */
-                        cursor: not-allowed; /* Изменяем курсор на "не разрешено" */
+                        background-color: #f0f0f0;
+                        color: #000;
+                        cursor: not-allowed;
                     }
                 </style>
                 <main>
@@ -144,6 +143,7 @@
             .then(data => {
                 console.log('Успех:', data);
                 alert('Резюме успешно обновлено!');
+                window.location.href = '/auth/profile';
             })
             .catch((error) => {
                 console.error('Ошибка:', error);

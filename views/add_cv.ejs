@@ -16,6 +16,13 @@
 
             <div class="container">
                 <h3>Создать резюме</h3>
+                <style>
+                    input[disabled] {
+                        background-color: #f0f0f0;
+                        color: #000;
+                        cursor: not-allowed;
+                    }
+                </style>
                 <main>
                     <section class="create-resume-section">
                         <form id="resumeForm" action="/resume" method="POST">
@@ -136,6 +143,7 @@
             .then(data => {
                 console.log('Успех:', data);
                 alert('Резюме успешно сохранено!');
+                window.location.href = '/auth/profile';
             })
             .catch((error) => {
                 console.error('Ошибка:', error);
