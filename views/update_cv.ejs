@@ -16,14 +16,22 @@
 
             <div class="container">
                 <h3>Обновить резюме</h3>
+                <style>
+                    /* Переопределяем стили для полей с атрибутом disabled */
+                    input[disabled] {
+                        background-color: #f0f0f0; /* Светло-серый фон */
+                        color: #000; /* Черный цвет текста */
+                        cursor: not-allowed; /* Изменяем курсор на "не разрешено" */
+                    }
+                </style>
                 <main>
                     <section class="create-resume-section">
                         <form id="resumeForm" action="/resume/update" method="POST">
                             <label for="resumeLastName">Фамилия:</label>
-                            <input type="text" id="resumeLastName" name="lastName" value="<%= user.last_name %>"><br>
+                            <input type="text" id="resumeLastName" name="lastName" value="<%= user.last_name %>" disabled><br>
 
                             <label for="resumeFirstName">Имя:</label>
-                            <input type="text" id="resumeFirstName" name="firstName" value="<%= user.first_name %>"><br>
+                            <input type="text" id="resumeFirstName" name="firstName" value="<%= user.first_name %>" disabled><br>
 
                             <label for="resumeLocation">Город или регион проживания:</label>
                             <input type="text" id="resumeLocation" name="location" value="<%= resume ? resume.location : '' %>"><br>
@@ -33,7 +41,7 @@
                             value="<%= resume ? resume.birth_date : '' %>"><br>
 
                             <label for="resumePhone">Номер телефона:</label>
-                            <input type="tel" id="resumePhone" name="phone" value="<%= phone %>"><br>
+                            <input type="tel" id="resumePhone" name="phone" value="<%= phone %>" disabled><br>
 
                             <label for="resumeCitizenship">Гражданство:</label>
                             <input type="text" id="resumeCitizenship" name="citizenship" value="<%= resume ? resume.citizenship : '' %>"><br>
@@ -53,6 +61,7 @@
                                     <div id="selectedSkillsList"></div>
                                 </div>
                             </div>
+                            <label for="resumePhone">Чтобы изменить имя, фамилию или номер телефона измените профиль</label>
 
                             <button type="submit" id="submitResumeButton" class="submit-button">Обновить
                                 резюме</button>

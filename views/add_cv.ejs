@@ -20,10 +20,10 @@
                     <section class="create-resume-section">
                         <form id="resumeForm" action="/resume" method="POST">
                             <label for="resumeLastName">Фамилия:</label>
-                            <input type="text" id="resumeLastName" name="lastName" value="<%= user.last_name %>"><br>
+                            <input type="text" id="resumeLastName" name="lastName" value="<%= user.last_name %>" disabled><br>
 
                             <label for="resumeFirstName">Имя:</label>
-                            <input type="text" id="resumeFirstName" name="firstName" value="<%= user.first_name %>"><br>
+                            <input type="text" id="resumeFirstName" name="firstName" value="<%= user.first_name %>" disabled><br>
 
                             <label for="resumeLocation">Город или регион проживания:</label>
                             <input type="text" id="resumeLocation" name="location" value="<%= resume ? resume.location : '' %>"><br>
@@ -33,7 +33,7 @@
                             value="<%= resume ? resume.birth_date : '' %>"><br>
 
                             <label for="resumePhone">Номер телефона:</label>
-                            <input type="tel" id="resumePhone" name="phone" value="<%= resume ? resume.phone : '' %>"><br>
+                            <input type="tel" id="resumePhone" name="phone" value="<%= resume ? resume.phone : '' %>" disabled><br>
 
                             <label for="resumeCitizenship">Гражданство:</label>
                             <input type="text" id="resumeCitizenship" name="citizenship" value="<%= resume ? resume.citizenship : '' %>"><br>
@@ -53,6 +53,7 @@
                                     <div id="selectedSkillsList"></div>
                                 </div>
                             </div>
+                            <label for="resumePhone">Чтобы изменить имя, фамилию или номер телефона измените профиль</label>
 
                             <button type="submit" id="submitResumeButton" class="submit-button" onclick="location.href='/auth/profile'">Сохранить
                                 резюме</button>
