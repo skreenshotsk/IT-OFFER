@@ -299,7 +299,7 @@ const updateUserVacancy = async (req, res) => {
 const getAllResumes = async (req, res) => {
     try {
         const resumes = await resumeModel.getAllResumes();
-        res.render('cv', { resumes });
+        res.render('cv', { resumes, user: req.user });
     } catch (error) {
         console.error('Error fetching all resumes:', error);
         res.status(500).json({ success: false, message: error.message });
@@ -314,7 +314,7 @@ const getResumeById = async (req, res) => {
         if (!resume) {
             return res.status(404).json({ success: false, message: 'Resume not found' });
         }
-        res.render('cv', { resume });
+        res.render('cv', { resume, user: req.user });
     } catch (error) {
         console.error('Error fetching resume by ID:', error);
         res.status(500).json({ success: false, message: error.message });

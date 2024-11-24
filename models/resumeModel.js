@@ -37,15 +37,16 @@ const updateResume = async (resumeId, resumeData) => {
     return res.rows[0];
 };
 
-// Получение всех резюме
 const getAllResumes = async () => {
     try {
         const query = `
-            SELECT r.*, c.first_name, c.last_name, c.phone, c.education, c.experience
-            FROM resumes r
-            JOIN candidates c ON r.candidate_id = c.candidate_id
+            SELECT resumes.resume_id, resumes.location, resumes.birth_date, resumes.citizenship, resumes.created_at,
+                   users.first_name, users.last_name, candidates.phone, candidates.education, candidates.experience
+            FROM resumes
+            JOIN candidates ON resumes.candidate_id = candidates.candidate_id
+            JOIN users ON candidates.user_id = users.user_id
         `;
-        const { rows } = await db.query(query);
+        const { rows } = await pool.query(query);
         return rows;
     } catch (error) {
         console.error('Error fetching all resumes:', error);
@@ -57,13 +58,15 @@ const getAllResumes = async () => {
 const getResumeById = async (resumeId) => {
     try {
         const query = `
-            SELECT r.*, c.first_name, c.last_name, c.phone, c.education, c.experience
-            FROM resumes r
-            JOIN candidates c ON r.candidate_id = c.candidate_id
-            WHERE r.resume_id = $1
+            SELECT resumes.resume_id, resumes.location, resumes.birth_date, resumes.citizenship, resumes.created_at,
+                   users.first_name, users.last_name, candidates.phone, candidates.education, candidates.experience
+            FROM resumes
+            JOIN candidates ON resumes.candidate_id = candidates.candidate_id
+            JOIN users ON candidates.user_id = users.user_id
+            WHERE resumes.resume_id = $1
         `;
         const values = [resumeId];
-        const { rows } = await db.query(query, values);
+        const { rows } = await pool.query(query, values);
         return rows[0];
     } catch (error) {
         console.error('Error fetching resume by ID:', error);

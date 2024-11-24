@@ -19,7 +19,7 @@ const createEmployer = async (employer) => {
 const getEmployerByUserId = async (userId) => {
     try {
         const query = 'SELECT * FROM employers WHERE user_id = $1';
-        const { rows } = await db.query(query, [userId]);
+        const { rows } = await pool.query(query, [userId]);
         return rows[0];
     } catch (error) {
         console.error('Error fetching employer by user_id:', error);
