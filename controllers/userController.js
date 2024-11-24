@@ -120,6 +120,8 @@ const createUserResume = async (req, res) => {
             location: req.body.location,
             birth_date: req.body.birthDate,
             citizenship: req.body.citizenship,
+            profession: req.body.profession,
+            salary_max: req.body.salary_max,
         };
 
         const newResume = await resumeModel.createResume(resumeData);
@@ -155,7 +157,9 @@ const getUserResume = async (req, res) => {
             phone: candidate ? candidate.phone : '',
             education: candidate ? candidate.education : '',
             citizenship: resume ? resume.citizenship : '',
-            experience: candidate ? candidate.experience : ''
+            experience: candidate ? candidate.experience : '',
+            profession: resume ? resume.profession: '',
+            salary_max: resume ? resume.salary_max: '',
         };
 
         console.log('5: resumeData:', resumeData);
@@ -190,6 +194,8 @@ const updateUserResume = async (req, res) => {
             location: req.body.location,
             birth_date: req.body.birthDate,
             citizenship: req.body.citizenship,
+            profession: req.body.profession,
+            salary_max: req.body.salary_max,
         };
 
         const updatedResume = await resumeModel.updateResume(candidate.candidate_id, resumeData);

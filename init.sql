@@ -46,18 +46,6 @@ CREATE TABLE vacancies (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-/*CREATE TABLE vacancies_extended (
-    vacancy_id SERIAL PRIMARY KEY,
-    vacancy_title VARCHAR(100),
-    company_name VARCHAR(100),
-    industry_description TEXT,
-    desired_salary DECIMAL(10, 2),
-    education_requirements VARCHAR(100),
-    experience_requirements VARCHAR(100),
-    location VARCHAR(100),
-    employment_type VARCHAR(20)
-);*/
-
 CREATE TABLE skills (
     skill_id SERIAL PRIMARY KEY,
     skill_name VARCHAR(50) UNIQUE
@@ -87,8 +75,10 @@ CREATE TABLE resumes (
     resume_id SERIAL PRIMARY KEY,
     candidate_id INT REFERENCES candidates(candidate_id) ON DELETE CASCADE,
     location VARCHAR(100),
-    birth_date DATE,
+    birth_date VARCHAR(20),
     citizenship VARCHAR(50),
+    profession VARCHAR(100),
+    salary_max DECIMAL(10, 2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -202,10 +192,10 @@ VALUES
 (2, 2, 'approved');
 
 -- Таблица resumes
-INSERT INTO resumes (candidate_id, location, birth_date, citizenship)
+INSERT INTO resumes (candidate_id, location, birth_date, citizenship, profession, salary_max)
 VALUES
-(1, 'Москва', '1990-05-15', 'Россия'),
-(2, 'Санкт-Петербург', '1985-10-20', 'Россия');
+(1, 'Москва', '15.05.1995', 'Россия', 'C++ программист', 120000),
+(2, 'Казань', '23.07.2005', 'Россия', 'Python программист', 90000);
 
 -- Таблица resume_applications
 INSERT INTO resume_applications (employer_id, resume_id, status)
@@ -213,53 +203,3 @@ VALUES
 (1, 1, 'pending'),
 (2, 2, 'approved');
 
-/*INSERT INTO vacancies_extended (
-    vacancy_title,
-    company_name,
-    industry_description,
-    desired_salary,
-    education_requirements,
-    experience_requirements,
-    location,
-    employment_type
-) VALUES
-    (
-        'Инженер-программист',
-        'ТехКомп',
-        'Разработка и поддержка программных приложений',
-        80000.00,
-        'Бакалавр по информатике',
-        '3+ лет опыта',
-        'Сан-Франциско, Калифорния',
-        'Полный рабочий день'
-    ),
-    (
-        'Аналитик данных',
-        'ДатаМаин',
-        'Анализ и визуализация данных',
-        90000.00,
-        'Магистр по статистике',
-        '5+ лет опыта',
-        'Нью-Йорк, Нью-Йорк',
-        'Полный рабочий день'
-    ),
-    (
-        'Менеджер проектов',
-        'ПроектМакс',
-        'Управление проектами и командой',
-        75000.00,
-        'Бакалавр по менеджменту',
-        '4+ лет опыта',
-        'Лос-Анджелес, Калифорния',
-        'Полный рабочий день'
-    ),
-    (
-        'UX/UI Дизайнер',
-        'ДизайнМастер',
-        'Создание пользовательских интерфейсов',
-        70000.00,
-        'Бакалавр по дизайну',
-        '2+ года опыта',
-        'Чикаго, Иллинойс',
-        'Полный рабочий день'
-    );*/

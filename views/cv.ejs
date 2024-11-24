@@ -53,8 +53,9 @@
                         <% resumes.forEach(resume => { %>
                         <div class="cv" data-salary="<%= resume.salary_max %>" data-skills="<%= resume.skills %>">
                             <h3><%= resume.first_name %> <%= resume.last_name %></h3>
+                            <p>Профессия: <%= resume.profession %></p>
                             <p>Желаемая зарплата: <%= resume.salary_max %></p>
-                            <p>Ключевые навыки: <%= resume.location %></p>
+                            <p>Местоположение: <%= resume.location %></p>
                             <p>Образование: <%= resume.education %></p>
                             <p>Ключевые навыки: <%= resume.skills %></p>
                             <div class="extended-description" style="display: none;">

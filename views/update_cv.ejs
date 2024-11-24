@@ -32,6 +32,9 @@
                             <label for="resumeFirstName">Имя:</label>
                             <input type="text" id="resumeFirstName" name="firstName" value="<%= user.first_name %>" disabled><br>
 
+                            <label for="resumeCitizenship">Название профессии:</label>
+                            <input type="text" id="resumeProfession" name="profession" value="<%= resume ? resume.profession : '' %>"><br>
+
                             <label for="resumeLocation">Город или регион проживания:</label>
                             <input type="text" id="resumeLocation" name="location" value="<%= resume ? resume.location : '' %>"><br>
 
@@ -44,7 +47,9 @@
 
                             <label for="resumeCitizenship">Гражданство:</label>
                             <input type="text" id="resumeCitizenship" name="citizenship" value="<%= resume ? resume.citizenship : '' %>"><br>
-
+                            
+                            <label for="resumeCitizenship">Желаемая зарплата:</label>
+                            <input type="text" id="resumeSalary_max" name="salary_max" value="<%= resume ? resume.salary_max : '' %>"><br>
 
                             <div id="experienceFields">
                                 <label for="experience">Опыт работы:</label>
@@ -117,6 +122,8 @@
                 birthDate: document.getElementById('resumeBirthDate').value,
                 phone: document.getElementById('resumePhone').value,
                 citizenship: document.getElementById('resumeCitizenship').value,
+                profession: document.getElementById('resumeProfession').value,
+                salary_max: document.getElementById('resumeSalary_max').value,
                 skills: [],
                 experience: []
             };
