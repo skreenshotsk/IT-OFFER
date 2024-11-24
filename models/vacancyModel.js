@@ -1,4 +1,3 @@
-// models/vacancyModel.js
 const pool = require('../config/db');
 
 // Получить все вакансии
@@ -27,8 +26,17 @@ const getVacancyById = async (id) => {
     return res.rows[0];
 };
 
+// Получить вакансию по employer_id
+const getVacancyByEmployerId = async (employerId) => {
+    const query = 'SELECT * FROM vacancies WHERE employer_id = $1';
+    const values = [employerId];
+    const res = await pool.query(query, values);
+    return res.rows;
+};
+
 module.exports = {
     getAllVacancies,
     getVacancyById,
     getVacancySkills,
+    getVacancyByEmployerId,
 };

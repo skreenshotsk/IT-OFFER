@@ -33,8 +33,8 @@
                                 <button id="editProfileButton" class="edit-button" data-action="update-resume">Мое резюме</button>
                             <% } %>
                         <% } else if (user.user_type === 'employer') { %>
-                            <button type="profile-button" onclick="location.href='/profile-cv'">Создать вакансию</button>
-                            <button type="profile-button" onclick="location.href='/profile-vacancy'">Мои вакансии</button>
+                                <button id="editProfileButton" class="edit-button" data-action="create-vacancy">Создать вакансию</button>
+                                <button id="editProfileButton" class="edit-button" data-action="update-vacancy">Мои вакансии</button>
                         <% } %>
                         <button type="profile-button" id="logout-button">Выйти из аккаунта</button>
                     </div>

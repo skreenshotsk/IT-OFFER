@@ -15,6 +15,28 @@ const createEmployer = async (employer) => {
     return res.rows[0];
 };
 
+// Получение данных работодателя по user_id
+const getEmployerByUserId = async (userId) => {
+    try {
+        const query = 'SELECT * FROM employers WHERE user_id = $1';
+        const { rows } = await db.query(query, [userId]);
+        return rows[0];
+    } catch (error) {
+        console.error('Error fetching employer by user_id:', error);
+        throw error;
+    }
+};
+
+// Получить работодателя по employer_id
+const getEmployerByEmployerId = async (employerId) => {
+    const query = 'SELECT * FROM employers WHERE employer_id = $1';
+    const values = [employerId];
+    const res = await pool.query(query, values);
+    return res.rows[0];
+};
+
 module.exports = {
     createEmployer,
+    getEmployerByUserId,
+    getEmployerByEmployerId,
 };

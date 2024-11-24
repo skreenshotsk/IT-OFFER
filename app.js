@@ -7,6 +7,7 @@ const passport = require('./config/passport');
 const authRoutes = require('./routes/auth');
 const vacanciesRoutes = require('./routes/vacancies');
 const registerRoutes = require('./routes/register');
+const vacancyRoutes = require('./routes/vacancy');
 const resumeRoutes = require('./routes/resume');
 
 const app = express();
@@ -40,6 +41,7 @@ app.use(express.urlencoded({ extended: true }));
 // Подключение маршрутов
 app.use('/vacancies', vacanciesRoutes);
 app.use('/register', registerRoutes);
+app.use('/vacancy', vacancyRoutes);
 app.use('/resume', resumeRoutes);
 app.use('/auth', authRoutes);
 

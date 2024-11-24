@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const action = button.getAttribute('data-action');
             if (action === 'create-resume') {
                 location.href = '/resume';
-            } else if (action === 'edit-profile') {
+            } else if (action === 'create-vacancy') {
                 location.href = '/vacancy';
             }
         });
