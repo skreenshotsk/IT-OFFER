@@ -53,11 +53,17 @@
                         <% resumes.forEach(resume => { %>
                         <div class="cv" data-salary="<%= resume.salary_max %>" data-skills="<%= resume.skills %>">
                             <h3><%= resume.first_name %> <%= resume.last_name %></h3>
-                            <p>Желаемая зарплата: $<%= resume.salary_max %></p>
+                            <p>Желаемая зарплата: <%= resume.salary_max %></p>
+                            <p>Ключевые навыки: <%= resume.location %></p>
+                            <p>Образование: <%= resume.education %></p>
                             <p>Ключевые навыки: <%= resume.skills %></p>
                             <div class="extended-description" style="display: none;">
-                                <p>Расширенное описание:</p>
-                                <p>Опыт работы:</p>
+                                <p>Дата рождения: <%= resume.birth_date %></p>
+                                <p>Почта: <%= resume.email %></p>
+                                <p>Телефон: <%= resume.phone %></p>
+                                <p>Телеграмм: <%= resume.telegram_id %></p>
+                                <p>Гражданство: <%= resume.citizenship %></p>
+                                <p>Опыт работы: <%= resume.experience %></p>
                                 
                             </div>
                             <button class="contact-button">Связаться</button>
