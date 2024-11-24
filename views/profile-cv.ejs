@@ -21,8 +21,36 @@
                                 <h3><%= vacancy.title %></h3>
                                 <p>Фамилия: <%= user.last_name %></p>
                                 <p>Имя: <%= user.first_name %></p>
-                                <p>Образование: <%= user.last_name %></p>   
-                                <p>Ключевые навыки: </p>
+                                <p>Образование: <%= user.education %></p>   
+                                <div id="skillsFields">
+                                    <label for="skills">Ключевые навыки:</label>
+                                    <div class="checkbox-list" id="checkboxList">
+                                        <label><input type="checkbox" value="HTML"> HTML</label><br>
+                                        <label><input type="checkbox" value="CSS"> CSS</label><br>
+                                        <label><input type="checkbox" value="JavaScript"> JavaScript</label><br>
+                                        <label><input type="checkbox" value="Python"> Python</label><br>
+                                        <label><input type="checkbox" value="Java"> Java</label><br>
+                                        <label><input type="checkbox" value="C++"> C++</label><br>
+                                        <label><input type="checkbox" value="C#"> C#</label><br>
+                                        <label><input type="checkbox" value="Ruby"> Ruby</label><br>
+                                        <label><input type="checkbox" value="PHP"> PHP</label><br>
+                                        <label><input type="checkbox" value="Swift"> Swift</label><br>
+                                        <label><input type="checkbox" value="Kotlin"> Kotlin</label><br>
+                                        <label><input type="checkbox" value="Go"> Go</label><br>
+                                        <label><input type="checkbox" value="Rust"> Rust</label><br>
+                                        <label><input type="checkbox" value="TypeScript"> TypeScript</label><br>
+                                        <label><input type="checkbox" value="SQL"> SQL</label><br>
+                                        <label><input type="checkbox" value="R"> R</label><br>
+                                        <label><input type="checkbox" value="MATLAB"> MATLAB</label><br>
+                                        <label><input type="checkbox" value="Perl"> Perl</label><br>
+                                        <label><input type="checkbox" value="Scala"> Scala</label><br>
+                                        <label><input type="checkbox" value="Haskell"> Haskell</label><br>
+                                    </div>
+                                    <div id="selectedSkills">
+                                        <label>Выбранные навыки:</label>
+                                        <div id="selectedSkillsList"></div>
+                                    </div>
+                                </div>
                                 <% vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).forEach(function(skill) { %>
                                     <p><%= skill.skill_name %></p>
                                 <% }) %>

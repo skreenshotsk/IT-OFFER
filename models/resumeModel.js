@@ -41,7 +41,7 @@ const getAllResumes = async () => {
     try {
         const query = `
             SELECT resumes.resume_id, resumes.location, resumes.birth_date, resumes.citizenship, resumes.profession, resumes.salary_max, resumes.created_at,
-                   users.first_name, users.last_name, candidates.phone, candidates.education, candidates.experience
+                   users.first_name, users.last_name, users.email, candidates.phone, candidates.education, candidates.experience, candidates.telegram_id
             FROM resumes
             JOIN candidates ON resumes.candidate_id = candidates.candidate_id
             JOIN users ON candidates.user_id = users.user_id
@@ -59,7 +59,7 @@ const getResumeById = async (resumeId) => {
     try {
         const query = `
             SELECT resumes.resume_id, resumes.location, resumes.birth_date, resumes.citizenship, resumes.profession, resumes.salary_max, resumes.created_at,
-                   users.first_name, users.last_name, candidates.phone, candidates.education, candidates.experience
+                   users.first_name, users.last_name, users.email, candidates.phone, candidates.education, candidates.experience, candidates.telegram_id
             FROM resumes
             JOIN candidates ON resumes.candidate_id = candidates.candidate_id
             JOIN users ON candidates.user_id = users.user_id
