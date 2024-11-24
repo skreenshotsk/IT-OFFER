@@ -295,6 +295,32 @@ const updateUserVacancy = async (req, res) => {
     }
 };
 
+// Получение всех резюме
+const getAllResumes = async (req, res) => {
+    try {
+        const resumes = await resumeModel.getAllResumes();
+        res.render('cv', { resumes });
+    } catch (error) {
+        console.error('Error fetching all resumes:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// Получение резюме по ID
+const getResumeById = async (req, res) => {
+    try {
+        const resumeId = req.params.id;
+        const resume = await resumeModel.getResumeById(resumeId);
+        if (!resume) {
+            return res.status(404).json({ success: false, message: 'Resume not found' });
+        }
+        res.render('cv', { resume });
+    } catch (error) {
+        console.error('Error fetching resume by ID:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
 module.exports = {
     createUserResume,
     registerUser,
@@ -302,7 +328,9 @@ module.exports = {
     updateUserResume,
     createUserVacancy,
     getUserVacancy,
-    updateUserVacancy
+    updateUserVacancy,
+    getAllResumes,
+    getResumeById,
 };
 
 //сделать заполнение навыков (таблицы скиллс для рд), и пополнить инит скл

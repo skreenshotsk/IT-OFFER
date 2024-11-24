@@ -5,6 +5,7 @@ const session = require('express-session');
 const passport = require('./config/passport');
 
 const authRoutes = require('./routes/auth');
+const cvRouter = require('./routes/cv');
 const vacanciesRoutes = require('./routes/vacancies');
 const registerRoutes = require('./routes/register');
 const vacancyRoutes = require('./routes/vacancy');
@@ -44,6 +45,7 @@ app.use('/register', registerRoutes);
 app.use('/vacancy', vacancyRoutes);
 app.use('/resume', resumeRoutes);
 app.use('/auth', authRoutes);
+app.use('/cv', cvRouter);
 
 
 app.use(express.static(path.join(__dirname, 'public'), {

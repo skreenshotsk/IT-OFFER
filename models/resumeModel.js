@@ -37,8 +37,44 @@ const updateResume = async (resumeId, resumeData) => {
     return res.rows[0];
 };
 
+// Получение всех резюме
+const getAllResumes = async () => {
+    try {
+        const query = `
+            SELECT r.*, c.first_name, c.last_name, c.phone, c.education, c.experience
+            FROM resumes r
+            JOIN candidates c ON r.candidate_id = c.candidate_id
+        `;
+        const { rows } = await db.query(query);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching all resumes:', error);
+        throw error;
+    }
+};
+
+// Получение резюме по ID
+const getResumeById = async (resumeId) => {
+    try {
+        const query = `
+            SELECT r.*, c.first_name, c.last_name, c.phone, c.education, c.experience
+            FROM resumes r
+            JOIN candidates c ON r.candidate_id = c.candidate_id
+            WHERE r.resume_id = $1
+        `;
+        const values = [resumeId];
+        const { rows } = await db.query(query, values);
+        return rows[0];
+    } catch (error) {
+        console.error('Error fetching resume by ID:', error);
+        throw error;
+    }
+};
+
 module.exports = {
     createResume,
     getResumeByCandidateId,
     updateResume,
+    getAllResumes,
+    getResumeById,
 };
