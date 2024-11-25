@@ -1,0 +1,104 @@
+main ul {
+    list-style: none;
+    margin-right: 20px;
+}
+
+.admin-section {
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    max-width: 1200px;
+    margin-bottom: 50px;
+}
+
+.admin-section h3 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.admin-actions, .admin-filters {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 800px;
+}
+
+#searchFormUsers, #searchFormCandidates,
+#searchFormEmployers, #searchFormVacancies,
+#searchFormCandidateSkills, #searchFormVacancySkills,
+#searchFormApplications, #searchFormResumes,
+#searchFormResumeApplications {
+    margin-top: 10px; 
+    padding: 10px; 
+    border-radius: 4px; 
+    background-color: #f9f9f9;
+}
+
+#searchFormUsers button, #searchFormCandidates button,
+#searchFormEmployers button, #searchFormVacancies button,
+#searchFormCandidateSkills button, #searchFormVacancySkills button,
+#searchFormApplications button, #searchFormResumes button,
+#searchFormResumeApplications button {
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    width: 200px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.admin-table th, .admin-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.admin-table th {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.admin-report {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+#usersTable,
+#candidatesTable,
+#employersTable,
+#vacanciesTable,
+#skillsTable,
+#candidateSkillsTable,
+#vacancySkillsTable,
+#applicationsTable,
+#resumesTable,
+#resumeApplicationsTable {
+    border: 1px solid #333;
+    margin-left: 15px;
+}
+
+.admin-table td button {
+    display: flex;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px auto;
+}
+
+.admin-table td, .admin-table th {
+    text-align: center;
+}

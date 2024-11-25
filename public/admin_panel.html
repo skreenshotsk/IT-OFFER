@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель</title>
+    <link rel="stylesheet" href="assets/css/style_admin.css">
+    <link rel="stylesheet" href="assets/css/style_common.css">
+    <script>
+        // Функция для управления раскрытием списка
+        function toggleTable(tableId) {
+            const tableSection = document.getElementById(tableId);
+            const isHidden = tableSection.style.display === 'none';
+            tableSection.style.display = isHidden ? 'block' : 'none';
+        }
+        
+        function editRecord(table, recordId) {
+            alert(`Редактировать запись ${recordId} из таблицы ${table}`);
+        }
+
+        function deleteRecord(table, recordId) {
+            if (confirm(`Вы уверены, что хотите удалить запись ${recordId} из таблицы ${table}?`)) {
+                alert(`Запись ${recordId} удалена из таблицы ${table}`);
+            }
+        }
+
+        function toggleSearchForm(searchFormId) {
+            const searchForm = document.getElementById(searchFormId);
+            searchForm.style.display = searchForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Локальная логика поиска
+        function searchRecords() {
+            const searchId = document.getElementById('searchId').value.trim();
+            const searchEmail = document.getElementById('searchEmail').value.trim().toLowerCase();
+            const tableBody = document.getElementById('usersBody');
+            const rows = tableBody.getElementsByTagName('tr');
+
+            for (let row of rows) {
+                const idCell = row.cells[0].innerText.trim();
+                const emailCell = row.cells[3].innerText.trim().toLowerCase(); // Индекс столбца с Email - 3
+
+                const matchesId = searchId === "" || idCell === searchId;
+                const matchesEmail = searchEmail === "" || emailCell.includes(searchEmail);
+
+                // Логика поиска по обоим полям
+                row.style.display = (matchesId && matchesEmail) ? '' : 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="container">
+            <span class="logo"><a href="index.html">IT-ОФФЕР</a></span>
+            <nav>
+                <ul>
+                    <li>Выход из админ панели</li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <main>
+                <section class="admin-section">
+                    <h3>Панель администратора</h3>
+                    <ul>
+                        <!-- Список таблиц -->
+                        <li>
+                            <button onclick="toggleTable('usersTable')">Таблица: Users</button>
+                            <div id="usersTable" style="display: none;">
+                                <div class="admin-actions">
+                                    <button onclick="toggleSearchForm('searchFormUsers')">Поиск записей</button>
+                                    <button onclick="applyFilter('users')">Применить фильтр</button>
+                                </div>
+
+                                <div id="searchFormUsers" style="display: none;">
+                                    <h4>Поиск записей</h4>
+                                    <label for="searchId">User ID:</label>
+                                    <input type="text" id="searchId" placeholder="Введите User ID">
+                                    <br>
+                                    <label for="searchEmail">Email:</label>
+                                    <input type="text" id="searchEmail" placeholder="Введите Email">
+                                    <br>
+                                    <button onclick="searchRecords()">Найти</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>User ID</th>
+                                            <th>Имя</th>
+                                            <th>Фамилия</th>
+                                            <th>Email</th>
+                                            <th>Номер телефона</th>
+                                            <th>Пароль</th>
+                                            <th>Роль</th>
+                                            <th>Дата регистрации</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="usersBody">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Иван</td>
+                                            <td>Иванов</td>
+                                            <td>ivan@example.com</td>
+                                            <td>89120047077</td>
+                                            <td>hashed password</td>
+                                            <td>candidate</td>
+                                            <td>2024-11-25</td>
+                                            <td>
+                                                <button onclick="editRecord('users', 1)">Редактировать</button>
+                                                <button onclick="deleteRecord('users', 1)">Удалить</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Иван</td>
+                                            <td>Иванов</td>
+                                            <td>ivan@exam.com</td>
+                                            <td>89120047077</td>
+                                            <td>hashed password</td>
+                                            <td>candidate</td>
+                                            <td>2024-11-25</td>
+                                            <td>
+                                                <button onclick="editRecord('users', 1)">Редактировать</button>
+                                                <button onclick="deleteRecord('users', 1)">Удалить</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Иван</td>
+                                            <td>Иванов</td>
+                                            <td>ivan@example.com</td>
+                                            <td>89120047077</td>
+                                            <td>hashed password</td>
+                                            <td>candidate</td>
+                                            <td>2024-11-25</td>
+                                            <td>
+                                                <button onclick="editRecord('users', 1)">Редактировать</button>
+                                                <button onclick="deleteRecord('users', 1)">Удалить</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+
+                        <li>
+                            <button onclick="toggleTable('candidatesTable')">Таблица: Candidates</button>
+                            <div id="candidatesTable" style="display: none;">
+                                <div class="admin-actions">
+                                    <button onclick="toggleSearchForm('searchFormCandidates')">Поиск записей</button>
+                                    <button onclick="applyFilter('candidates')">Применить фильтр</button>
+                                    <button onclick="sortRecords('candidates')">Сортировать</button>
+                                </div>
+
+                                <div id="searchFormCandidates" style="display: none;">
+                                    <h4>Поиск записей</h4>
+                                    <label for="searchCandidateId">ID кандидата:</label>
+                                    <input type="text" id="searchCandidateId" placeholder="Введите ID кандидата">
+                                    <br>
+                                    <label for="searchId">ID:</label>
+                                    <input type="text" id="searchId" placeholder="Введите User ID">
+                                    <br>
+                                    <button onclick="searchRecords()">Найти</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID кандидата</th>
+                                            <th>User ID</th>
+                                            <th>Телефон</th>
+                                            <th>Telegram ID</th>
+                                            <th>Образование</th>
+                                            <th>Опыт</th>
+                                            <th>Ссылки на портфолио</th>
+                                            <th>Описание проектов</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="candidatesBody">
+                                        <!-- Динамическое наполнение -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+
+                        <li>
+                            <button onclick="toggleTable('employersTable')">Таблица: Employers</button>
+                            <div id="employersTable" style="display: none;">
+                                <div class="admin-actions">
+                                    <button onclick="toggleSearchForm('searchFormEmployers')">Поиск записей</button>
+                                    <button onclick="applyFilter('employers')">Применить фильтр</button>
+                                    <button onclick="sortRecords('employers')">Сортировать</button>
+                                </div>
+
+                                <div id="searchFormEmployers" style="display: none;">
+                                    <h4>Поиск записей</h4>
+                                    <label for="searchEmployerId">ID работодателя:</label>
+                                    <input type="text" id="searchEmployerId" placeholder="Введите ID работодателя">
+                                    <br>
+                                    <label for="searchId">User ID:</label>
+                                    <input type="text" id="searchId" placeholder="Введите User ID">
+                                    <br>
+                                    <label for="searchCompanyName">Название компании:</label>
+                                    <input type="text" id="searchCompanyName" placeholder="Введите название компании">
+                                    <br>
+                                    <button onclick="searchRecords()">Найти</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID работодателя</th>
+                                            <th>User ID</th>
+                                            <th>Название компании</th>
+                                            <th>Описание компании</th>
+                                            <th>Веб-сайт</th>
+                                            <th>Юридический адрес</th>
+                                            <!-- фото?????? -->
+                                            <th>Описание проектов</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="employersBody"></tbody>
+                                </table>
+                            </div>
+                        </li>
+
+                        <li>
+                            <button onclick="toggleTable('vacanciesTable')">Таблица: Vacancies</button>
+                            <div id="vacanciesTable" style="display: none;">
+                                <div class="admin-actions">
+                                    <button onclick="toggleSearchForm('searchFormVacancies')">Поиск записей</button>
+                                    <button onclick="applyFilter('vacancies')">Применить фильтр</button>
+                                    <button onclick="sortRecords('vacancies')">Сортировать</button>
+                                </div>
+
+                                <div id="searchFormVacancies" style="display: none;">
+                                    <h4>Поиск записей</h4>
+                                    <label for="searchVacancyId">ID вакансии:</label>
+                                    <input type="text" id="searchVacancyId" placeholder="Введите ID вакансии">
+                                    <br>
+                                    <label for="searchEmployerId">ID работодателя:</label>
+                                    <input type="text" id="searchEmployerId" placeholder="Введите ID работодателя">
+                                    <br>
+                                    <label for="searchTitle">Название вакансии:</label>
+                                    <input type="text" id="searchTitle" placeholder="Введите название вакансии">
+                                    <br>
+                                    <button onclick="searchRecords()">Найти</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID вакансии</th>
+                                            <th>ID работодателя</th>
+                                            <th>Название вакансии</th>
+                                            <th>Описание вакансии</th>
+                                            <th>Зарплата (мин)</th>
+                                            <th>Зарплата (макс)</th>
+                                            <th>Валюта</th>
+                                            <th>Тип найма</th>
+                                            <th>Локация</th>
+                                            <th>Дата создания</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="vacanciesBody"></tbody>
+                                </table>
+                            </div>
+                        </li>
+
+                        <li>
+                            <button onclick="toggleTable('skillsTable')">Таблица: Skills</button>
+                            <div id="skillsTable" style="display: none;">
+                                <div class="admin-actions">
+                                    <button onclick="">Добавить навык</button>
+                                </div>
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID навыка</th>
+                                            <th>Название навыка</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="skillsBody"></tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <!-- Аналогично для candidate_skills, vacancy_skills, applications, resumes, resume_applications -->
+                        <!-- Например -->
+                        <li>
+                            <button onclick="toggleTable('candidateSkillsTable')">Таблица: Candidate skills</button>
+                            <div id="candidateSkillsTable" style="display: none;">
+                                <div class="admin-actions">
+                                    <button onclick="toggleSearchForm('searchFormCandidateSkills')">Поиск записей</button>
+                                </div>
+
+                                <div id="searchFormCandidateSkills" style="display: none;">
+                                    <h4>Поиск записей</h4>
+                                    <label for="searchCandidateId">ID кандидата:</label>
+                                    <input type="text" id="searchCandidateId" placeholder="Введите ID кандидата">
+                                    <br>
+                                    <button onclick="searchRecords()">Найти</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID кандидата</th>
+                                            <th>ID наывка</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="candidateSkillsBody"></tbody>
+                                </table>
+                            </div>
+                        </li>
+
+                        <li>
+                            <button onclick="toggleTable('vacancySkillsTable')">Таблица: Vacancy skills</button>
+                            <div id="vacancySkillsTable" style="display: none;">
+                                <div class="admin-actions">
+                                    <button onclick="toggleSearchForm('searchFormVacancySkills')">Поиск записей</button>
+                                </div>
+
+                                <div id="searchFormVacancySkills" style="display: none;">
+                                    <h4>Поиск записей</h4>
+                                    <label for="searchVacancyId">ID вакансии:</label>
+                                    <input type="text" id="searchVacancyId" placeholder="Введите ID вакансии">
+                                    <br>
+                                    <button onclick="searchRecords()">Найти</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID вакансии</th>
+                                            <th>ID навыка</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="vacancySkillsBody"></tbody>
+                                </table>
+                            </div>
+                        </li>
+
+                        <li>
+                            <button onclick="toggleTable('applicationsTable')">Таблица: Applications</button>
+                            <div id="applicationsTable" style="display: none;">
+                                <div class="admin-actions">
+                                    <button onclick="toggleSearchForm('searchFormApplications')">Поиск записей</button>
+                                    <button onclick="applyFilter('applications')">Применить фильтр</button>
+                                    <button onclick="sortRecords('applications')">Сортировать</button>
+                                </div>
+
+                                <div id="searchFormApplications" style="display: none;">
+                                    <h4>Поиск записей</h4>
+                                    <label for="searchApplicationId">ID отклика:</label>
+                                    <input type="text" id="searchApplicationId" placeholder="Введите ID отклика">
+                                    <br>
+                                    <label for="searchCandidateId">ID кандидата:</label>
+                                    <input type="text" id="searchCandidateId" placeholder="Введите ID кандидата">
+                                    <br>
+                                    <label for="searchVacancyId">ID вакансии:</label>
+                                    <input type="text" id="searchVacancyId" placeholder="Введите ID вакансии">
+                                    <br>
+                                    <button onclick="searchRecords()">Найти</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID отклика</th>
+                                            <th>ID кандидата</th>
+                                            <th>ID вакансии</th>
+                                            <th>Статус</th>
+                                            <th>Дата подачи</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="applicationsBody"></tbody>
+                                </table>
+                            </div>
+                        </li>
+
+                        <li>
+                            <button onclick="toggleTable('resumesTable')">Таблица: Resumes</button>
+                            <div id="resumesTable" style="display: none;">
+                                <div class="admin-actions">
+                                    <button onclick="toggleSearchForm('searchFormResumes')">Поиск записей</button>
+                                    <button onclick="applyFilter('applications')">Применить фильтр</button>
+                                    <button onclick="sortRecords('applications')">Сортировать</button>
+                                </div>
+
+                                <div id="searchFormResumes" style="display: none;">
+                                    <h4>Поиск записей</h4>
+                                    <label for="searchResumeId">ID резюме:</label>
+                                    <input type="text" id="searchResumeId" placeholder="Введите ID резюме">
+                                    <br>
+                                    <label for="searchCandidateId">ID кандидата:</label>
+                                    <input type="text" id="searchCandidateId" placeholder="Введите ID кандидата">
+                                    <br>
+                                    <button onclick="searchRecords()">Найти</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID резюме</th>
+                                            <th>ID кандидата</th>
+                                            <th>Локация</th>
+                                            <th>Дата рождения</th>
+                                            <th>Гражданство</th>
+                                            <th>Профессия</th>
+                                            <th>Желаемая зарплата</th>
+                                            <th>Дата создания</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="resumesBody"></tbody>
+                                </table>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <button onclick="toggleTable('resumeApplicationsTable')">Таблица: Resume applications</button>
+                            <div id="resumeApplicationsTable" style="display: none;">
+                                <div class="admin-actions">
+                                    <button onclick="toggleSearchForm('searchFormResumeApplications')">Поиск записей</button>
+                                    <button onclick="applyFilter('applications')">Применить фильтр</button>
+                                    <button onclick="sortRecords('applications')">Сортировать</button>
+                                </div>
+
+                                <div id="searchFormResumeApplications" style="display: none;">
+                                    <h4>Поиск записей</h4>
+                                    <label for="searchApplicationId">ID отклика:</label>
+                                    <input type="text" id="searchApplicationId" placeholder="Введите ID отклика">
+                                    <br>
+                                    <label for="searchEmployerId">ID работодателя:</label>
+                                    <input type="text" id="searchEmployerId" placeholder="Введите ID работодателя">
+                                    <br>
+                                    <label for="searchResumeId">ID резюме:</label>
+                                    <input type="text" id="searchResumeId" placeholder="Введите ID резюме">
+                                    <br>
+                                    <button onclick="searchRecords()">Найти</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID отклика</th>
+                                            <th>ID работодателя</th>
+                                            <th>ID резюме</th>
+                                            <th>Статус</th>
+                                            <th>Дата создания</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="resumeApplicationsBody"></tbody>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <div class="blocks container">
+                <div>
+                    <span class="logo">IT-ОФФЕР</span>
+                </div>
+                <div>
+                    <h4>Контакты</h4>
+                    <p>itoffer.team@gmail.com</p>
+                    <p><a href="https://t.me/skreenshot_sk">Telegram</a></p>
+                </div>
+            </div>
+            <hr>
+            <p>Copyright © 2024 IT-OFFER</p>
+        </footer>
+
+        <script src="scripts/admin.js"></script>
+    </div>
+</body>
+</html>

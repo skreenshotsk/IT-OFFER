@@ -72,3 +72,32 @@
     location VARCHAR(100),
     employment_type VARCHAR(20)
 );*/
+
+
+
+
+ДЛЯ АДМИН ПАНЕЛИ
+
+loadTableData('/api/users', 'tableBody');
+
+const candidateData = {
+    user_id: 1,
+    phone: "+7(999)123-45-67",
+    telegram_id: "example_telegram",
+    education: "Высшее",
+    experience: "3 года в IT",
+    portfolio_links: "http://portfolio.example.com",
+    project_description_candidate: "Успешно реализованные проекты."
+};
+
+addRecord('/api/candidates', candidateData);
+
+generateReport('/api/reports/vacancies', { skill_id: 5 });
+
+
+function searchRecords() {
+    const searchId = document.getElementById('searchId').value.trim();
+    const searchEmail = document.getElementById('searchEmail').value.trim();
+    alert(`Ищем записи с ID: ${searchId}, Email: ${searchEmail}`);
+    // Здесь нужно добавить серверную или локальную логику поиска
+}
