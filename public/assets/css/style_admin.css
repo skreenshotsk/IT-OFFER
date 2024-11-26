@@ -32,7 +32,14 @@ main ul {
 #searchFormEmployers, #searchFormVacancies,
 #searchFormCandidateSkills, #searchFormVacancySkills,
 #searchFormApplications, #searchFormResumes,
-#searchFormResumeApplications {
+#searchFormResumeApplications, #userSortMenu,
+#candidateSortMenu, #employerSortMenu,
+#vacanciesSortMenu, #applicationSortMenu,
+#resumesSortMenu, #resumeApplicationsSortMenu,
+#userFilterForm, #candidateFilterForm,
+#employerFilterForm, #vacanciesFilterForm,
+#applicationsFilterForm, #resumesFilterForm,
+#resumeApplicationsFilterForm {
     margin-top: 10px; 
     padding: 10px; 
     border-radius: 4px; 
@@ -50,6 +57,11 @@ main ul {
     align-items: center;
     margin: 5px;
     width: 200px;
+}
+
+.table-container {
+    height: 500px; /* Ограничиваем высоту */
+    overflow: auto; /* Добавляем полосу прокрутки */
 }
 
 .admin-table {
