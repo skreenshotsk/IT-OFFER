@@ -101,3 +101,5 @@ function searchRecords() {
     alert(`Ищем записи с ID: ${searchId}, Email: ${searchEmail}`);
     // Здесь нужно добавить серверную или локальную логику поиска
 }
+
+ВОЛОДЯ БЭМЖ
