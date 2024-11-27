@@ -107,8 +107,14 @@
                                                     <td><%= user.password_hash %></td>
                                                     <td><%= user.user_type %></td>
                                                     <td><%= user.created_at %></td>
-                                                    <td>удалить</td>
-                                                    
+                                                    <td>
+                                                        <% if (typeof user !== 'undefined' && typeof user.user_id !== 'undefined') { %>
+                                                            <button data-user-id="<%= user.user_id %>" class="edit-user">Редактировать</button>
+                                                            <button data-user-id="<%= user.user_id %>" class="delete-user">Удалить</button>
+                                                        <% } else { %>
+                                                            <span>Нет идентификатора пользователя</span>
+                                                        <% } %>
+                                                    </td>
                                                   </tr>
                                                 <% }); %>
                                               <% } else { %>
@@ -121,6 +127,49 @@
                                 </div>
                             </div>
                         </li>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const editButtons = document.querySelectorAll('.edit-user');
+                                const deleteButtons = document.querySelectorAll('.delete-user');
+                    
+                                editButtons.forEach(button => {
+                                    button.addEventListener('click', function() {
+                                        const userId = this.getAttribute('data-user-id');
+                                        editUser(userId);
+                                    });
+                                });
+                    
+                                deleteButtons.forEach(button => {
+                                    button.addEventListener('click', function() {
+                                        const userId = this.getAttribute('data-user-id');
+                                        deleteUser(userId);
+                                    });
+                                });
+                            });
+                    
+                            function editUser(userId) {
+                                // Здесь вы можете добавить логику для редактирования пользователя
+                                console.log('Редактирование пользователя с ID:', userId);
+                                // Например, можно отправить запрос на сервер для редактирования пользователя
+                            }
+                    
+                            function deleteUser(userId) {
+                                // Здесь вы можете добавить логику для удаления пользователя
+                                console.log('Удаление пользователя с ID:', userId);
+                                // Например, можно отправить запрос на сервер для удаления пользователя
+                            }
+                    
+                            function toggleTable(tableId) {
+                                const table = document.getElementById(tableId);
+                                table.style.display = table.style.display === 'none' ? 'block' : 'none';
+                            }
+                    
+                            function toggleElement(elementId) {
+                                const element = document.getElementById(elementId);
+                                element.style.display = element.style.display === 'none' ? 'block' : 'none';
+                            }
+                        </script>
 
                         <li>
                             <button onclick="toggleTable('candidatesTable')">Таблица: Candidates</button>
@@ -194,7 +243,7 @@
                                                         <td><%= candidate.experience %></td>
                                                         <td><%= candidate.portfolio_links %></td>
                                                         <td><%= candidate.project_description_candidate %></td>
-                                                        <td>кнопки</td>
+                                                        <td>кнопкиtd>
                                                     </tr>
                                                 <% }); %>
                                             <% } else { %>
@@ -417,8 +466,6 @@
                                 </div>
                             </div>
                         </li>
-                        <!-- Аналогично для candidate_skills, vacancy_skills, applications, resumes, resume_applications -->
-                        <!-- Например -->
                         <li>
                             <button onclick="toggleTable('candidateSkillsTable')">Таблица: Candidate skills</button>
                             <div id="candidateSkillsTable" style="display: none;">
