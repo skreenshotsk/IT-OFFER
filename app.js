@@ -11,6 +11,7 @@ const registerRoutes = require('./routes/register');
 const vacancyRoutes = require('./routes/vacancy');
 const resumeRoutes = require('./routes/resume');
 const adminRouter = require('./routes/admin');
+const myVacanciesRoutes = require('./routes/my_vacancies');
 
 const app = express();
 const PORT = 8000;
@@ -41,6 +42,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Подключение маршрутов
+app.use('/my_vacancy', myVacanciesRoutes);
 app.use('/vacancies', vacanciesRoutes);
 app.use('/register', registerRoutes);
 app.use('/vacancy', vacancyRoutes);

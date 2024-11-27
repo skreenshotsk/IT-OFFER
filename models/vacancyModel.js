@@ -16,6 +16,22 @@ const getAllVacancies = async () => {
     }
 };
 
+const getAllVacanciesByUserId = async (user_id) => {
+    try {
+        const query = `
+            SELECT v.*, e.company_name 
+            FROM vacancies v
+            JOIN employers e ON v.employer_id = e.employer_id
+            WHERE e.user_id = $1
+        `;
+        const { rows } = await pool.query(query, [user_id]);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching all vacancies:', error);
+        throw error;
+    }
+};
+
 const getAllVacanciesAdmin = async () => {
     const res = await pool.query('SELECT * FROM vacancies');
     return res.rows;
@@ -71,6 +87,7 @@ const createVacancy = async (vacancy) => {
 
 module.exports = {
     getAllVacancies,
+    getAllVacanciesByUserId,
     getVacancyById,
     getVacancySkills,
     getVacancyByEmployerId,

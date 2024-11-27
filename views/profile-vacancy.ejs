@@ -3,41 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мои резюме</title>
+    <title>Вакансии</title>
     <link rel="stylesheet" href="/assets/css/style_common.css">
     <link rel="stylesheet" href="/assets/css/style_vacancies.css">
 </head>
 <body>
     <div class="wrapper">
+        <%- include('partials/header') %>
+        
         <div class="container">
-            <%- include('partials/header') %>
             <main>
                 <h3>Мои вакансии</h3>
                 <section class="vacancies-section">
+                    <button id="filterButton" class="filter-button">Фильтр</button>
+                    <div id="filterOptions" class="filter-options" style="display: none;">
+                        <label for="salaryFilter">Зарплата:</label>
+                        <input type="number" id="salaryFilter" placeholder="Минимальная зарплата">
+                        <div class="checkbox-list" id="checkboxList">
+                            <% skills.forEach(function(skill) { %>
+                                <label><input type="checkbox" value="<%= skill.skill_name %>"> <%= skill.skill_name %></label><br>
+                            <% }) %>
+                        </div>
+                        <button id="applyFilter" class="apply-filter-button">Применить</button>
+                    </div>
                     <div id="vacanciesList" class="vacancies-list">
-                        <% vacancies.forEach(function(vacancy) { %>
+                        <% vacancies.forEach(function(my_vacancy) { %>
                             <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
-                                <h3><%= vacancy.title %></h3>
-                                <p>Компания: <%= vacancy.company_name %></p>
-                                <p>Зарплата: <%= vacancy.salary_max %> ₽</p>
-                                <p>Описание: <%= vacancy.description %></p>
+                                <h3><%= my_vacancy.title %></h3>
+                                <p>Описание деятельности: <%= my_vacancy.description %></p>
+                                <p>Компания: <%= my_vacancy.company_name %></p>
+                                <p>Зарплата: <%= my_vacancy.salary_max %> ₽</p>
+                                <p>График: <%= my_vacancy.schedule %></p>
+                                <p>Тип занятости: <%= my_vacancy.employment_type %></p>
+                                <p>Образование: <%= my_vacancy.education %></p>
+                                <p>Требуемый опыт: <%= my_vacancy.experience %></p>
+                                <p>Почта: <%= my_vacancy.contact_email %></p>
+                                <p>Телефон: <%= my_vacancy.contact_phone %></p>
+                                <p>Человечик для связи: <%= my_vacancy.contact_person %></p>
                                 <p>Ключевые навыки: </p>
                                 <% vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).forEach(function(skill) { %>
                                     <p><%= skill.skill_name %></p>
                                 <% }) %>
                                 <div class="extended-description" style="display: none;">
                                     <p>Расширенное описание:</p>
-                                    <p><%= vacancy.extended_description || 'Не указано' %></p>
+                                    <p><%= my_vacancy.extended_description || 'Не указано' %></p>
                                 </div>
+                                <button class="response-button">Отклик</button>
                             </div>
                         <% }) %>
-                    </div>                
-                </section>
+                    </div>               
+                </section>            
             </main>
-        </div>        
+        </div>
     </div>
-
-    <%- include('partials/footer') %>
+    <%- include('partials/footer') %> <!-- Включение footer -->
     
+    <script src="/scripts/vacanciesFilter.js"></script>
 </body>
 </html>
