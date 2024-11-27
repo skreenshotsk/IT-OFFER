@@ -150,3 +150,5 @@ function searchRecords() {
                                                             <button onclick="editRecord('resume_applications', <%= ra.application_id %>)">Редактировать</button>
                                                             <button onclick="deleteRecord('resume_applications', <%= ra.application_id %>)">Удалить</button>
                                                                          
+<label for="companyName">Название компании:</label>
+<input type="text" id="companyName" name="companyName" value="<%= employer.company_name %>" disabled><br>

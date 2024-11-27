@@ -270,37 +270,6 @@ const getUserVacancy = async (req, res) => {
     }
 };
 
-// Обновление данных вакансии
-const updateUserVacancy = async (req, res) => {
-    try {
-        const user = req.user;
-        if (!user) {
-            return res.status(401).json({ success: false, message: 'Unauthorized' });
-        }
-
-        const employer = await employerModel.getEmployerByUserId(user.user_id);
-        if (!employer) {
-            console.log('Employer not found for user_id:', user.user_id);
-            return res.status(404).json({ success: false, message: 'Employer not found' });
-        }
-
-        const vacancyData = {
-            employer_id: employer.employer_id,
-            title: req.body.title,
-            description: req.body.description,
-            salary: req.body.salary,
-            location: req.body.location,
-            employment_type: req.body.employmentType
-        };
-
-        const updatedVacancy = await vacancyModel.updateVacancy(employer.employer_id, vacancyData);
-        res.status(200).json({ success: true, vacancy: updatedVacancy });
-    } catch (error) {
-        console.error('Error updating user vacancy:', error);
-        res.status(500).json({ success: false, message: error.message });
-    }
-};
-
 // Получение всех резюме
 const getAllResumes = async (req, res) => {
     try {
@@ -334,7 +303,6 @@ module.exports = {
     updateUserResume,
     createUserVacancy,
     getUserVacancy,
-    updateUserVacancy,
     getAllResumes,
     getResumeById,
 };

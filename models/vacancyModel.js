@@ -39,10 +39,35 @@ const getVacancyByEmployerId = async (employerId) => {
     return res.rows;
 };
 
+const createVacancy = async (vacancy) => {
+    const {
+        employer_id, title, location, description, salary_min, salary_max, schedule,
+        education, experience, currency, contact_email, contact_phone, contact_person, employment_type
+    } = vacancy;
+
+    const query = `
+        INSERT INTO vacancies (
+            employer_id, title, location, description, salary_min, salary_max, schedule,
+        education, experience, currency, contact_email, contact_phone, contact_person, employment_type
+        )
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+        RETURNING *;
+    `;
+
+    const values = [
+        employer_id, title, location, description, salary_min, salary_max, schedule,
+        education, experience, currency, contact_email, contact_phone, contact_person, employment_type
+    ];
+
+    const res = await pool.query(query, values);
+    return res.rows[0];
+};
+
 module.exports = {
     getAllVacancies,
     getVacancyById,
     getVacancySkills,
     getVacancyByEmployerId,
     getAllVacanciesAdmin,
+    createVacancy,
 };

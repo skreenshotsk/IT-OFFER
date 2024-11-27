@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="/assets/css/style_add_vacancy.css">
 </head>
 <body>
+    <style>
+        input[disabled] {
+            background-color: #f0f0f0;
+            color: #000;
+            cursor: not-allowed;
+        }
+    </style>
     <div class="wrapper">
 
         <%- include('partials/header') %>
@@ -21,8 +28,8 @@
                         <input type="text" id="vacancyTitle" name="vacancyTitle" ><br>
 
                         <label for="companyName">Название компании:</label>
-                        <input type="text" id="companyName" name="companyName" ><br>
-
+                        <input type="text" id="companyName" name="companyName" value="<%= employer.company_name %>" disabled><br>
+                        
                         <label for="vacancyDescription">Описание деятельности:</label>
                         <textarea id="vacancyDescription" name="vacancyDescription" ></textarea><br>
 
@@ -86,6 +93,18 @@
                             <option value="project">Проектная работа</option>
                         </select><br>
 
+                        <label for="schedule">График:</label>
+                        <input type="text" id="schedule" name="schedule" ><br>
+
+                        <label for="contact_email">Email hr:</label>
+                        <input type="text" id="contact_email" name="contact_email" ><br>
+
+                        <label for="contact_phone">Телефон hr:</label>
+                        <input type="text" id="contact_phone" name="contact_phone" ><br>
+
+                        <label for="contact_person">ФИО hr:</label>
+                        <input type="text" id="contact_person" name="contact_person" ><br>
+
                         <button type="submit" id="submitVacancyButton" class="submit-button">Сохранить вакансию</button>
                     </form>
                 </section>
@@ -134,28 +153,41 @@
             event.preventDefault();
 
             const vacancyData = {
-                vacancyTitle: document.getElementById('vacancyTitle').value,
+                title: document.getElementById('vacancyTitle').value,
                 companyName: document.getElementById('companyName').value,
-                vacancyDescription: document.getElementById('vacancyDescription').value,
-                desiredSalary: document.getElementById('desiredSalary').value,
-                vacancyEducation: document.getElementById('vacancyEducation').value,
+                description: document.getElementById('vacancyDescription').value,
+                salary_min: document.getElementById('desiredSalary').value,
+                education: document.getElementById('vacancyEducation').value,
                 experience: document.getElementById('experience').value,
-                skills: [],
-                vacancyLocation: document.getElementById('vacancyLocation').value,
-                employmentType: document.getElementById('employmentType').value
+                location: document.getElementById('vacancyLocation').value,
+                employment_type: document.getElementById('employmentType').value,
+                schedule: document.getElementById('schedule').value,
+                contact_email: document.getElementById('contact_email').value,
+                contact_phone: document.getElementById('contact_phone').value,
+                contact_person: document.getElementById('contact_person').value
             };
 
-            // Получаем все выбранные навыки с уровнями
-            const skillItems = selectedSkillsList.querySelectorAll('.skill-item');
-            skillItems.forEach(item => {
-                vacancyData.skills.push({
-                    name: item.querySelector('span').textContent,
-                    level: item.querySelector('.skill-level').value
-                });
+            // Отправка данных на сервер
+            fetch('/create-vacancy', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(vacancyData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Вакансия успешно создана!');
+                    window.location.reload(); // Перезагрузка страницы
+                } else {
+                    alert('Ошибка при создании вакансии: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Ошибка при создании вакансии');
             });
-
-            console.log('Данные вакансии:', vacancyData);
-            alert('Вакансия успешно сохранена!');
         });
     </script>
 
