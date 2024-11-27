@@ -23,21 +23,21 @@
         <div class="container">
             <main>
                 <section class="create-vacancy-section">                        
-                    <form id="vacancyForm">
-                        <label for="vacancyTitle">Название вакансии:</label>
-                        <input type="text" id="vacancyTitle" name="vacancyTitle" ><br>
+                    <form id="vacancyForm" action="/vacancy" method="post">
+                        <label for="title">Название вакансии:</label>
+                        <input type="text" id="title" name="title" ><br>
 
                         <label for="companyName">Название компании:</label>
                         <input type="text" id="companyName" name="companyName" value="<%= employer.company_name %>" disabled><br>
                         
-                        <label for="vacancyDescription">Описание деятельности:</label>
-                        <textarea id="vacancyDescription" name="vacancyDescription" ></textarea><br>
+                        <label for="description">Описание деятельности:</label>
+                        <textarea id="description" name="description" ></textarea><br>
 
-                        <label for="desiredSalary">Желаемая зарплата:</label>
-                        <input type="text" id="desiredSalary" name="desiredSalary" ><br>
+                        <label for="salary_max">Желаемая зарплата:</label>
+                        <input type="text" id="salary_max" name="salary_max" ><br>
 
-                        <label for="vacancyEducation">Образование:</label>
-                        <select id="vacancyEducation" name="vacancyEducation" >
+                        <label for="education">Образование:</label>
+                        <select id="education" name="education" >
                             <option value="secondary">Среднее</option>
                             <option value="secondary_special">Среднее специальное</option>
                             <option value="incomplete_higher">Неоконченное высшее</option>
@@ -53,39 +53,18 @@
 
                         <div id="skillsFields">
                             <label for="skills">Навыки:</label>
-                            <div class="checkbox-list" id="checkboxList">
-                                <label><input type="checkbox" value="HTML"> HTML</label><br>
-                                <label><input type="checkbox" value="CSS"> CSS</label><br>
-                                <label><input type="checkbox" value="JavaScript"> JavaScript</label><br>
-                                <label><input type="checkbox" value="Python"> Python</label><br>
-                                <label><input type="checkbox" value="Java"> Java</label><br>
-                                <label><input type="checkbox" value="C++"> C++</label><br>
-                                <label><input type="checkbox" value="C#"> C#</label><br>
-                                <label><input type="checkbox" value="Ruby"> Ruby</label><br>
-                                <label><input type="checkbox" value="PHP"> PHP</label><br>
-                                <label><input type="checkbox" value="Swift"> Swift</label><br>
-                                <label><input type="checkbox" value="Kotlin"> Kotlin</label><br>
-                                <label><input type="checkbox" value="Go"> Go</label><br>
-                                <label><input type="checkbox" value="Rust"> Rust</label><br>
-                                <label><input type="checkbox" value="TypeScript"> TypeScript</label><br>
-                                <label><input type="checkbox" value="SQL"> SQL</label><br>
-                                <label><input type="checkbox" value="R"> R</label><br>
-                                <label><input type="checkbox" value="MATLAB"> MATLAB</label><br>
-                                <label><input type="checkbox" value="Perl"> Perl</label><br>
-                                <label><input type="checkbox" value="Scala"> Scala</label><br>
-                                <label><input type="checkbox" value="Haskell"> Haskell</label><br>
-                            </div>
+                            
                             <div id="selectedSkills">
                                 <label>Выбранные навыки:</label>
                                 <div id="selectedSkillsList"></div>
                             </div>
                         </div>
 
-                        <label for="vacancyLocation">Местоположение:</label>
-                        <input type="text" id="vacancyLocation" name="vacancyLocation" ><br>
+                        <label for="location">Местоположение:</label>
+                        <input type="text" id="location" name="location" ><br>
 
-                        <label for="employmentType">Тип занятости:</label>
-                        <select id="employmentType" name="employmentType" >
+                        <label for="employment_type">Тип занятости:</label>
+                        <select id="employment_type" name="employment_type" >
                             <option value="full_time">Полная занятость</option>
                             <option value="part_time">Частичная занятость</option>
                             <option value="remote">Удаленная работа</option>
@@ -111,85 +90,6 @@
             </main> 
         </div>     
     </div>
-
-    <script nonce="<%= nonce %>">
-        // Пример JavaScript для добавления выбранных навыков с уровнем владения
-        const checkboxList = document.getElementById('checkboxList');
-        const selectedSkillsList = document.getElementById('selectedSkillsList');
-
-        checkboxList.addEventListener('change', function(event) {
-            if (event.target.type === 'checkbox') {
-                const skillName = event.target.value;
-
-                // Если чекбокс выбран
-                if (event.target.checked) {
-                    // Создаем элемент для отображения выбранного навыка и его уровня
-                    const skillItem = document.createElement('div');
-                    skillItem.className = 'skill-item';
-                    skillItem.innerHTML = `
-                        <span>${skillName}</span>
-                        <select class="skill-level">
-                            <option value="beginner">Начальный</option>
-                            <option value="intermediate">Средний</option>
-                            <option value="advanced">Продвинутый</option>
-                            <option value="expert">Эксперт</option>
-                        </select>
-                    `;
-                    selectedSkillsList.appendChild(skillItem);
-                } else {
-                    // Убираем элемент из списка выбранных навыков, если чекбокс снят
-                    const skillItems = selectedSkillsList.querySelectorAll('.skill-item');
-                    skillItems.forEach(item => {
-                        if (item.querySelector('span').textContent === skillName) {
-                            item.remove();
-                        }
-                    });
-                }
-            }
-        });
-
-        // Обработка отправки формы
-        document.getElementById('vacancyForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const vacancyData = {
-                title: document.getElementById('vacancyTitle').value,
-                companyName: document.getElementById('companyName').value,
-                description: document.getElementById('vacancyDescription').value,
-                salary_min: document.getElementById('desiredSalary').value,
-                education: document.getElementById('vacancyEducation').value,
-                experience: document.getElementById('experience').value,
-                location: document.getElementById('vacancyLocation').value,
-                employment_type: document.getElementById('employmentType').value,
-                schedule: document.getElementById('schedule').value,
-                contact_email: document.getElementById('contact_email').value,
-                contact_phone: document.getElementById('contact_phone').value,
-                contact_person: document.getElementById('contact_person').value
-            };
-
-            // Отправка данных на сервер
-            fetch('/create-vacancy', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(vacancyData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Вакансия успешно создана!');
-                    window.location.reload(); // Перезагрузка страницы
-                } else {
-                    alert('Ошибка при создании вакансии: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Ошибка:', error);
-                alert('Ошибка при создании вакансии');
-            });
-        });
-    </script>
 
     <%- include('partials/footer') %>
     
