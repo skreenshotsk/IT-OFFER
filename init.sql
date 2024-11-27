@@ -37,13 +37,19 @@ CREATE TABLE vacancies (
     vacancy_id SERIAL PRIMARY KEY,
     employer_id INT REFERENCES employers(employer_id) ON DELETE CASCADE,
     title VARCHAR(100),
+    location VARCHAR(100),
     description TEXT,
     salary_min DECIMAL(10, 2),
     salary_max DECIMAL(10, 2),
+    schedule VARCHAR(50),
+    education VARCHAR(50),
+    experience TEXT,
     currency VARCHAR(10),
     employment_type VARCHAR(20),
-    location VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    contact_email VARCHAR(100),
+    contact_phone VARCHAR(25),
+    contact_person VARCHAR(100),
 );
 
 CREATE TABLE skills (
