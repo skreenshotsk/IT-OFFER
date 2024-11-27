@@ -124,4 +124,29 @@ function searchRecords() {
 
                                                 <button onclick="editRecord('candidates', <%= candidate.candidate_id %>)">Редактировать</button>
                                                 <button onclick="deleteRecord('candidates', <%= candidate.candidate_id %>)">Удалить</button>
+                                      
+                                                            <button onclick="editRecord('employers', <%= employer.employer_id %>)">Редактировать</button>
+                                                            <button onclick="deleteRecord('employers', <%= employer.employer_id %>)">Удалить</button>
+
                                                         
+                                                            <button onclick="editRecord('vacancies', <%= vacancy.vacancy_id %>)">Редактировать</button>
+                                                            <button onclick="deleteRecord('vacancies', <%= vacancy.vacancy_id %>)">Удалить</button>
+                                                         
+                                                            <button onclick="editRecord('skills', <%= skill.skill_id %>)">Редактировать</button>
+                                                            <button onclick="deleteRecord('skills', <%= skill.skill_id %>)">Удалить</button>
+                                                        
+                                                            <button onclick="editRecord('candidate_skills', <%= cs.candidate_id %>, <%= cs.skill_id %>)">Редактировать</button>
+                                                            <button onclick="deleteRecord('candidate_skills', <%= cs.candidate_id %>, <%= cs.skill_id %>)">Удалить</button>
+                                                        
+                                                            <button onclick="editRecord('vacancy_skills', <%= vs.vacancy_id %>, <%= vs.skill_id %>)">Редактировать</button>
+                                                            <button onclick="deleteRecord('vacancy_skills', <%= vs.vacancy_id %>, <%= vs.skill_id %>)">Удалить</button>
+                                                        
+                                                            <button onclick="editRecord('applications', <%= app.application_id %>, <%= app.candidate_id %>, <%= app.vacancy_id %>)">Редактировать</button>
+                                                            <button onclick="deleteRecord('applications', <%= app.application_id %>, <%= app.candidate_id %>, <%= app.vacancy_id %>)">Удалить</button>
+                                                        
+                                                            <button onclick="editRecord('resumes', <%= r.resume_id %>)">Редактировать</button>
+                                                            <button onclick="deleteRecord('resumes', <%= r.resume_id %>)">Удалить</button>
+                                                        
+                                                            <button onclick="editRecord('resume_applications', <%= ra.application_id %>)">Редактировать</button>
+                                                            <button onclick="deleteRecord('resume_applications', <%= ra.application_id %>)">Удалить</button>
+                                                                         

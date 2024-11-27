@@ -1,4 +1,3 @@
-// models/skillModel.js
 const pool = require('../config/db');
 
 // Получить все навыки

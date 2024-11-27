@@ -74,10 +74,19 @@ const getResumeById = async (resumeId) => {
     }
 };
 
+const getAllResumesAdmin = async () => {
+    const res = await pool.query(`
+        SELECT resume_id, candidate_id, location, birth_date, citizenship, profession, salary_max, created_at
+        FROM resumes
+    `);
+    return res.rows;
+};
+
 module.exports = {
     createResume,
     getResumeByCandidateId,
     updateResume,
     getAllResumes,
     getResumeById,
+    getAllResumesAdmin,
 };

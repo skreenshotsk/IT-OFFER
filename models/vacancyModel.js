@@ -10,6 +10,11 @@ const getAllVacancies = async () => {
     return res.rows;
 };
 
+const getAllVacanciesAdmin = async () => {
+    const res = await pool.query('SELECT * FROM vacancies');
+    return res.rows;
+};
+
 const getVacancySkills = async () => {
     const res = await pool.query(`
         SELECT v.vacancy_id, v.title, s.skill_name
@@ -39,4 +44,5 @@ module.exports = {
     getVacancyById,
     getVacancySkills,
     getVacancyByEmployerId,
+    getAllVacanciesAdmin,
 };

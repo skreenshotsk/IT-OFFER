@@ -35,8 +35,14 @@ const getEmployerByEmployerId = async (employerId) => {
     return res.rows[0];
 };
 
+const getAllEmployers = async () => {
+    const res = await pool.query('SELECT * FROM employers');
+    return res.rows;
+};
+
 module.exports = {
     createEmployer,
     getEmployerByUserId,
     getEmployerByEmployerId,
+    getAllEmployers,
 };

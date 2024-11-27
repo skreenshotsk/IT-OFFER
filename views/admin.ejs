@@ -255,27 +255,33 @@
                                                 <th>Описание компании</th>
                                                 <th>Веб-сайт</th>
                                                 <th>Юридический адрес</th>
-                                                <!-- фото?????? -->
+                                                <th>Лого</th>
+                                                <th>Фото проектов</th>
                                                 <th>Описание проектов</th>
                                                 <th>Действия</th>
                                             </tr>
                                         </thead>
                                         <tbody id="employersBody">
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td>Тинькофф</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td>Альфа Банк</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td>Сбербанк</td>
-                                            </tr>
+                                            <% if (employers && employers.length > 0) { %>
+                                                <% employers.forEach(employer => { %>
+                                                    <tr>
+                                                        <td><%= employer.employer_id %></td>
+                                                        <td><%= employer.user_id %></td>
+                                                        <td><%= employer.company_name %></td>
+                                                        <td><%= employer.description %></td>
+                                                        <td><%= employer.website %></td>
+                                                        <td><%= employer.legal_address %></td>
+                                                        <td>Company Logo</td>
+                                                        <td>Project Photo</td>
+                                                        <td><%= employer.project_description %></td>
+                                                        <td>кнопки</td>
+                                                    </tr>
+                                                <% }); %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="10">Нет данных</td>
+                                                </tr>
+                                            <% } %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -350,7 +356,28 @@
                                                 <th>Действия</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="vacanciesBody"></tbody>
+                                        <tbody id="vacanciesBody">
+                                            <% if (vacancies && vacancies.length > 0) { %>
+                                                <% vacancies.forEach(vacancy => { %>
+                                                    <tr>
+                                                        <td><%= vacancy.vacancy_id %></td>
+                                                        <td><%= vacancy.employer_id %></td>
+                                                        <td><%= vacancy.title %></td>
+                                                        <td><%= vacancy.description %></td>
+                                                        <td><%= vacancy.salary_max %></td>
+                                                        <td><%= vacancy.currency %></td>
+                                                        <td><%= vacancy.employment_type %></td>
+                                                        <td><%= vacancy.location %></td>
+                                                        <td><%= vacancy.created_at %></td>
+                                                        <td>кнопки</td>
+                                                    </tr>
+                                                <% }); %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="11">Нет данных</td>
+                                                </tr>
+                                            <% } %>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -371,7 +398,21 @@
                                                 <th>Действия</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="skillsBody"></tbody>
+                                        <tbody id="skillsBody">
+                                            <% if (skills && skills.length > 0) { %>
+                                                <% skills.forEach(skill => { %>
+                                                    <tr>
+                                                        <td><%= skill.skill_id %></td>
+                                                        <td><%= skill.skill_name %></td>
+                                                        <td>кнопки</td>
+                                                    </tr>
+                                                <% }); %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="3">Нет данных</td>
+                                                </tr>
+                                            <% } %>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -402,7 +443,21 @@
                                                 <th>Действия</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="candidateSkillsBody"></tbody>
+                                        <tbody id="candidateSkillsBody">
+                                            <% if (candidateSkills && candidateSkills.length > 0) { %>
+                                                <% candidateSkills.forEach(cs => { %>
+                                                    <tr>
+                                                        <td><%= cs.candidate_id %></td>
+                                                        <td><%= cs.skill_name %></td>
+                                                        <td>кнопки</td>
+                                                    </tr>
+                                                <% }); %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="3">Нет данных</td>
+                                                </tr>
+                                            <% } %>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -432,7 +487,21 @@
                                                 <th>Действия</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="vacancySkillsBody"></tbody>
+                                        <tbody id="vacancySkillsBody">
+                                            <% if (vacancySkills && vacancySkills.length > 0) { %>
+                                                <% vacancySkills.forEach(vs => { %>
+                                                    <tr>
+                                                        <td><%= vs.vacancy_id %></td>
+                                                        <td><%= vs.skill_name %></td>
+                                                        <td>кнопки</td>
+                                                    </tr>
+                                                <% }); %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="3">Нет данных</td>
+                                                </tr>
+                                            <% } %>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -500,7 +569,24 @@
                                                 <th>Действия</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="applicationsBody"></tbody>
+                                        <tbody id="applicationsBody">
+                                            <% if (applications && applications.length > 0) { %>
+                                                <% applications.forEach(app => { %>
+                                                    <tr>
+                                                        <td><%= app.application_id %></td>
+                                                        <td><%= app.candidate_id %></td>
+                                                        <td><%= app.vacancy_id %></td>
+                                                        <td><%= app.status %></td>
+                                                        <td><%= app.applied_at %></td>
+                                                        <td>кнопки</td>
+                                                    </tr>
+                                                <% }); %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="6">Нет данных</td>
+                                                </tr>
+                                            <% } %>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -561,7 +647,27 @@
                                                 <th>Действия</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="resumesBody"></tbody>
+                                        <tbody id="resumesBody">
+                                            <% if (resumes && resumes.length > 0) { %>
+                                                <% resumes.forEach(r => { %>
+                                                    <tr>
+                                                        <td><%= r.resume_id %></td>
+                                                        <td><%= r.candidate_id %></td>
+                                                        <td><%= r.location %></td>
+                                                        <td><%= r.birth_date %></td>
+                                                        <td><%= r.citizenship %></td>
+                                                        <td><%= r.profession %></td>
+                                                        <td><%= r.salary_max %></td>
+                                                        <td><%= r.created_at %></td>
+                                                        <td>кнопки</td>
+                                                    </tr>
+                                                <% }); %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="9">Нет данных</td>
+                                                </tr>
+                                            <% } %>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -629,7 +735,24 @@
                                                 <th>Действия</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="resumeApplicationsBody"></tbody>
+                                        <tbody id="resumeApplicationsBody">
+                                            <% if (resumeApplications && resumeApplications.length > 0) { %>
+                                                <% resumeApplications.forEach(ra => { %>
+                                                    <tr>
+                                                        <td><%= ra.application_id %></td>
+                                                        <td><%= ra.employer_id %></td>
+                                                        <td><%= ra.resume_id %></td>
+                                                        <td><%= ra.status %></td>
+                                                        <td><%= ra.applied_at %></td>
+                                                        <td>кнопки</td>
+                                                    </tr>
+                                                <% }); %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="6">Нет данных</td>
+                                                </tr>
+                                            <% } %>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
