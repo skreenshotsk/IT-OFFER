@@ -35,6 +35,14 @@ const getEmployerByEmployerId = async (employerId) => {
     return res.rows[0];
 };
 
+// Получить название компании по employer_id
+const getCompanyNameByEmployerId = async (employerId) => {
+    const query = 'SELECT company_name FROM employers WHERE employer_id = $1';
+    const values = [employerId];
+    const res = await pool.query(query, values);
+    return res.rows[0] ? res.rows[0].company_name : null;
+};
+
 const getAllEmployers = async () => {
     const res = await pool.query('SELECT * FROM employers');
     return res.rows;
@@ -45,4 +53,5 @@ module.exports = {
     getEmployerByUserId,
     getEmployerByEmployerId,
     getAllEmployers,
+    getCompanyNameByEmployerId,
 };

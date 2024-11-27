@@ -2,8 +2,9 @@ const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const { createUser, getUserByEmail, updateUser } = require('../models/userModel');
-const candidateModel = require('../models/candidateModel'); // Добавьте эту строку
-const resumeModel = require('../models/resumeModel'); // Добавьте эту строку
+const candidateModel = require('../models/candidateModel');
+const { getEmployerByUserId, getCompanyNameByEmployerId } = require('../models/employerModel');
+const resumeModel = require('../models/resumeModel');
 
 const router = express.Router();
 
@@ -75,8 +76,13 @@ router.get('/logout', (req, res, next) => {
 router.get('/profile', async (req, res) => {
   if (req.isAuthenticated()) {
     const user = await getUserByEmail(req.user.email);
+    const employer = await getEmployerByUserId(user.user_id);
+    let companyName = null;
+    if (user.user_type === 'employer') { 
+      companyName = await getCompanyNameByEmployerId(employer.employer_id);
+    }
     const hasResume = req.session.hasResume || false; // Получение hasResume из сесси
-    res.render('profile', { user, hasResume });
+    res.render('profile', { user, hasResume, companyName });
   } else {
     res.redirect('/auth/login');
   }

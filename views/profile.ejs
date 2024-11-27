@@ -22,6 +22,9 @@
                         <p><strong>Имя:</strong> <span class="highlight"><%= user.first_name %></span></p>
                         <p><strong>Email:</strong> <span class="highlight"><%= user.email %></span></p>
                         <p><strong>Номер телефона:</strong> <span class="highlight"><%= user.phone_num %></span></p>
+                        <% if (user.user_type === 'employer') { %>
+                            <p><strong>Компания:</strong> <span class="highlight"><%= companyName %></span></p>
+                        <% } %>
                     </div>
                     <div class="profile-actions">
                         <button id="editProfileButton" class="edit-button">Редактировать</button>
@@ -64,7 +67,7 @@
 
     <script src="/scripts/profileToAdd_cv.js" nonce="<%= nonce %>"></script>
     <script src="/scripts/profileToUpdate_cv.js" nonce="<%= nonce %>"></script>
-    <script src="/scripts/profileLogout.js"></script>
+    <script src="/scripts/profileLogout.js" nonce="<%= nonce %>"></script>
 
     <%- include('partials/footer') %>
 

@@ -45,11 +45,11 @@ CREATE TABLE vacancies (
     education VARCHAR(50),
     experience TEXT,
     currency VARCHAR(10),
-    employment_type VARCHAR(20),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     contact_email VARCHAR(100),
     contact_phone VARCHAR(25),
     contact_person VARCHAR(100),
+    employment_type VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE skills (
@@ -129,11 +129,19 @@ VALUES
 (4, 'ООО "ДизайнПро"', 'Дизайн-студия', 'https://designpro.ru', 'г. Санкт-Петербург, Невский проспект, д. 20', 'Разработка брендинга и визуальной айдентики');
 
 -- Таблица vacancies
-INSERT INTO vacancies (employer_id, title, description, salary_min, salary_max, currency, employment_type, location)
+INSERT INTO vacancies (
+    employer_id, title, location, description, salary_min, salary_max, currency, employment_type,
+    schedule, education, experience, contact_email, contact_phone, contact_person
+)
 VALUES
-(1, 'Программист Python', 'Разработка и поддержка приложений', 100000, 150000, 'RUB', 'Полная занятость', 'Москва'),
-(2, 'Графический дизайнер', 'Создание графического контента для брендов', 80000, 120000, 'RUB', 'Удаленная работа', 'Санкт-Петербург');
-
+(
+    1, 'Программист Python', 'Москва', 'Разработка и поддержка приложений', 100000.00, 150000.00, 'RUB', 'Полная занятость', 
+    '2/2', 'высшее', 'от 5 лет', 'hr-agent1@mail.ru', '89991234567', 'Михаил Иванович'
+),
+(
+    2, 'Графический дизайнер', 'Санкт-Петербург', 'Создание графического контента для брендов', 80000.00, 120000.00, 'RUB', 'Удаленная работа', 
+    '5/2', 'высшее', 'без опыта', 'hr-agent2@mail.ru', '89997654321', 'Иван Михайлович'
+);
 -- Таблица skills
 INSERT INTO skills (skill_name)
 VALUES
@@ -208,4 +216,3 @@ INSERT INTO resume_applications (employer_id, resume_id, status)
 VALUES
 (1, 1, 'pending'),
 (2, 2, 'approved');
-
