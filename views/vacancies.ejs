@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title>Вакансии</title>
     <link rel="stylesheet" href="/assets/css/style_common.css">
     <link rel="stylesheet" href="/assets/css/style_vacancies.css">
 </head>
 <body>
     <div class="wrapper">
-        <%- include('partials/header') %> <!-- Включение header -->
+        <%- include('partials/header') %>
         
         <div class="container">
             <main>
@@ -30,9 +30,16 @@
                         <% vacancies.forEach(function(vacancy) { %>
                             <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
                                 <h3><%= vacancy.title %></h3>
-                                <p>Компания: <%= vacancy.company_name %></p>
+                                <p>Описание деятельности: <%= vacancy.description %></p>
+                                <p>Компания: </p>
                                 <p>Зарплата: <%= vacancy.salary_max %> ₽</p>
-                                <p>Описание: <%= vacancy.description %></p>
+                                <p>График: <%= vacancy.schedule %></p>
+                                <p>Тип занятости: <%= vacancy.employment_type %></p>
+                                <p>Образование: <%= vacancy.education %></p>
+                                <p>Требуемый опыт: <%= vacancy.experience %></p>
+                                <p>Почта: <%= vacancy.contact_email %></p>
+                                <p>Телефон: <%= vacancy.contact_phone %></p>
+                                <p>Человечик для связи: <%= vacancy.contact_person %></p>
                                 <p>Ключевые навыки: </p>
                                 <% vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).forEach(function(skill) { %>
                                     <p><%= skill.skill_name %></p>

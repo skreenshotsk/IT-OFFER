@@ -2,11 +2,7 @@ const pool = require('../config/db');
 
 // Получить все вакансии
 const getAllVacancies = async () => {
-    const res = await pool.query(`
-        SELECT v.vacancy_id, v.title, v.description, v.salary_max, v.location, e.company_name 
-        FROM vacancies v
-        JOIN employers e ON v.employer_id = e.employer_id
-    `);
+    const res = await pool.query('SELECT * FROM vacancies');
     return res.rows;
 };
 

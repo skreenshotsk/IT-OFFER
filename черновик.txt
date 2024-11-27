@@ -254,3 +254,9 @@ function searchRecords() {
                                 <label><input type="checkbox" value="Scala"> Scala</label><br>
                                 <label><input type="checkbox" value="Haskell"> Haskell</label><br>
                             </div>
+        res.render('vacancies', { 
+            vacancies: vacancies,
+            skills: skills,
+            vacancySkills: vacancySkills,
+            user: req.user,
+        });
