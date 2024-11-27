@@ -91,7 +91,7 @@
                 password_hash: formData.get('passwordHash'),
                 user_type: formData.get('user_type')
             };            
-    
+
             fetch('/auth/profile', {
                 method: 'POST',
                 headers: {
@@ -103,14 +103,8 @@
             .then(data => {
                 if (data.success) {
                     alert('Профиль сохранен');
+                    window.location.reload();
                     editProfileForm.style.display = 'none';
-                    // Обновляем данные на странице
-                    document.getElementById('profile-info').innerHTML = `
-                        <p><strong>Фамилия:</strong> <span class="highlight">${userData.last_name}</span></p>
-                        <p><strong>Имя:</strong> <span class="highlight">${userData.first_name}</span></p>
-                        <p><strong>Email:</strong> <span class="highlight">${userData.email}</span></p>
-                        <p><strong>Номер телефона:</strong> <span class="highlight">${userData.phone_num}</span></p>
-                    `;
                 } else {
                     alert('Ошибка при сохранении профиля: ' + data.message);
                 }
