@@ -31,7 +31,7 @@
                             <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
                                 <h3><%= vacancy.title %></h3>
                                 <p>Описание деятельности: <%= vacancy.description %></p>
-                                <p>Компания: </p>
+                                <p>Компания: <%= vacancy.company_name %></p>
                                 <p>Зарплата: <%= vacancy.salary_max %> ₽</p>
                                 <p>График: <%= vacancy.schedule %></p>
                                 <p>Тип занятости: <%= vacancy.employment_type %></p>

@@ -1,9 +1,19 @@
 const pool = require('../config/db');
 
-// Получить все вакансии
+// Получить все вакансии и имена компаний
 const getAllVacancies = async () => {
-    const res = await pool.query('SELECT * FROM vacancies');
-    return res.rows;
+    try {
+        const query = `
+            SELECT v.*, e.company_name 
+            FROM vacancies v
+            JOIN employers e ON v.employer_id = e.employer_id
+        `;
+        const { rows } = await pool.query(query);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching all vacancies:', error);
+        throw error;
+    }
 };
 
 const getAllVacanciesAdmin = async () => {

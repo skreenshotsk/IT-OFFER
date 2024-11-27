@@ -48,10 +48,22 @@ const getAllEmployers = async () => {
     return res.rows;
 };
 
+const getAllCompanyNames = async () => {
+    try {
+        const query = 'SELECT company_name FROM employers';
+        const { rows } = await pool.query(query);
+        return rows.map(row => row.company_name);
+    } catch (error) {
+        console.error('Error fetching company names:', error);
+        throw error;
+    }
+};
+
 module.exports = {
     createEmployer,
     getEmployerByUserId,
     getEmployerByEmployerId,
     getAllEmployers,
     getCompanyNameByEmployerId,
+    getAllCompanyNames,
 };
