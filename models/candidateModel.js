@@ -48,10 +48,15 @@ const updateCandidatePhone = async (candidateId, candidateData) => {
     return res.rows[0];
 };
 
+const getAllCandidates = async () => {
+    const res = await pool.query('SELECT * FROM candidates');
+    return res.rows;
+};
 
 module.exports = {
     createCandidate,
     updateCandidate,
     getCandidateByUserId,
     updateCandidatePhone,
+    getAllCandidates,
 };

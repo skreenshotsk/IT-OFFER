@@ -10,6 +10,7 @@ const vacanciesRoutes = require('./routes/vacancies');
 const registerRoutes = require('./routes/register');
 const vacancyRoutes = require('./routes/vacancy');
 const resumeRoutes = require('./routes/resume');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 const PORT = 8000;
@@ -44,8 +45,10 @@ app.use('/vacancies', vacanciesRoutes);
 app.use('/register', registerRoutes);
 app.use('/vacancy', vacancyRoutes);
 app.use('/resume', resumeRoutes);
+app.use('/admin', adminRouter);
 app.use('/auth', authRoutes);
 app.use('/cv', cvRouter);
+
 
 
 app.use(express.static(path.join(__dirname, 'public'), {

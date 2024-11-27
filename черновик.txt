@@ -104,4 +104,24 @@ function searchRecords() {
 
 
 
-qwerty
+<% if (users && users.length > 0) { %>
+                                                <% users.forEach(user => { %>
+                                                  <tr>
+                                                    <td><%= user.user_id %></td>
+                                                    <td><%= user.first_name %></td>
+                                                    <td><%= user.last_name %></td>
+                                                    <td><%= user.email %></td>
+                                                    <td><%= user.phone_num %></td>
+                                                    <td><%= user.password_hash %></td>
+                                                    <td><%= user.user_type %></td>
+                                                    <td><%= user.created_at %></td>
+                                                    <td>
+                                                      <button onclick="editRecord('users', <%= user.user_id %>)">Редактировать</button>
+                                                      <button onclick="deleteRecord('users', <%= user.user_id %>)">Удалить</button>
+                                                    </td>
+                                                  </tr>
+                                                <% }); %>
+
+                                                <button onclick="editRecord('candidates', <%= candidate.candidate_id %>)">Редактировать</button>
+                                                <button onclick="deleteRecord('candidates', <%= candidate.candidate_id %>)">Удалить</button>
+                                                        
