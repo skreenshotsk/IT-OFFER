@@ -27,7 +27,7 @@
                         <button id="applyFilter" class="apply-filter-button">Применить</button>
                     </div>
                     <div id="vacanciesList" class="vacancies-list">
-                        <% vacancies.forEach(function(vacancy) { %>
+                        <% vacancies.forEach(function(vacancy, index) { %>
                             <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
                                 <h3><%= vacancy.title %></h3>
                                 <p>Описание деятельности: <%= vacancy.description %></p>
@@ -48,7 +48,10 @@
                                     <p>Расширенное описание:</p>
                                     <p><%= vacancy.extended_description || 'Не указано' %></p>
                                 </div>
+                                <form action="/vacancy_application" method="GET" id="form-<%= index %>">
+                                    <input type="hidden" name="vacancy_id" value="<%= vacancy.vacancy_id %>">
                                     <button class="response-button" type="submit">Отклик</button>
+                                </form>
                             </div>
                         <% }) %>
                     </div>               

@@ -71,7 +71,6 @@
                                 <p>Телеграмм: <%= resume.telegram_id %></p>
                                 <p>Гражданство: <%= resume.citizenship %></p>
                                 <p>Опыт работы: <%= resume.experience %></p>
-                                <p>ID: <%= resume.resume_id %></p>
                             </div>
                             <form action="/resume_application" method="GET" id="form-<%= index %>">
                                 <input type="hidden" name="resume_id" value="<%= resume.resume_id %>">
