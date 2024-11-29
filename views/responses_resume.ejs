@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отклики на вакансии</title>
+    <link rel="stylesheet" href="/assets/css/style_common.css">
+    <link rel="stylesheet" href="/assets/css/style_responses.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <%- include('partials/header') %>
+
+            <main>
+                <!-- Условный блок для кандидата -->
+                <section class="responses-section candidate-view">
+                    <h2>Ваши отклики</h2>
+                    <div class="responses-list">
+                        <div class="response" id="response-1">
+                            <h3>Вакансия: Веб-разработчик</h3>
+                            <p><strong>Компания:</strong> IT Company</p>
+                            <p><strong>Статус:</strong> Ожидает рассмотрения</p>
+                            <p><strong>Дата отклика:</strong> 2023-10-01</p>
+                        </div>
+                        <div class="response" id="response-2">
+                            <h3>Вакансия: Дизайнер</h3>
+                            <p><strong>Компания:</strong> Design Studio</p>
+                            <p><strong>Статус:</strong> Принят</p>
+                            <p><strong>Дата отклика:</strong> 2023-09-28</p>
+                        </div>
+                        <!-- Добавьте больше откликов по аналогии -->
+                    </div>
+                    <div class="no-responses-message">Откликов пока нет.</div>
+                </section>
+
+                <!-- Условный блок для работодателя -->
+                <section class="responses-section employer-view">
+                    <h2>Отклики на ваши вакансии</h2>
+                    <div class="responses-list">
+                        <div class="response" id="response-3">
+                            <h3>Вакансия: Веб-разработчик</h3>
+                            <p><strong>Кандидат:</strong> Иван Иванов</p>
+                            <p><strong>Статус:</strong> Ожидает рассмотрения</p>
+                            <p><strong>Дата отклика:</strong> 2023-10-01</p>
+                            <div class="response-actions">
+                                <button class="accept-button">Принять</button>
+                                <button class="reject-button" onclick="rejectResponse('response-3')">Отклонить</button>
+                            </div>
+                        </div>
+                        <div class="response" id="response-4">
+                            <h3>Вакансия: Дизайнер</h3>
+                            <p><strong>Кандидат:</strong> Мария Петрова</p>
+                            <p><strong>Статус:</strong> Принят</p>
+                            <p><strong>Дата отклика:</strong> 2023-09-28</p>
+                            <div class="response-actions">
+                                <button class="accept-button">Принять</button>
+                                <button class="reject-button" onclick="rejectResponse('response-4')">Отклонить</button>
+                            </div>
+                        </div>
+                        <!-- Добавьте больше откликов по аналогии -->
+                    </div>
+                    <div class="no-responses-message">Откликов пока нет.</div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        function rejectResponse(responseId) {
+            const responseElement = document.getElementById(responseId);
+            if (responseElement) {
+                responseElement.remove();
+                checkForResponses();
+            }
+        }
+
+        function checkForResponses() {
+            const responsesSections = document.querySelectorAll('.responses-section');
+            responsesSections.forEach(section => {
+                const responsesList = section.querySelector('.responses-list');
+                const noResponsesMessage = section.querySelector('.no-responses-message');
+                if (responsesList.children.length === 0) {
+                    noResponsesMessage.style.display = 'block';
+                } else {
+                    noResponsesMessage.style.display = 'none';
+                }
+            });
+        }
+
+        // Проверка при загрузке страницы
+        document.addEventListener('DOMContentLoaded', checkForResponses);
+    </script>
+</body>
+</html>

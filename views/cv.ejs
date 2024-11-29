@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div id="cvList" class="cv-list">
-                        <% resumes.forEach(resume => { %>
+                        <% resumes.forEach((resume, index) => { %>
                         <div class="cv" data-salary="<%= resume.salary_max %>" data-skills="<%= resume.skills %>">
                             <h3><%= resume.first_name %> <%= resume.last_name %></h3>
                             <p>Профессия: <%= resume.profession %></p>
@@ -71,9 +71,12 @@
                                 <p>Телеграмм: <%= resume.telegram_id %></p>
                                 <p>Гражданство: <%= resume.citizenship %></p>
                                 <p>Опыт работы: <%= resume.experience %></p>
-                                
+                                <p>ID: <%= resume.resume_id %></p>
                             </div>
-                            <button class="contact-button">Связаться</button>
+                            <form action="/resume_application" method="GET" id="form-<%= index %>">
+                                <input type="hidden" name="resume_id" value="<%= resume.resume_id %>">
+                                <button type="submit">Связаться</button>
+                            </form>
                         </div>
                         <% }) %>
                     </div>
