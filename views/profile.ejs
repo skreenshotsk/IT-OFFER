@@ -28,7 +28,6 @@
                     </div>
                     <div class="profile-actions">
                         <button id="editProfileButton" class="edit-button">Редактировать</button>
-                        <button type="profile-button" onclick="location.href='/responses'">Отклики</button>
                         <% if (user.user_type === 'candidate') { %>
                             <% if (!hasResume) { %>
                                 <button id="editProfileButton" class="edit-button" data-action="create-resume">Создать резюме</button>
@@ -36,6 +35,7 @@
                                 <button id="editProfileButton" class="edit-button" data-action="update-resume">Мое резюме</button>
                             <% } %>
                         <% } else if (user.user_type === 'employer') { %>
+                                <button id="editProfileButton" class="edit-button" data-action="response-to-my-vacancies">Отклики</button>
                                 <button id="editProfileButton" class="edit-button" data-action="create-vacancy">Создать вакансию</button>
                                 <button id="editProfileButton" class="edit-button" data-action="my_vacancy-profile">Мои вакансии</button>
                         <% } %>

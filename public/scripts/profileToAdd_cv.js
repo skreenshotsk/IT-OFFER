@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 location.href = '/resume';
             } else if (action === 'create-vacancy') {
                 location.href = '/vacancy';
+            } else if (action === 'response-to-my-vacancies'){
+                location.href = '/vacancy_application/response_to_my_vacancies';
             }
         });
     });

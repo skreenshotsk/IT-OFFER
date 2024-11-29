@@ -20,7 +20,24 @@ const createApplication = async (applicationData) => {
     return res.rows[0];
 };
 
+const getApplicationByCandidateId = async (candidateId) => {
+    try {
+        const query = `
+            SELECT * FROM applications
+            WHERE candidate_id = $1
+            LIMIT 1;
+        `;
+        const values = [candidateId];
+        const { rows } = await pool.query(query, values);
+        return rows[0]; // Возвращаем первую запись
+    } catch (error) {
+        console.error('Error finding application by candidate_id:', error);
+        throw error;
+    }
+};
+
 module.exports = {
     getAllApplications,
-    createApplication
+    createApplication,
+    getApplicationByCandidateId
 };
