@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Отклики на вакансии</title>
-    <link rel="stylesheet" href="assets/css/style_common.css">
-    <link rel="stylesheet" href="assets/css/style_responses.css">
+    <link rel="stylesheet" href="/assets/css/style_common.css">
+    <link rel="stylesheet" href="/assets/css/style_responses.css">
 </head>
 
 <body>
@@ -38,26 +38,43 @@
                     <!-- Условный блок для работодателя -->
                     <section class="responses-section employer-view">
                         <h2>Отклики на ваши вакансии</h2>
-                        <% vacancies.forEach(function(vacancy, user, candidate, application, index) { %>
-                            <div class="responses-list">
-                                <div class="response" id="response-3">
+                        <% if (vacancies && vacancies.length > 0) { %>
+                            <% vacancies.forEach(function(vacancy) { %>
+                                <div class="vacancy">
                                     <h3>Вакансия: <%= vacancy.title %></h3>
-                                    <p><strong>Кандидат:</strong> <%= user.first_name %> <%= user.last_name %></p>
-                                    <% if (application.status === 'pending') { %>
-                                        <p><strong>Статус:</strong> Ожидает рассмотрения</p>
+                                    <p>ID: <%= vacancy.vacancy_id %></p>
+                                    <p>Описание: <%= vacancy.description %></p>
+                
+                                    <h4>Кандидаты</h4>
+                                    <% if (vacancy.candidates && vacancy.candidates.length > 0) { %>
+                                        <% vacancy.candidates.forEach(function(candidate, index) { %>
+                                            <div class="response" id="response-<%= index %>">
+                                                <p><strong>Кандидат:</strong> <%= candidate.first_name %> <%= candidate.last_name %></p>
+                                                <p>ID: <%= candidate.candidate_id %></p>
+                                                <p>Email: <%= candidate.email %></p>
+                                                <p>Телефон: <%= candidate.phone %></p>
+                                                <p><strong>Статус:</strong> 
+                                                    <% if (candidate.application && candidate.application.status === 'pending') { %>
+                                                        Ожидает рассмотрения
+                                                    <% } else { %>
+                                                        Принят
+                                                    <% } %>
+                                                </p>
+                                                <p><strong>Дата отклика:</strong> <%= candidate.application ? candidate.application.applied_at : 'Не указано' %></p>
+                                                <div class="response-actions">
+                                                    <button class="accept-button">Принять</button>
+                                                    <button class="reject-button" onclick="rejectResponse('response-<%= index %>')">Отклонить</button>
+                                                </div>
+                                            </div>
+                                        <% }) %>
                                     <% } else { %>
-                                        <p><strong>Статус:</strong> Принят</p>
+                                        <p>Нет кандидатов для этой вакансии.</p>
                                     <% } %>
-                                    <p><strong>Дата отклика:</strong> <% application.applied_at %></p>
-                                    <div class="response-actions">
-                                        <button class="accept-button">Принять</button>
-                                        <button class="reject-button"
-                                            onclick="rejectResponse('response-3')">Отклонить</button>
-                                    </div>
                                 </div>
-                            </div>
-                        <% }) %>
-                        <div class="no-responses-message">Откликов пока нет.</div>
+                            <% }) %>
+                        <% } else { %>
+                            <h2>Откликов пока нет.</h2>
+                        <% } %>
                     </section>
                 </main>
         </div>

@@ -36,8 +36,26 @@ const getApplicationByCandidateId = async (candidateId) => {
     }
 };
 
+const getCandidatesByVacancyId = async (vacancyId) => {
+    try {
+        const query = `
+            SELECT c.*
+            FROM applications a
+            JOIN candidates c ON a.candidate_id = c.candidate_id
+            WHERE a.vacancy_id = $1;
+        `;
+        const values = [vacancyId];
+        const { rows } = await pool.query(query, values);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching candidates by vacancy_id:', error);
+        throw error;
+    }
+};
+
 module.exports = {
     getAllApplications,
     createApplication,
-    getApplicationByCandidateId
+    getApplicationByCandidateId,
+    getCandidatesByVacancyId
 };

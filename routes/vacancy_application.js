@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { createApplication } = require('../models/applicationModel');
 const { getCandidateByUserId } = require('../models/candidateModel');
-const { getVacancyByEmployerId } = require('../models/vacancyModel');
+const { getVacancyByEmployerId, getAllVacanciesByUserId } = require('../models/vacancyModel');
 const { getEmployerByUserId } = require('../models/employerModel');
-const { getApplicationByCandidateId } = require('../models/applicationModel');
+const { getApplicationByCandidateId, getCandidatesByVacancyId } = require('../models/applicationModel');
 
 
 router.get('/', async (req, res) => {
@@ -26,12 +26,33 @@ router.get('/', async (req, res) => {
 router.get('/response_to_my_vacancies', async (req, res) => {
     const user = req.user;
     const employer = await getEmployerByUserId(user.user_id);
+    const vacancies = await getAllVacanciesByUserId(user.user_id);
     const vacancy = await getVacancyByEmployerId(employer.employer_id);
-    const candidate = await getCandidateByUserId(user.user_id);
-    console.log(candidate);
-    const application = await getApplicationByCandidateId(candidate.candidate_id);
+    console.log(vacancy);
+    //const candidate = await getCandidatesByVacancyId(vacancy.vacancy_id);
+    //console.log(candidate);
+    //const application = await getApplicationByCandidateId(candidate.candidate_id);
     try{
-        res.render('/my_responses_employer', { user, employer, vacancy, candidate, application });
+        // Получаем всех кандидатов для каждой вакансии
+        const vacanciesWithCandidates = await Promise.all(vacancies.map(async (vacancy) => {
+            const candidates = await getCandidatesByVacancyId(vacancy.vacancy_id);
+            return { ...vacancy, candidates };
+        }));
+
+        // Выбираем первую вакансию для отображения
+        const vacancy = vacanciesWithCandidates.length > 0 ? vacanciesWithCandidates[0] : null;
+        const candidate = vacancy && vacancy.candidates.length > 0 ? vacancy.candidates[0] : null;
+        const application = candidate ? await getApplicationByCandidateId(candidate.candidate_id) : null;
+
+        res.render('my_responses_employer', {
+            user,
+            employer,
+            vacancies: vacanciesWithCandidates,
+            vacancy,
+            candidate,
+            application
+        });
+        //res.render('my_responses_employer', { vacancies, user, employer, vacancy, candidate, application });
     }catch (error) {
         console.error('Error creating vacancy:', error);
         res.status(500).send('Internal Server Error');
