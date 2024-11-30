@@ -19,7 +19,7 @@
                     <section class="responses-section candidate-view">
                         <h2>Ваши отклики</h2>
                         <div class="responses-list">
-                                    <div class="resume-info">
+                                    <div class="response">
                                         <h4>Резюме кандидата</h4>
                                         <% if (resume) { %>
                                             <p><strong>Местоположение:</strong> <%= resume.location %></p>
@@ -56,7 +56,7 @@
                                                     <p><strong>Образование: </strong> <%= candidate.education %></p>
                                                     <p><strong>Про свой опыт: </strong> <%= candidate.experience %></p>
                                                     <p><strong>Портфолио: </strong> <%= candidate.portfolio_links %></p>
-                                                    <p><strong>писание проектов: </strong> <%= candidate.project_description_candidate %></p>
+                                                    <p><strong>Описание проектов: </strong> <%= candidate.project_description_candidate %></p>
                                                     <p><strong>Статус:</strong> 
                                                         <% if (application && application.status === 'pending') { %>
                                                             Ожидает рассмотрения
