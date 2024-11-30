@@ -38,43 +38,45 @@
                     <!-- Условный блок для работодателя -->
                     <section class="responses-section employer-view">
                         <h2>Отклики на ваши вакансии</h2>
-                        <% if (vacancies && vacancies.length > 0) { %>
-                            <% vacancies.forEach(function(vacancy) { %>
-                                <div class="vacancy">
-                                    <h3>Вакансия: <%= vacancy.title %></h3>
-                                    <p>ID: <%= vacancy.vacancy_id %></p>
-                                    <p>Описание: <%= vacancy.description %></p>
-                
-                                    <h4>Кандидаты</h4>
-                                    <% if (vacancy.candidates && vacancy.candidates.length > 0) { %>
-                                        <% vacancy.candidates.forEach(function(candidate, index) { %>
-                                            <div class="response" id="response-<%= index %>">
-                                                <p><strong>Кандидат:</strong> <%= candidate.first_name %> <%= candidate.last_name %></p>
-                                                <p>ID: <%= candidate.candidate_id %></p>
-                                                <p>Email: <%= candidate.email %></p>
-                                                <p>Телефон: <%= candidate.phone %></p>
-                                                <p><strong>Статус:</strong> 
-                                                    <% if (candidate.application && candidate.application.status === 'pending') { %>
-                                                        Ожидает рассмотрения
-                                                    <% } else { %>
-                                                        Принят
-                                                    <% } %>
-                                                </p>
-                                                <p><strong>Дата отклика:</strong> <%= candidate.application ? candidate.application.applied_at : 'Не указано' %></p>
-                                                <div class="response-actions">
-                                                    <button class="accept-button">Принять</button>
-                                                    <button class="reject-button" onclick="rejectResponse('response-<%= index %>')">Отклонить</button>
+                        <div class="responses-list">
+                            <% if (vacancies && vacancies.length > 0) { %>
+                                <% vacancies.forEach(function(vacancy) { %>
+                                    <div class="response">
+                                        <h3>Вакансия: <%= vacancy.title %></h3>
+                                        <p>ID: <%= vacancy.vacancy_id %></p>
+                                        <p>Описание: <%= vacancy.description %></p>
+                    
+                                        <h4>Кандидаты</h4>
+                                        <% if (vacancy.candidates && vacancy.candidates.length > 0) { %>
+                                            <% vacancy.candidates.forEach(function(candidate, index) { %>
+                                                <div id="response-<%= index %>">
+                                                    <p><strong>Кандидат:</strong> <%= candidate.first_name %> <%= candidate.last_name %></p>
+                                                    <p>ID: <%= candidate.candidate_id %></p>
+                                                    <p>Email: <%= candidate.email %></p>
+                                                    <p>Телефон: <%= candidate.phone %></p>
+                                                    <p><strong>Статус:</strong> 
+                                                        <% if (candidate.application && candidate.application.status === 'pending') { %>
+                                                            Ожидает рассмотрения
+                                                        <% } else { %>
+                                                            Принят
+                                                        <% } %>
+                                                    </p>
+                                                    <p><strong>Дата отклика:</strong> <%= candidate.application ? candidate.application.applied_at : 'Не указано' %></p>
+                                                    <div class="response-actions">
+                                                        <button class="accept-button">Принять</button>
+                                                        <button class="reject-button" onclick="rejectResponse('response-<%= index %>')">Отклонить</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        <% }) %>
-                                    <% } else { %>
-                                        <p>Нет кандидатов для этой вакансии.</p>
-                                    <% } %>
-                                </div>
-                            <% }) %>
-                        <% } else { %>
-                            <h2>Откликов пока нет.</h2>
-                        <% } %>
+                                            <% }) %>
+                                        <% } else { %>
+                                            <p>Нет кандидатов для этой вакансии.</p>
+                                        <% } %>
+                                    </div>
+                                <% }) %>
+                            <% } else { %>
+                                <h2>Откликов пока нет.</h2>
+                            <% } %>
+                        </div>
                     </section>
                 </main>
         </div>
