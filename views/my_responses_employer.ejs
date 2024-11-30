@@ -19,18 +19,19 @@
                     <section class="responses-section candidate-view">
                         <h2>Ваши отклики</h2>
                         <div class="responses-list">
-                            <div class="response" id="response-1">
-                                <h3>Вакансия: Веб-разработчик</h3>
-                                <p><strong>Компания:</strong> IT Company</p>
-                                <p><strong>Статус:</strong> Ожидает рассмотрения</p>
-                                <p><strong>Дата отклика:</strong> 2023-10-01</p>
-                            </div>
-                            <div class="response" id="response-2">
-                                <h3>Вакансия: Дизайнер</h3>
-                                <p><strong>Компания:</strong> Design Studio</p>
-                                <p><strong>Статус:</strong> Принят</p>
-                                <p><strong>Дата отклика:</strong> 2023-09-28</p>
-                            </div>
+                                    <div class="resume-info">
+                                        <h4>Резюме кандидата</h4>
+                                        <% if (resume) { %>
+                                            <p><strong>Местоположение:</strong> <%= resume.location %></p>
+                                            <p><strong>Дата рождения:</strong> <%= resume.birth_date %></p>
+                                            <p><strong>Гражданство:</strong> <%= resume.citizenship %></p>
+                                            <p><strong>Профессия:</strong> <%= resume.profession %></p>
+                                            <p><strong>Максимальная зарплата:</strong> <%= resume.salary_max %></p>
+                                            <p><strong>Дата отклика:</strong> <%= resume.created_at %></p>
+                                        <% } else { %>
+                                            <p>Резюме не найдено.</p>
+                                        <% } %>
+                                    </div>
                         </div>
                         <div class="no-responses-message">Откликов пока нет.</div>
                     </section>
@@ -43,25 +44,27 @@
                                 <% vacancies.forEach(function(vacancy) { %>
                                     <div class="response">
                                         <h3>Вакансия: <%= vacancy.title %></h3>
-                                        <p>ID: <%= vacancy.vacancy_id %></p>
-                                        <p>Описание: <%= vacancy.description %></p>
+                                        <p><strong>Описание: </strong><%= vacancy.description %></p>
+                                        <p><strong>Требуемое образование: </strong> <%= vacancy.education %></p>
+                                        <p><strong>Требуемый опыт работы: </strong> <%= vacancy.experience %></p>
                     
                                         <h4>Кандидаты</h4>
                                         <% if (vacancy.candidates && vacancy.candidates.length > 0) { %>
                                             <% vacancy.candidates.forEach(function(candidate, index) { %>
                                                 <div id="response-<%= index %>">
-                                                    <p><strong>Кандидат:</strong> <%= candidate.first_name %> <%= candidate.last_name %></p>
-                                                    <p>ID: <%= candidate.candidate_id %></p>
-                                                    <p>Email: <%= candidate.email %></p>
-                                                    <p>Телефон: <%= candidate.phone %></p>
+                                                    <p><strong>Кандидат: </strong> <%= candidateUser.first_name %> <%= candidateUser.last_name %></p>
+                                                    <p><strong>Образование: </strong> <%= candidate.education %></p>
+                                                    <p><strong>Про свой опыт: </strong> <%= candidate.experience %></p>
+                                                    <p><strong>Портфолио: </strong> <%= candidate.portfolio_links %></p>
+                                                    <p><strong>писание проектов: </strong> <%= candidate.project_description_candidate %></p>
                                                     <p><strong>Статус:</strong> 
-                                                        <% if (candidate.application && candidate.application.status === 'pending') { %>
+                                                        <% if (application && application.status === 'pending') { %>
                                                             Ожидает рассмотрения
                                                         <% } else { %>
                                                             Принят
                                                         <% } %>
                                                     </p>
-                                                    <p><strong>Дата отклика:</strong> <%= candidate.application ? candidate.application.applied_at : 'Не указано' %></p>
+                                                    <p><strong>Дата отклика:</strong> <%= application ? application.applied_at : 'Не указано' %></p>
                                                     <div class="response-actions">
                                                         <button class="accept-button">Принять</button>
                                                         <button class="reject-button" onclick="rejectResponse('response-<%= index %>')">Отклонить</button>
@@ -74,7 +77,7 @@
                                     </div>
                                 <% }) %>
                             <% } else { %>
-                                <h2>Откликов пока нет.</h2>
+                                <h2>Откликов пока что нет, но мы уверены они скоро появтся.</h2>
                             <% } %>
                         </div>
                     </section>

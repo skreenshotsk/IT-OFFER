@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const { createApplication } = require('../models/applicationModel');
-const { getCandidateByUserId } = require('../models/candidateModel');
+const { getCandidateByUserId, getUserIdByCandidateId } = require('../models/candidateModel');
 const { getVacancyByEmployerId, getAllVacanciesByUserId } = require('../models/vacancyModel');
 const { getEmployerByUserId } = require('../models/employerModel');
 const { getApplicationByCandidateId, getCandidatesByVacancyId } = require('../models/applicationModel');
+const { getResumeIdByEmployerId } = require('../models/resumeApplicationModel');
+const { getUserById } = require('../models/userModel');
+const { getResumeById } = require('../models/resumeModel');
 
 
 router.get('/', async (req, res) => {
@@ -27,32 +30,33 @@ router.get('/response_to_my_vacancies', async (req, res) => {
     const user = req.user;
     const employer = await getEmployerByUserId(user.user_id);
     const vacancies = await getAllVacanciesByUserId(user.user_id);
-    const vacancy = await getVacancyByEmployerId(employer.employer_id);
-    console.log(vacancy);
-    //const candidate = await getCandidatesByVacancyId(vacancy.vacancy_id);
-    //console.log(candidate);
-    //const application = await getApplicationByCandidateId(candidate.candidate_id);
+    
     try{
         // Получаем всех кандидатов для каждой вакансии
         const vacanciesWithCandidates = await Promise.all(vacancies.map(async (vacancy) => {
             const candidates = await getCandidatesByVacancyId(vacancy.vacancy_id);
             return { ...vacancy, candidates };
         }));
-
-        // Выбираем первую вакансию для отображения
         const vacancy = vacanciesWithCandidates.length > 0 ? vacanciesWithCandidates[0] : null;
         const candidate = vacancy && vacancy.candidates.length > 0 ? vacancy.candidates[0] : null;
         const application = candidate ? await getApplicationByCandidateId(candidate.candidate_id) : null;
+        const candidateUserId = candidate ? await getUserIdByCandidateId(candidate.candidate_id) : null;
+        const candidateUser = candidateUserId ? await getUserById(candidateUserId) : null;
+
+        //Получаем для отображения своих откликов
+        const resumeId = await getResumeIdByEmployerId(employer.employer_id);
+        const resume = await getResumeById(resumeId);//передавать массив, исправить позже
 
         res.render('my_responses_employer', {
+            resume,
             user,
             employer,
             vacancies: vacanciesWithCandidates,
             vacancy,
-            candidate,
-            application
+            candidate: candidate[0],
+            application,
+            candidateUser
         });
-        //res.render('my_responses_employer', { vacancies, user, employer, vacancy, candidate, application });
     }catch (error) {
         console.error('Error creating vacancy:', error);
         res.status(500).send('Internal Server Error');

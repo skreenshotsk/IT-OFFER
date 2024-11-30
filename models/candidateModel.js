@@ -27,12 +27,18 @@ const updateCandidate = async (userId, candidate) => {
     return res.rows[0];
 };
 
-// Получить кандидата по user_id
 const getCandidateByUserId = async (userId) => {
     const query = 'SELECT * FROM candidates WHERE user_id = $1';
     const values = [userId];
     const res = await pool.query(query, values);
     return res.rows[0];
+};
+
+const getUserIdByCandidateId = async (candidateId) => {
+    const query = 'SELECT user_id FROM candidates WHERE candidate_id = $1';
+    const values = [candidateId];
+    const res = await pool.query(query, values);
+    return res.rows.length > 0 ? res.rows[0].user_id : null;
 };
 
 const updateCandidatePhone = async (candidateId, candidateData) => {
@@ -59,4 +65,5 @@ module.exports = {
     getCandidateByUserId,
     updateCandidatePhone,
     getAllCandidates,
+    getUserIdByCandidateId,
 };
