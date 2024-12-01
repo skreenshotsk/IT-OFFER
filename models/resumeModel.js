@@ -82,6 +82,22 @@ const getAllResumesAdmin = async () => {
     return res.rows;
 };
 
+const getAllResumesByUserId = async (user_id) => {
+    try {
+        const query = `
+            SELECT r.*, c.first_name, c.last_name
+            FROM resumes r
+            JOIN candidates c ON r.candidate_id = c.candidate_id
+            WHERE c.user_id = $1;
+        `;
+        const { rows } = await pool.query(query, [user_id]);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching all resumes:', error);
+        throw error;
+    }
+};
+
 module.exports = {
     createResume,
     getResumeByCandidateId,
@@ -89,4 +105,5 @@ module.exports = {
     getAllResumes,
     getResumeById,
     getAllResumesAdmin,
+    getAllResumesByUserId,
 };

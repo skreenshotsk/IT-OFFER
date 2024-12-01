@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 location.href = '/vacancy';
             } else if (action === 'response-to-my-vacancies'){
                 location.href = '/vacancy_application/response_to_my_vacancies';
+            } else if (action === 'response-to-my-resumes'){
+                location.href = '/resume_application/response_to_my_resumes';
             }
         });
     });

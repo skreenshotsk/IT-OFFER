@@ -36,8 +36,16 @@ const getResumeIdByEmployerId = async (employerId) => {
     return resumeIds;
 };
 
+const getApplicationsByCandidateId = async (candidate_id) => {
+    const query = 'SELECT * FROM applications WHERE candidate_id = $1';
+    const values = [candidate_id];
+    const { rows } = await pool.query(query, values);
+    return rows;
+};
+
 module.exports = {
     getAllResumeApplications,
     createResumeApplication,
-    getResumeIdByEmployerId
+    getResumeIdByEmployerId,
+    getApplicationsByCandidateId,
 };

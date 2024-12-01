@@ -35,26 +35,16 @@
 
                 <!-- Условный блок для работодателя -->
                 <section class="responses-section employer-view">
-                    <h2>Отклики на ваши вакансии</h2>
+                    <h2>Отклики на ваш резюме</h2>
                     <div class="responses-list">
                         <div class="response" id="response-3">
-                            <h3>Вакансия: Веб-разработчик</h3>
-                            <p><strong>Кандидат:</strong> Иван Иванов</p>
+                            <h3>Ваше резюме</h3>
+                            <p><strong>Кандидат:</strong> <%= candidate.candidate_id %> </p>
                             <p><strong>Статус:</strong> Ожидает рассмотрения</p>
                             <p><strong>Дата отклика:</strong> 2023-10-01</p>
                             <div class="response-actions">
                                 <button class="accept-button">Принять</button>
                                 <button class="reject-button" onclick="rejectResponse('response-3')">Отклонить</button>
-                            </div>
-                        </div>
-                        <div class="response" id="response-4">
-                            <h3>Вакансия: Дизайнер</h3>
-                            <p><strong>Кандидат:</strong> Мария Петрова</p>
-                            <p><strong>Статус:</strong> Принят</p>
-                            <p><strong>Дата отклика:</strong> 2023-09-28</p>
-                            <div class="response-actions">
-                                <button class="accept-button">Принять</button>
-                                <button class="reject-button" onclick="rejectResponse('response-4')">Отклонить</button>
                             </div>
                         </div>
                     </div>
