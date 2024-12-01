@@ -30,37 +30,36 @@ router.get('/response_to_my_vacancies', async (req, res) => {
     const user = req.user;
     const employer = await getEmployerByUserId(user.user_id);
     const vacancies = await getAllVacanciesByUserId(user.user_id);
-    
-    try{
-        // Получаем всех кандидатов для каждой вакансии
+
+    try {
+        // Fetch candidates for each vacancy and their associated user data
         const vacanciesWithCandidates = await Promise.all(vacancies.map(async (vacancy) => {
             const candidates = await getCandidatesByVacancyId(vacancy.vacancy_id);
-            return { ...vacancy, candidates };
+            // Fetch candidateUser for each candidate
+            const candidatesWithUser = await Promise.all(candidates.map(async (candidate) => {
+                const application = await getApplicationByCandidateId(candidate.candidate_id);
+                const candidateUserId = await getUserIdByCandidateId(candidate.candidate_id);
+                const candidateUser = candidateUserId ? await getUserById(candidateUserId) : null;
+                return { ...candidate, application, candidateUser };
+            }));
+            return { ...vacancy, candidates: candidatesWithUser };
         }));
-        const vacancy = vacanciesWithCandidates.length > 0 ? vacanciesWithCandidates[0] : null;
-        const candidate = vacancy && vacancy.candidates.length > 0 ? vacancy.candidates[0] : null;
-        const application = candidate ? await getApplicationByCandidateId(candidate.candidate_id) : null;
-        const candidateUserId = candidate ? await getUserIdByCandidateId(candidate.candidate_id) : null;
-        const candidateUser = candidateUserId ? await getUserById(candidateUserId) : null;
 
-        //Получаем для отображения своих откликов
+        // Fetch resume data for the employer
         const resumeId = await getResumeIdByEmployerId(employer.employer_id);
-        const resume = await getResumeById(resumeId);//передавать массив, исправить позже
+        const resume = await getResumeById(resumeId);
 
         res.render('my_responses_employer', {
             resume,
             user,
             employer,
-            vacancies: vacanciesWithCandidates,
-            vacancy,
-            candidate: candidate[0],
-            application,
-            candidateUser
+            vacancies: vacanciesWithCandidates
         });
-    }catch (error) {
-        console.error('Error creating vacancy:', error);
+    } catch (error) {
+        console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 module.exports = router;

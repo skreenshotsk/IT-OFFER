@@ -48,37 +48,39 @@
                                         <p><strong>Требуемое образование: </strong> <%= vacancy.education %></p>
                                         <p><strong>Требуемый опыт работы: </strong> <%= vacancy.experience %></p>
                     
-                                        <h4>Кандидаты</h4>
-                                        <% if (vacancy.candidates && vacancy.candidates.length > 0) { %>
-                                            <% vacancy.candidates.forEach(function(candidate, index) { %>
-                                                <div id="response-<%= index %>">
-                                                    <p><strong>Кандидат: </strong> <%= candidateUser.first_name %> <%= candidateUser.last_name %></p>
-                                                    <p><strong>Образование: </strong> <%= candidate.education %></p>
-                                                    <p><strong>Про свой опыт: </strong> <%= candidate.experience %></p>
-                                                    <p><strong>Портфолио: </strong> <%= candidate.portfolio_links %></p>
-                                                    <p><strong>Описание проектов: </strong> <%= candidate.project_description_candidate %></p>
-                                                    <p><strong>Статус:</strong> 
-                                                        <% if (application && application.status === 'pending') { %>
-                                                            Ожидает рассмотрения
-                                                        <% } else { %>
-                                                            Принят
-                                                        <% } %>
-                                                    </p>
-                                                    <p><strong>Дата отклика:</strong> <%= application ? application.applied_at : 'Не указано' %></p>
-                                                    <div class="response-actions">
-                                                        <button class="accept-button">Принять</button>
-                                                        <button class="reject-button" onclick="rejectResponse('response-<%= index %>')">Отклонить</button>
-                                                    </div>
+                                        <h3>Кандидаты</h3>
+                                        
+                                                    <% if (vacancy.candidates && vacancy.candidates.length > 0) { %>
+                                                        <% vacancy.candidates.forEach(function(candidate, candidateIndex) { %>
+                                                            <div id="response-<%= candidateIndex %>">
+                                                                <p><strong>Кандидат: </strong> <%= candidate.candidateUser ? candidate.candidateUser.first_name + ' ' + candidate.candidateUser.last_name : 'Не указано' %></p>
+                                                                <p><strong>Образование: </strong> <%= candidate.education || 'Не указано' %></p>
+                                                                <p><strong>Про свой опыт: </strong> <%= candidate.experience || 'Не указано' %></p>
+                                                                <p><strong>Портфолио: </strong> <%= candidate.portfolio_links || 'Не указано' %></p>
+                                                                <p><strong>Описание проектов: </strong> <%= candidate.project_description_candidate || 'Не указано' %></p>
+                                                                <p><strong>Статус:</strong> 
+                                                                    <% if (candidate.application && candidate.application.status === 'pending') { %>
+                                                                        Ожидает рассмотрения
+                                                                    <% } else { %>
+                                                                        Принят
+                                                                    <% } %>
+                                                                </p>
+                                                                <p><strong>Дата отклика:</strong> <%= candidate.application ? candidate.application.applied_at : 'Не указано' %></p>
+                                                                <div class="response-actions">
+                                                                    <button class="accept-button" onclick="acceptResponse('response-<%= candidateIndex %>')">Принять</button>
+                                                                    <button class="reject-button" onclick="rejectResponse('response-<%= candidateIndex %>')">Отклонить</button>
+                                                                </div>
+                                                            </div>
+                                                        <% }) %>
+                                                    <% } else { %>
+                                                        <p>Нет кандидатов для этой вакансии.</p>
+                                                    <% } %>
                                                 </div>
                                             <% }) %>
                                         <% } else { %>
-                                            <p>Нет кандидатов для этой вакансии.</p>
+                                            <h2>Откликов пока что нет, но мы уверены они скоро появятся.</h2>
                                         <% } %>
                                     </div>
-                                <% }) %>
-                            <% } else { %>
-                                <h2>Откликов пока что нет, но мы уверены они скоро появтся.</h2>
-                            <% } %>
                         </div>
                     </section>
                 </main>
