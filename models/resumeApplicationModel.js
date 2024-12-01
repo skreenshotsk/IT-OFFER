@@ -20,11 +20,20 @@ const createResumeApplication = async (applicationData) => {
     return res.rows[0];
 };
 
-const getResumeIdByEmployerId = async (employerId) => {
+/*const getResumeIdByEmployerId = async (employerId) => {
     const query = 'SELECT resume_id FROM resume_applications WHERE employer_id = $1';
     const values = [employerId];
     const res = await pool.query(query, values);
     return res.rows.length > 0 ? res.rows[0].resume_id : null;
+};*/
+
+const getResumeIdByEmployerId = async (employerId) => {
+    const query = 'SELECT resume_id FROM resume_applications WHERE employer_id = $1';
+    const values = [employerId];
+    const res = await pool.query(query, values);
+    // Extract resume_ids into an array
+    const resumeIds = res.rows.map(row => row.resume_id);
+    return resumeIds;
 };
 
 module.exports = {

@@ -46,11 +46,31 @@ router.get('/response_to_my_vacancies', async (req, res) => {
         }));
 
         // Fetch resume data for the employer
-        const resumeId = await getResumeIdByEmployerId(employer.employer_id);
-        const resume = await getResumeById(resumeId);
+        //const resumeId = await getResumeIdByEmployerId(employer.employer_id);
+        //const resume = await getResumeById(resumeId);
+        //const resumeIds = await getResumeIdByEmployerId(employer.employer_id);
+        //const resumes = await Promise.all(resumeIds.map(id => getResumeById(id)));
+        let resumeIds = await getResumeIdByEmployerId(employer.employer_id);
+        if (!Array.isArray(resumeIds)) {
+            resumeIds = [];
+        }
+        console.log('id', resumeIds);
+        
+        const resumePromises = resumeIds.map(async id => {
+            try {
+                return await getResumeById(id);
+            } catch (error) {
+                console.error('Error fetching resume by ID:', id, error);
+                return null;
+            }
+        });
+        
+        const resumes = await Promise.all(resumePromises);
+        console.log('resumes', resumes);
 
         res.render('my_responses_employer', {
-            resume,
+            //resume,
+            resumes,
             user,
             employer,
             vacancies: vacanciesWithCandidates
