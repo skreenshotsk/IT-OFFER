@@ -39,17 +39,24 @@
                     <div class="responses-list">
                         <div class="response" id="response-3">
                             <h3>Ваше резюме</h3>
-                            <p><strong>Местоположение:</strong> <%= resume.location %> </p>
-                            <p><strong>Вы родились:</strong> <%= resume.birth_date %> </p>
                             <p><strong>Профессия:</strong> <%= resume.profession %> </p>
                             <p><strong>ЗП которую вы хотите:</strong> <%= resume.salary_max %> </p>
+                            <p><strong>Вы родились:</strong> <%= resume.birth_date %> </p>
+                            <p><strong>Местоположение:</strong> <%= resume.location %> </p>
                             <h3>Работодатели хотят с вами связаться:</h3>
-                            <p><strong>Статус:</strong> Ожидает рассмотрения</p>
-                            <p><strong>Дата отклика:</strong> 2023-10-01</p>
-                            <div class="response-actions">
-                                <button class="accept-button">Принять</button>
-                                <button class="reject-button" onclick="rejectResponse('response-3')">Отклонить</button>
-                            </div>
+                            <% if (employers && employers.length > 0) { %>
+                                <% employers.forEach(function(employer, employerIndex) { %>
+                                    <p><strong>Компания:</strong> <%= employer.company_name %></p>
+                                        <p><strong>Дата отклика:</strong> <%= applications[employerIndex].applied_at %></p>
+                                    <div class="response-actions">
+                                        <button class="accept-button">Принять</button>
+                                        <button class="reject-button" onclick="rejectResponse('response-3')">Отклонить</button>
+                                   </div>
+                                <% }) %>
+                            <% } else { %>
+                                <p>Нет работодателей, но мы уверены скоро они появятся.</p>
+                                <button class="accept-button">получить профессиональную помощь по составлению резюме</button>
+                            <% } %>
                         </div>
                     </div>
                     <div class="no-responses-message">Откликов пока нет.</div>

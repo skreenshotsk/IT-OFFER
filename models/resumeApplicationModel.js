@@ -43,9 +43,37 @@ const getApplicationsByCandidateId = async (candidate_id) => {
     return rows;
 };
 
+const getAllEmployerIdsByResumeId = async (resumeId) => {
+    try {
+        const { rows } = await pool.query(
+            'SELECT employer_id FROM resume_applications WHERE resume_id = $1',
+            [resumeId]
+        );
+        return rows.map(row => row.employer_id);
+    } catch (err) {
+        throw new Error('Ошибка при получении employer_id: ' + err.message);
+    }
+};
+
+const getApplicationsResumeByResumeId = async (resumeId) => {
+    try {
+        const { rows } = await pool.query(
+            `SELECT *
+            FROM resume_applications 
+            WHERE resume_id = $1`,
+            [resumeId]
+        );
+        return rows;
+    } catch (err) {
+        throw new Error('Ошибка при получении заявок на резюме: ' + err.message);
+    }
+};
+
 module.exports = {
     getAllResumeApplications,
     createResumeApplication,
     getResumeIdByEmployerId,
     getApplicationsByCandidateId,
+    getAllEmployerIdsByResumeId,
+    getApplicationsResumeByResumeId,
 };

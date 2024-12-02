@@ -59,6 +59,7 @@ const getAllCompanyNames = async () => {
     }
 };
 
+
 module.exports = {
     createEmployer,
     getEmployerByUserId,
