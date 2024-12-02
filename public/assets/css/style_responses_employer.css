@@ -1,18 +1,20 @@
-.responses-section {
+.responses-section,
+.employer-view {
     margin-top: 20px;
     padding: 20px;
-    background: linear-gradient(135deg, #f9f9f9, #e9e9e9);
-    border-radius: 12px;
+    margin-bottom: 20px;
+    background: linear-gradient(180deg, #f9f9f9, #dddbdb);
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.responses-section:hover {
-    transform: translateY(-5px);
+.responses-section:hover,
+.employer-view:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.responses-section h2 {
+.responses-section h2,
+.employer-view h2 {
     font-size: 28px;
     margin-bottom: 20px;
     color: #333;
@@ -32,7 +34,7 @@
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .response:hover {
@@ -75,22 +77,18 @@
 }
 
 .response-actions .accept-button {
-    background-color: #28a745;
     color: #fff;
 }
 
 .response-actions .accept-button:hover {
-    background-color: #218838;
     transform: scale(1.05);
 }
 
 .response-actions .reject-button {
-    background-color: #dc3545;
     color: #fff;
 }
 
 .response-actions .reject-button:hover {
-    background-color: #c82333;
     transform: scale(1.05);
 }
 
