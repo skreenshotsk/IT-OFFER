@@ -6,6 +6,7 @@ const { getCandidateByUserId } = require('../models/candidateModel');
 const { getApplicationsByCandidateId } = require('../models/resumeApplicationModel');
 const { getVacancyById } = require('../models/vacancyModel');
 const { getUserById } = require('../models/userModel');
+const { getResumeByCandidateId } = require('../models/resumeModel');
 
 router.get('/', async (req, res) => {
     const resumeId = req.query.resume_id;
@@ -25,7 +26,7 @@ router.get('/', async (req, res) => {
 router.get('/response_to_my_resumes', async (req, res) => {
     const user = req.user;
     const candidate = await getCandidateByUserId(user.user_id);
-    //const resumes = await getAllResumesByUserId(user.user_id);
+    const resume = await getResumeByCandidateId(candidate.candidate_id);
     try {
         const applications = await getApplicationsByCandidateId(candidate.candidate_id);
 
@@ -41,7 +42,7 @@ router.get('/response_to_my_resumes', async (req, res) => {
 
         // Render the template with the fetched data
         res.render('my_responses_candidate', {
-            //resumes,
+            resume,
             user,
             candidate,
             applications: applicationsWithDetails
