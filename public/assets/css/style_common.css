@@ -25,6 +25,8 @@ img {
 .wrapper {
     background: linear-gradient(180deg, rgb(0, 0, 0) 10%, rgb(173, 39, 39) 100%);
     width: 100%;
+    overflow: hidden;
+    min-height: 75vh;
 }
 
 .container {

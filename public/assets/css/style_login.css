@@ -76,7 +76,3 @@ main a:hover {
     opacity: 0.5;
     pointer-events: none;
 }
-
-.form-section {
-    height: 420px;
-}
