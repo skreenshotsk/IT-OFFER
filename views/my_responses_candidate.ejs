@@ -14,6 +14,7 @@
 
             <main>
                 <!-- Условный блок для кандидата -->
+                <button type="submit" id="submitResumeButton" class="submit-button">Назад</button>
                 <section class="responses-section candidate-view">
                     <h2>Ваши отклики</h2>
                     <div class="responses-list">
@@ -34,7 +35,7 @@
                                     <p><strong>График:</strong> <%= vacancy.schedule %> </p>
                                     <p><strong>Статус:</strong> Ожидает рассмотрения </p>
                                     <p><strong>Дата отклика:</strong> 2023-10-01</p>
-                            <% }) %>
+                                <% }) %>
                             <% } else { %>
                                    <p>Вы не откнулись ни на одну вакансию, исправляйтесь!</p>
                              <% } %>
@@ -65,7 +66,7 @@
                                 <% }) %>
                             <% } else { %>
                                 <p>Нет работодателей, но мы уверены скоро они появятся.</p>
-                                <button class="accept-button">получить профессиональную помощь по составлению резюме</button>
+                                <button class="accept-button">Получить профессиональную помощь по составлению резюме</button>
                             <% } %>
                         </div>
                     </div>

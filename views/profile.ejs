@@ -29,10 +29,10 @@
                     <div class="profile-actions">
                         <button id="editProfileButton" class="edit-button">Редактировать</button>
                         <% if (user.user_type === 'candidate') { %>
-                            <button id="editProfileButton" class="edit-button" data-action="response-to-my-resumes">Отклики</button>
                             <% if (!hasResume) { %>
                                 <button id="editProfileButton" class="edit-button" data-action="create-resume">Создать резюме</button>
                             <% } else { %>
+                                <button id="editProfileButton" class="edit-button" data-action="response-to-my-resumes">Отклики</button>
                                 <button id="editProfileButton" class="edit-button" data-action="update-resume">Мое резюме</button>
                             <% } %>
                         <% } else if (user.user_type === 'employer') { %>

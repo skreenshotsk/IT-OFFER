@@ -13,6 +13,7 @@
         
         <div class="container">
             <main>
+                <button type="submit" id="submitResumeButton" class="submit-button">Назад</button>
                 <h3>Вакансии</h3>
                 <section class="vacancies-section">
                     <button id="filterButton" class="filter-button">Фильтр</button>
@@ -30,17 +31,17 @@
                         <% vacancies.forEach(function(vacancy, index) { %>
                             <div class="vacancy" data-salary="<%= vacancy.salary_max %>" data-skills="<%= vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).map(skill => skill.skill_name).join(',') %>">
                                 <h3><%= vacancy.title %></h3>
-                                <p>Описание деятельности: <%= vacancy.description %></p>
-                                <p>Компания: <%= vacancy.company_name %></p>
-                                <p>Зарплата: <%= vacancy.salary_max %> ₽</p>
-                                <p>График: <%= vacancy.schedule %></p>
-                                <p>Тип занятости: <%= vacancy.employment_type %></p>
-                                <p>Образование: <%= vacancy.education %></p>
-                                <p>Требуемый опыт: <%= vacancy.experience %></p>
-                                <p>Почта: <%= vacancy.contact_email %></p>
-                                <p>Телефон: <%= vacancy.contact_phone %></p>
-                                <p>Человечик для связи: <%= vacancy.contact_person %></p>
-                                <p>Ключевые навыки: </p>
+                                <p><b>Описание деятельности:</b> <%= vacancy.description %></p>
+                                <p><b>Название компании:</b> <%= vacancy.company_name %></p>
+                                <p><b>Требуемая зарплата:</b> <%= vacancy.salary_max %> ₽</p>
+                                <p><b>График работы:</b> <%= vacancy.schedule %></p>
+                                <p><b>Тип занятости:</b> <%= vacancy.employment_type %></p>
+                                <p><b>Требуемое образование:</b> <%= vacancy.education %></p>
+                                <p><b>Требуемый опыт работы:</b> <%= vacancy.experience %></p>
+                                <p><b>Почта для связи:</b> <%= vacancy.contact_email %></p>
+                                <p><b>Телефон для связи:</b> <%= vacancy.contact_phone %></p>
+                                <p><b>Имя человека для связи:</b> <%= vacancy.contact_person %></p>
+                                <p><b>Требуемые навыки:</b> </p>
                                 <% vacancySkills.filter(skill => skill.vacancy_id === vacancy.vacancy_id).forEach(function(skill) { %>
                                     <p><%= skill.skill_name %></p>
                                 <% }) %>

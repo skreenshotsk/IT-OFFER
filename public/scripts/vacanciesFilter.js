@@ -1,5 +1,10 @@
-document.getElementById('filterButton').addEventListener('click', () => {
-    document.getElementById('filterOptions').style.display = 'block';
+document.getElementById('filterButton').addEventListener('click', function() {
+    var filterOptions = document.getElementById('filterOptions');
+    if (filterOptions.style.display === 'none') {
+        filterOptions.style.display = 'block';
+    } else {
+        filterOptions.style.display = 'none';
+    }
 });
 
 document.getElementById('applyFilter').addEventListener('click', () => {

@@ -22,7 +22,8 @@
 
         <div class="container">
             <main>
-                <section class="create-vacancy-section">                        
+                <section class="create-vacancy-section">
+                    <button type="submit" id="submitResumeButton" class="submit-button">Назад</button>                        
                     <form id="vacancyForm" action="/vacancy" method="post">
                         <label for="title">Название вакансии:</label>
                         <input type="text" id="title" name="title" ><br>
@@ -33,10 +34,10 @@
                         <label for="description">Описание деятельности:</label>
                         <textarea id="description" name="description" ></textarea><br>
 
-                        <label for="salary_max">Желаемая зарплата:</label>
+                        <label for="salary_max">Предлагаемая зарплата:</label>
                         <input type="text" id="salary_max" name="salary_max" ><br>
 
-                        <label for="education">Образование:</label>
+                        <label for="education">Требуемое образование:</label>
                         <select id="education" name="education" >
                             <option value="Среднее">Среднее</option>
                             <option value="Среднее специальное">Среднее специальное</option>
@@ -48,11 +49,11 @@
                             <option value="Доктор наук">Доктор наук</option>
                         </select><br>
 
-                        <label for="experience">Опыт работы:</label>
+                        <label for="experience">Требуемый опыт работы:</label>
                         <textarea id="experience" name="experience" placeholder="Опишите требуемый опыт работы"></textarea><br>
 
                         <div id="skillsFields">
-                            <label for="skills">Навыки:</label>
+                            <label for="skills">Необходимые навыки:</label>
                             
                             <div id="selectedSkills">
                                 <label>Выбранные навыки:</label>
@@ -60,7 +61,7 @@
                             </div>
                         </div>
 
-                        <label for="location">Местоположение:</label>
+                        <label for="location">Город:</label>
                         <input type="text" id="location" name="location" ><br>
 
                         <label for="employment_type">Тип занятости:</label>
@@ -72,16 +73,16 @@
                             <option value="Проектная работа">Проектная работа</option>
                         </select><br>
 
-                        <label for="schedule">График:</label>
+                        <label for="schedule">График работы:</label>
                         <input type="text" id="schedule" name="schedule" ><br>
 
-                        <label for="contact_email">Email hr:</label>
+                        <label for="contact_email">Email HR:</label>
                         <input type="text" id="contact_email" name="contact_email" ><br>
 
-                        <label for="contact_phone">Телефон hr:</label>
+                        <label for="contact_phone">Телефон HR:</label>
                         <input type="text" id="contact_phone" name="contact_phone" ><br>
 
-                        <label for="contact_person">ФИО hr:</label>
+                        <label for="contact_person">ФИО HR:</label>
                         <input type="text" id="contact_person" name="contact_person" ><br>
 
                         <button type="submit" id="submitVacancyButton" class="submit-button">Сохранить вакансию</button>
