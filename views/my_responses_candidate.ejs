@@ -18,16 +18,26 @@
                     <h2>Ваши отклики</h2>
                     <div class="responses-list">
                         <div class="response" id="response-1">
-                            <h3>Вакансия: Веб-разработчик</h3>
-                            <p><strong>Компания:</strong> IT Company</p>
-                            <p><strong>Статус:</strong> Ожидает рассмотрения</p>
-                            <p><strong>Дата отклика:</strong> 2023-10-01</p>
-                        </div>
-                        <div class="response" id="response-2">
-                            <h3>Вакансия: Дизайнер</h3>
-                            <p><strong>Компания:</strong> Design Studio</p>
-                            <p><strong>Статус:</strong> Принят</p>
-                            <p><strong>Дата отклика:</strong> 2023-09-28</p>
+                            <% if (vacancies && vacancies.length > 0) { %>
+                                <% vacancies.forEach(function(vacancy, vacancyIndex) { %>
+                                    <h3>Вакансия: <%= vacancy.title %> </h3>
+                                    <% employers.forEach(function(employer, employerIndex) { %>
+                                        <% if (employer.employer_id === vacancy.employer_id) { %>
+                                        <p><strong>Компания:</strong> <%= employer.company_name %></p>
+                                        <% } %>
+                                    <% }) %>
+                                    <p><strong>Описание:</strong> <%= vacancy.description %> </p>
+                                    <p><strong>Зарплата:</strong> <%= vacancy.salary_max %> </p>
+                                    <p><strong>Местоположение:</strong> <%= vacancy.location %> </p>
+                                    <p><strong>Образование:</strong> <%= vacancy.education %> </p>
+                                    <p><strong>Требуемый опыт:</strong> <%= vacancy.experience %> </p>
+                                    <p><strong>График:</strong> <%= vacancy.schedule %> </p>
+                                    <p><strong>Статус:</strong> Ожидает рассмотрения </p>
+                                    <p><strong>Дата отклика:</strong> 2023-10-01</p>
+                            <% }) %>
+                            <% } else { %>
+                                   <p>Вы не откнулись ни на одну вакансию, исправляйтесь!</p>
+                             <% } %>
                         </div>
                     </div>
                     <div class="no-responses-message">Откликов пока нет.</div>

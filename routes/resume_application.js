@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { createResumeApplication } = require('../models/resumeApplicationModel');
+const { getAllVacancyIdsByCandidateId } = require('../models/applicationModel');
 const { getEmployerByUserId, getEmployerByEmployerId } = require('../models/employerModel');
 const { getCandidateByUserId } = require('../models/candidateModel');
-const { getApplicationsResumeByResumeId, getAllEmployerIdsByResumeId } = require('../models/resumeApplicationModel');
+const { createResumeApplication, getApplicationsResumeByResumeId, getAllEmployerIdsByResumeId } = require('../models/resumeApplicationModel');
 const { getVacancyById } = require('../models/vacancyModel');
 const { getUserById } = require('../models/userModel');
 const { getResumeByCandidateId } = require('../models/resumeModel');
@@ -32,13 +32,18 @@ router.get('/response_to_my_resumes', async (req, res) => {
         const employerIds = await getAllEmployerIdsByResumeId(resume.resume_id);
         const employers = await Promise.all(employerIds.map(employerId => getEmployerByEmployerId(employerId)));
         const applications = await getApplicationsResumeByResumeId(resume.resume_id);
-        console.log(employers, applications);
+        
+        const vacancyIds = await getAllVacancyIdsByCandidateId(candidate.candidate_id);
+        const vacancies = await Promise.all(vacancyIds.map(vacancyId => getVacancyById(vacancyId)));
+
+        console.log(employers);
         res.render('my_responses_candidate', {
             resume,
             user,
             candidate,
             employers,
-            applications
+            applications,
+            vacancies
         });
     } catch (error) {
         console.error('Error fetching data:', error);

@@ -53,9 +53,22 @@ const getCandidatesByVacancyId = async (vacancyId) => {
     }
 };
 
+const getAllVacancyIdsByCandidateId = async (candidateId) => {
+    try {
+        const { rows } = await pool.query(
+            'SELECT vacancy_id FROM applications WHERE candidate_id = $1',
+            [candidateId]
+        );
+        return rows.map(row => row.vacancy_id);
+    } catch (err) {
+        throw new Error('Ошибка при получении vacancy_id: ' + err.message);
+    }
+};
+
 module.exports = {
     getAllApplications,
     createApplication,
     getApplicationByCandidateId,
-    getCandidatesByVacancyId
+    getCandidatesByVacancyId,
+    getAllVacancyIdsByCandidateId
 };
