@@ -16,6 +16,7 @@
             cursor: not-allowed;
         }
     </style>
+    
     <div class="wrapper">
 
         <%- include('partials/header') %>
@@ -23,7 +24,7 @@
         <div class="container">
             <main>
                 <section class="create-vacancy-section">
-                    <button type="submit" id="submitResumeButton" class="submit-button">Назад</button>                        
+                    <a href="/auth/profile"><button type="submit" id="backButton" class="submit-button">Назад</button></a>
                     <form id="vacancyForm" action="/vacancy" method="post">
                         <label for="title">Название вакансии:</label>
                         <input type="text" id="title" name="title" ><br>
@@ -91,6 +92,23 @@
             </main> 
         </div>     
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const backButton = document.getElementById('backButton');
+            if (backButton) {
+                console.log('123123123');
+                backButton.addEventListener('click', () => {
+                    if (document.referrer) {
+                        window.history.back();
+                        console.log('назад');
+                    } else {
+                        alert('Предыдущая страница недоступна.');
+                    }
+                });
+            }
+        });
+    </script>
 
     <%- include('partials/footer') %>
     

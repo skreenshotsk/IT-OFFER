@@ -75,7 +75,6 @@ router.get('/response_to_my_vacancies', async (req, res) => {
             employer,
             vacancies: vacanciesWithCandidates
         });
-        window.location.reload();
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');

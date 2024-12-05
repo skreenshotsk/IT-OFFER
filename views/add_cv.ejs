@@ -15,16 +15,16 @@
         <%- include('partials/header') %>
 
             <div class="container">
-                <button type="submit" id="submitResumeButton" class="submit-button">Назад</button>
-                <h3>Создать резюме</h3>
-                <style>
-                    input[disabled] {
-                        background-color: #f0f0f0;
-                        color: #000;
-                        cursor: not-allowed;
-                    }
-                </style>
-                <main>
+                <main>    
+                    <a href="/auth/profile"><button type="submit" id="backButton" class="submit-button">Назад</button></a>
+                    <style>
+                        input[disabled] {
+                            background-color: #f0f0f0;
+                            color: #000;
+                            cursor: not-allowed;
+                        }
+                    </style>
+                
                     <section class="create-resume-section">
                         <form id="resumeForm" action="/resume" method="POST">
                             <label for="resumeLastName">Фамилия:</label>

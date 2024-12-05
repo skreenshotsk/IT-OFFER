@@ -13,7 +13,11 @@
         
         <div class="container">
             <main>
-                <button type="submit" id="submitResumeButton" class="submit-button">Назад</button>
+                <% if (user) { %>
+                    <% if (user.user_type === 'employer') { %>
+                        <a href="/auth/profile"><button type="submit" id="backButton" class="submit-button">Назад</button></a>
+                    <% } %>
+                <% } %>
                 <h3>Вакансии</h3>
                 <section class="vacancies-section">
                     <button id="filterButton" class="filter-button">Фильтр</button>
@@ -51,11 +55,13 @@
                                 </div>
                                 <form action="/vacancy_application" method="GET" id="form-<%= index %>">
                                     <input type="hidden" name="vacancy_id" value="<%= vacancy.vacancy_id %>">
-                                    <% if (user.user_type === 'employer') { %>
-                                        <button class="response-button" type="submit">Редактировать</button>
-                                        <button class="response-button" type="submit">Удалить</button>
-                                    <% } else if (user.user_type === 'candidate') { %>
-                                        <button class="response-button" type="submit">Отклик</button>
+                                    <% if (user) { %>
+                                        <% if (user.user_type === 'employer') { %>
+                                            <button class="response-button" type="submit">Редактировать</button>
+                                            <button class="response-button" type="submit">Удалить</button>
+                                        <% } else if (user.user_type === 'candidate') { %>
+                                            <button class="response-button" type="submit">Отклик</button>
+                                        <% } %>
                                     <% } %>
                                 </form>
                             </div>
