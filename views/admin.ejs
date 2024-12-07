@@ -72,10 +72,10 @@
                                 <div id="searchFormUsers" style="display: none;">
                                     <h4>Поиск записей</h4>
                                     <label for="searchId">User ID:</label>
-                                    <input type="text" id="searchId" placeholder="Введите User ID">
+                                    <input type="text" name="searchId" placeholder="Введите User ID">
                                     <br>
                                     <label for="searchEmail">Email:</label>
-                                    <input type="text" id="searchEmail" placeholder="Введите Email">
+                                    <input type="text" name="searchEmail" placeholder="Введите Email">
                                     <br>
                                     <button onclick="searchRecords('searchFormUsers')">Найти</button>
                                 </div>
@@ -181,17 +181,18 @@
                                 </div>
 
                                 <div id="candidateFilterForm" style="display: none;">                            
-                                    <label for="educationFilter">Роль:</label>
+                                    <label for="educationFilter">Образование:</label>
                                     <select id="educationFilter" onchange="applyFilters('candidateFilterForm')">
                                         <option value="">Все</option>
-                                        <option value="secondary">Среднее</option>
-                                        <option value="secondary_special">Среднее специальное</option>
-                                        <option value="incomplete_higher">Неоконченное высшее</option>
-                                        <option value="higher">Высшее</option>
-                                        <option value="bachelor">Бакалавр</option>
-                                        <option value="master">Магистр</option>
-                                        <option value="candidate_sciences">Кандидат наук</option>
-                                        <option value="doctor_sciences">Доктор наук</option>
+                                        <option value="Без образования">Без образования</option>
+                                        <option value="Среднее">Среднее</option>
+                                        <option value="Среднее-профессиональное">Среднее-профессиональное</option>
+                                        <option value="Неоконченное высшее">Неоконченное высшее</option>
+                                        <option value="Высшее">Высшее</option>
+                                        <option value="Бакалавр">Бакалавр</option>
+                                        <option value="Магистр">Магистр</option>
+                                        <option value="Кандидат наук">Кандидат наук</option>
+                                        <option value="Доктор наук">Доктор наук</option>
                                     </select>
                                 </div>
 
@@ -208,10 +209,10 @@
                                 <div id="searchFormCandidates" style="display: none;">
                                     <h4>Поиск записей</h4>
                                     <label for="searchCandidateId">ID кандидата:</label>
-                                    <input type="text" id="searchCandidateId" placeholder="Введите ID кандидата">
+                                    <input type="text" name="searchCandidateId" placeholder="Введите ID кандидата">
                                     <br>
-                                    <label for="searchId">ID:</label>
-                                    <input type="text" id="searchId" placeholder="Введите User ID">
+                                    <label for="searchUserId">User ID:</label>
+                                    <input type="text" name="searchId" placeholder="Введите User ID">
                                     <br>
                                     <button onclick="searchRecords('searchFormCandidates')">Найти</button>
                                 </div>
@@ -262,13 +263,7 @@
                             <div id="employersTable" style="display: none;">
                                 <div class="admin-actions">
                                     <button onclick="toggleElement('searchFormEmployers')">Поиск записей</button>
-                                    <button onclick="toggleElement('employerFilterForm')">Фильтры</button>
                                     <button onclick="toggleElement('employerSortMenu')">Сортировка</button> 
-                                </div>
-
-                                <div id="employerFilterForm" style="display: none;">                            
-                                    <label for="companyNameFilter">Название компании:</label>
-                                    <input type="text" id="companyNameFilter" oninput="applyFilters('employerFilterForm')" placeholder="Введите название компании">
                                 </div>
 
                                 <div id="employerSortMenu" style="display: none;">
@@ -284,13 +279,13 @@
                                 <div id="searchFormEmployers" style="display: none;">
                                     <h4>Поиск записей</h4>
                                     <label for="searchEmployerId">ID работодателя:</label>
-                                    <input type="text" id="searchEmployerId" placeholder="Введите ID работодателя">
+                                    <input type="text" name="searchEmployerId" placeholder="Введите ID работодателя">
                                     <br>
                                     <label for="searchId">User ID:</label>
-                                    <input type="text" id="searchId" placeholder="Введите User ID">
+                                    <input type="text" name="searchId" placeholder="Введите User ID">
                                     <br>
                                     <label for="searchCompanyName">Название компании:</label>
-                                    <input type="text" id="searchCompanyName" placeholder="Введите название компании">
+                                    <input type="text" name="searchCompanyName" placeholder="Введите название компании">
                                     <br>
                                     <button onclick="searchRecords('searchFormEmployers')">Найти</button>
                                 </div>
@@ -347,14 +342,14 @@
                                 </div>
 
                                 <div id="vacanciesFilterForm" style="display: none;">                            
-                                    <label for="employmentFilter">Тип занятости:</label>
+                                    <label for="employmentFilter">Тип найма:</label>
                                     <select id="employmentFilter" onchange="applyFilters('vacanciesFilterForm')">
                                         <option value="">Все</option>
-                                        <option value="full_time">Полная занятость</option>
-                                        <option value="part_time">Частичная занятость</option>
-                                        <option value="remote">Удаленная работа</option>
-                                        <option value="internship">Стажировка</option>
-                                        <option value="project">Проектная работа</option>
+                                        <option value="Полная занятость">Полная занятость</option>
+                                        <option value="Частичная занятость">Частичная занятость</option>
+                                        <option value="Удаленная работа">Удаленная работа</option>
+                                        <option value="Стажировка">Стажировка</option>
+                                        <option value="Проектная работа">Проектная работа</option>
                                     </select>
 
                                     <label for="dateFilter">Дата создания:</label>
@@ -378,13 +373,13 @@
                                 <div id="searchFormVacancies" style="display: none;">
                                     <h4>Поиск записей</h4>
                                     <label for="searchVacancyId">ID вакансии:</label>
-                                    <input type="text" id="searchVacancyId" placeholder="Введите ID вакансии">
+                                    <input type="text" name="searchVacancyId" placeholder="Введите ID вакансии">
                                     <br>
                                     <label for="searchEmployerId">ID работодателя:</label>
-                                    <input type="text" id="searchEmployerId" placeholder="Введите ID работодателя">
+                                    <input type="text" name="searchEmployerId" placeholder="Введите ID работодателя">
                                     <br>
                                     <label for="searchTitle">Название вакансии:</label>
-                                    <input type="text" id="searchTitle" placeholder="Введите название вакансии">
+                                    <input type="text" name="searchTitle" placeholder="Введите название вакансии">
                                     <br>
                                     <button onclick="searchRecords('searchFormVacancies')">Найти</button>
                                 </div>
@@ -476,7 +471,7 @@
                                 <div id="searchFormCandidateSkills" style="display: none;">
                                     <h4>Поиск записей</h4>
                                     <label for="searchCandidateId">ID кандидата:</label>
-                                    <input type="text" id="searchCandidateId" placeholder="Введите ID кандидата">
+                                    <input type="text" name="searchCandidateId" placeholder="Введите ID кандидата">
                                     <br>
                                     <button onclick="searchRecords('searchFormCandidateSkills')">Найти</button>
                                 </div>
@@ -520,7 +515,7 @@
                                 <div id="searchFormVacancySkills" style="display: none;">
                                     <h4>Поиск записей</h4>
                                     <label for="searchVacancyId">ID вакансии:</label>
-                                    <input type="text" id="searchVacancyId" placeholder="Введите ID вакансии">
+                                    <input type="text" name="searchVacancyId" placeholder="Введите ID вакансии">
                                     <br>
                                     <button onclick="searchRecords('searchFormVacancySkills')">Найти</button>
                                 </div>
@@ -564,11 +559,11 @@
                                 </div>
 
                                 <div id="applicationsFilterForm" style="display: none;">                            
-                                    <label for="statusFilter">Тип занятости:</label>
+                                    <label for="statusFilter">Статус:</label>
                                     <select id="statusFilter" onchange="applyFilters('applicationsFilterForm')">
                                         <option value="">Все</option>
                                         <option value="pending">Ожидает ответа</option>
-                                        <option value="accepted">Принято</option>
+                                        <option value="approved">Принято</option>
                                         <option value="declined">Отклонено</option>
                                     </select>
 
@@ -593,13 +588,13 @@
                                 <div id="searchFormApplications" style="display: none;">
                                     <h4>Поиск записей</h4>
                                     <label for="searchApplicationId">ID отклика:</label>
-                                    <input type="text" id="searchApplicationId" placeholder="Введите ID отклика">
+                                    <input type="text" name="searchApplicationId" placeholder="Введите ID отклика">
                                     <br>
                                     <label for="searchCandidateId">ID кандидата:</label>
-                                    <input type="text" id="searchCandidateId" placeholder="Введите ID кандидата">
+                                    <input type="text" name="searchCandidateId" placeholder="Введите ID кандидата">
                                     <br>
                                     <label for="searchVacancyId">ID вакансии:</label>
-                                    <input type="text" id="searchVacancyId" placeholder="Введите ID вакансии">
+                                    <input type="text" name="searchVacancyId" placeholder="Введите ID вакансии">
                                     <br>
                                     <button onclick="searchRecords('searchFormApplications')">Найти</button>
                                 </div>
@@ -671,10 +666,10 @@
                                 <div id="searchFormResumes" style="display: none;">
                                     <h4>Поиск записей</h4>
                                     <label for="searchResumeId">ID резюме:</label>
-                                    <input type="text" id="searchResumeId" placeholder="Введите ID резюме">
+                                    <input type="text" name="searchResumeId" placeholder="Введите ID резюме">
                                     <br>
                                     <label for="searchCandidateId">ID кандидата:</label>
-                                    <input type="text" id="searchCandidateId" placeholder="Введите ID кандидата">
+                                    <input type="text" name="searchCandidateId" placeholder="Введите ID кандидата">
                                     <br>
                                     <button onclick="searchRecords('searchFormResumes')">Найти</button>
                                 </div>
@@ -730,11 +725,11 @@
                                 </div>
 
                                 <div id="resumeApplicationsFilterForm" style="display: none;">                            
-                                    <label for="statusFilter">Тип занятости:</label>
+                                    <label for="statusFilter">Статус:</label>
                                     <select id="statusFilter" onchange="applyFilters('resumeApplicationsFilterForm')">
                                         <option value="">Все</option>
                                         <option value="pending">Ожидает ответа</option>
-                                        <option value="accepted">Принято</option>
+                                        <option value="approved">Принято</option>
                                         <option value="declined">Отклонено</option>
                                     </select>
 
@@ -759,13 +754,13 @@
                                 <div id="searchFormResumeApplications" style="display: none;">
                                     <h4>Поиск записей</h4>
                                     <label for="searchApplicationId">ID отклика:</label>
-                                    <input type="text" id="searchApplicationId" placeholder="Введите ID отклика">
+                                    <input type="text" name="searchApplicationId" placeholder="Введите ID отклика">
                                     <br>
                                     <label for="searchEmployerId">ID работодателя:</label>
-                                    <input type="text" id="searchEmployerId" placeholder="Введите ID работодателя">
+                                    <input type="text" name="searchEmployerId" placeholder="Введите ID работодателя">
                                     <br>
                                     <label for="searchResumeId">ID резюме:</label>
-                                    <input type="text" id="searchResumeId" placeholder="Введите ID резюме">
+                                    <input type="text" name="searchResumeId" placeholder="Введите ID резюме">
                                     <br>
                                     <button onclick="searchRecords('searchFormResumeApplications')">Найти</button>
                                 </div>
