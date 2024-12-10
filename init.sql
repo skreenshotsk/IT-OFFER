@@ -96,6 +96,9 @@ CREATE TABLE resume_applications (
     applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE INDEX idx_resumes_salary_max ON resumes(salary_max);
+CREATE INDEX idx_vacancies_salary_max ON vacancies(salary_max);
+
 -- Очистка данных
 TRUNCATE TABLE resume_applications CASCADE;
 TRUNCATE TABLE resumes CASCADE;
@@ -216,3 +219,37 @@ INSERT INTO resume_applications (employer_id, resume_id, status)
 VALUES
 (1, 1, 'pending'),
 (2, 2, 'approved');
+
+-- представление
+CREATE VIEW skill_salary_view AS
+SELECT 
+    s.skill_name AS skill,
+    ROUND(AVG((v.salary_min + v.salary_max) / 2), 2) AS average_salary
+FROM 
+    skills s
+JOIN 
+    vacancy_skills vs ON s.skill_id = vs.skill_id
+JOIN 
+    vacancies v ON vs.vacancy_id = v.vacancy_id
+WHERE 
+    v.salary_min IS NOT NULL AND v.salary_max IS NOT NULL
+GROUP BY 
+    s.skill_name
+ORDER BY 
+    average_salary DESC;
+
+
+--триггер
+CREATE OR REPLACE FUNCTION update_application_count() 
+RETURNS TRIGGER AS $$
+BEGIN
+  UPDATE vacancies
+  SET application_count = application_count + 1
+  WHERE vacancy_id = NEW.vacancy_id;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_update_application_count
+AFTER INSERT ON applications
+FOR EACH ROW EXECUTE FUNCTION update_application_count();
