@@ -110,7 +110,9 @@
                                                     <td>
                                                         <% if (typeof user !== 'undefined' && typeof user.user_id !== 'undefined') { %>
                                                             <button data-user-id="<%= user.user_id %>" class="edit-user">Редактировать</button>
-                                                            <button data-user-id="<%= user.user_id %>" class="delete-user">Удалить</button>
+                                                            <form action="/admin/users/<%= user.user_id %>/delete" method="POST">
+                                                                <button type="submit">Удалить</button>
+                                                            </form>
                                                         <% } else { %>
                                                             <span>Нет идентификатора пользователя</span>
                                                         <% } %>
@@ -244,7 +246,11 @@
                                                         <td><%= candidate.experience %></td>
                                                         <td><%= candidate.portfolio_links %></td>
                                                         <td><%= candidate.project_description_candidate %></td>
-                                                        <td>кнопкиtd>
+                                                        <td>
+                                                            <form action="/admin/candidates/<%= candidate.candidate_id %>/delete" method="POST">
+                                                                <button type="submit">Удалить</button>
+                                                            </form>
+                                                        <td>
                                                     </tr>
                                                 <% }); %>
                                             <% } else { %>
@@ -318,7 +324,11 @@
                                                         <td>Company Logo</td>
                                                         <td>Project Photo</td>
                                                         <td><%= employer.project_description %></td>
-                                                        <td>кнопки</td>
+                                                        <td>
+                                                            <form action="/admin/employers/<%= employer.employer_id %>/delete" method="POST">
+                                                                <button type="submit">Удалить</button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 <% }); %>
                                             <% } else { %>
@@ -413,7 +423,11 @@
                                                         <td><%= vacancy.employment_type %></td>
                                                         <td><%= vacancy.location %></td>
                                                         <td><%= vacancy.created_at %></td>
-                                                        <td>кнопки</td>
+                                                        <td>
+                                                            <form action="/admin/vacancies/<%= vacancy.vacancy_id %>/delete" method="POST">
+                                                                <button type="submit">Удалить</button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 <% }); %>
                                             <% } else { %>
@@ -448,7 +462,11 @@
                                                     <tr>
                                                         <td><%= skill.skill_id %></td>
                                                         <td><%= skill.skill_name %></td>
-                                                        <td>кнопки</td>
+                                                        <td>
+                                                            <form action="/admin/skills/<%= skill.skill_id %>/delete" method="POST">
+                                                                <button type="submit">Удалить</button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 <% }); %>
                                             <% } else { %>
@@ -491,7 +509,11 @@
                                                     <tr>
                                                         <td><%= cs.candidate_id %></td>
                                                         <td><%= cs.skill_name %></td>
-                                                        <td>кнопки</td>
+                                                        <td>
+                                                            <form action="/admin/candidate-skills/<%= cs.candidate_id %>/<%= cs.skill_id %>/delete" method="POST">
+                                                                <button type="submit">Удалить</button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 <% }); %>
                                             <% } else { %>
@@ -535,7 +557,11 @@
                                                     <tr>
                                                         <td><%= vs.vacancy_id %></td>
                                                         <td><%= vs.skill_name %></td>
-                                                        <td>кнопки</td>
+                                                        <td>
+                                                            <form action="/admin/vacancy-skills/<%= vs.vacancy_id %>/<%= vs.skill_id %>/delete" method="POST">
+                                                                <button type="submit">Удалить</button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 <% }); %>
                                             <% } else { %>
@@ -620,7 +646,11 @@
                                                         <td><%= app.vacancy_id %></td>
                                                         <td><%= app.status %></td>
                                                         <td><%= app.applied_at %></td>
-                                                        <td>кнопки</td>
+                                                        <td>
+                                                            <form action="/admin/applications/<%= app.application_id %>/delete" method="POST">
+                                                                <button type="submit">Удалить</button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 <% }); %>
                                             <% } else { %>
@@ -701,7 +731,11 @@
                                                         <td><%= r.profession %></td>
                                                         <td><%= r.salary_max %></td>
                                                         <td><%= r.created_at %></td>
-                                                        <td>кнопки</td>
+                                                        <td>
+                                                            <form action="/admin/resumes/<%= r.resume_id %>/delete" method="POST">
+                                                                <button type="submit">Удалить</button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 <% }); %>
                                             <% } else { %>
@@ -786,7 +820,11 @@
                                                         <td><%= ra.resume_id %></td>
                                                         <td><%= ra.status %></td>
                                                         <td><%= ra.applied_at %></td>
-                                                        <td>кнопки</td>
+                                                        <td>
+                                                            <form action="/admin/resume-applications/<%= ra.application_id %>/delete" method="POST">
+                                                                <button type="submit">Удалить</button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 <% }); %>
                                             <% } else { %>

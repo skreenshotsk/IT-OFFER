@@ -85,6 +85,13 @@ const createVacancy = async (vacancy) => {
     return res.rows[0];
 };
 
+const deleteVacancy = async (vacancyId) => {
+    const query = 'DELETE FROM vacancies WHERE vacancy_id = $1 RETURNING *';
+    const values = [vacancyId];
+    const res = await pool.query(query, values);
+    return res.rows[0];
+};
+
 module.exports = {
     getAllVacancies,
     getAllVacanciesByUserId,
@@ -93,4 +100,5 @@ module.exports = {
     getVacancyByEmployerId,
     getAllVacanciesAdmin,
     createVacancy,
+    deleteVacancy,
 };

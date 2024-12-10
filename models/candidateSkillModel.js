@@ -56,6 +56,13 @@ const candidateSkillModel = {
             console.error('Ошибка при получении всех кандидатов с их навыками:', err);
             throw err;
         }
+    },
+
+    deleteCandidateSkill: async (candidateId, skillId) => {
+        const query = 'DELETE FROM candidate_skills WHERE candidate_id = $1 AND skill_id = $2 RETURNING *';
+        const values = [candidateId, skillId];
+        const res = await pool.query(query, values);
+        return res.rows[0];
     }
 };
 

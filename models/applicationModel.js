@@ -65,10 +65,18 @@ const getAllVacancyIdsByCandidateId = async (candidateId) => {
     }
 };
 
+const deleteApplication = async (applicationId) => {
+    const query = 'DELETE FROM applications WHERE application_id = $1 RETURNING *';
+    const values = [applicationId];
+    const res = await pool.query(query, values);
+    return res.rows[0];
+};
+
 module.exports = {
     getAllApplications,
     createApplication,
     getApplicationByCandidateId,
     getCandidatesByVacancyId,
-    getAllVacancyIdsByCandidateId
+    getAllVacancyIdsByCandidateId,
+    deleteApplication,
 };

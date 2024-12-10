@@ -98,6 +98,13 @@ const getAllResumesByUserId = async (user_id) => {
     }
 };
 
+const deleteResume = async (resumeId) => {
+    const query = 'DELETE FROM resumes WHERE resume_id = $1 RETURNING *';
+    const values = [resumeId];
+    const res = await pool.query(query, values);
+    return res.rows[0];
+};
+
 module.exports = {
     createResume,
     getResumeByCandidateId,
@@ -106,4 +113,5 @@ module.exports = {
     getResumeById,
     getAllResumesAdmin,
     getAllResumesByUserId,
+    deleteResume,
 };

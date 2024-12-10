@@ -59,6 +59,12 @@ const getAllCompanyNames = async () => {
     }
 };
 
+const deleteEmployer = async (employerId) => {
+    const query = 'DELETE FROM employers WHERE employer_id = $1 RETURNING *';
+    const values = [employerId];
+    const res = await pool.query(query, values);
+    return res.rows[0];
+};
 
 module.exports = {
     createEmployer,
@@ -67,4 +73,5 @@ module.exports = {
     getAllEmployers,
     getCompanyNameByEmployerId,
     getAllCompanyNames,
+    deleteEmployer,
 };

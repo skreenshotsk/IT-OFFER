@@ -59,6 +59,13 @@ const getAllCandidates = async () => {
     return res.rows;
 };
 
+const deleteCandidate = async (candidateId) => {
+    const query = 'DELETE FROM candidates WHERE candidate_id = $1 RETURNING *';
+    const values = [candidateId];
+    const res = await pool.query(query, values);
+    return res.rows[0];
+};
+
 module.exports = {
     createCandidate,
     updateCandidate,
@@ -66,4 +73,5 @@ module.exports = {
     updateCandidatePhone,
     getAllCandidates,
     getUserIdByCandidateId,
+    deleteCandidate,
 };
