@@ -242,26 +242,28 @@ ORDER BY
 -- представление списка вакансий на которые подали заявки
 CREATE VIEW vacancies_with_applications AS
 SELECT 
-    v.id AS vacancy_id, 
+    v.vacancy_id AS vacancy_id, 
     v.title AS vacancy_title,
-    COUNT(a.id) AS application_count -- вычисляемое поле: количество заявок
+    COUNT(a.application_id) AS application_count -- вычисляемое поле: количество заявок
 FROM vacancies v
-JOIN applications a ON v.id = a.vacancy_id
-GROUP BY v.id, v.title -- группировка по вакансии
-HAVING COUNT(a.id) > 0 -- только те, где есть заявки
+JOIN applications a ON v.vacancy_id = a.vacancy_id
+GROUP BY v.vacancy_id, v.title -- группировка по вакансиям
+HAVING COUNT(a.application_id) > 0 -- только те, где есть заявки
 ORDER BY application_count DESC;
+
 
 
 -- представление списка вакансий, на которые не было подано заявок
 CREATE VIEW vacancies_without_applications AS
 SELECT 
-    v.id AS vacancy_id, 
+    v.vacancy_id AS vacancy_id, 
     v.title AS vacancy_title,
     0 AS application_count -- вычисляемое поле: количество заявок = 0
 FROM vacancies v
-LEFT JOIN applications a ON v.id = a.vacancy_id
-WHERE a.id IS NULL -- вакансии без заявок
+LEFT JOIN applications a ON v.vacancy_id = a.vacancy_id
+WHERE a.application_id IS NULL -- вакансии без заявок
 ORDER BY v.title;
+
 
 
 --триггер
