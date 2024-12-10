@@ -220,7 +220,7 @@ VALUES
 (1, 1, 'pending'),
 (2, 2, 'approved');
 
--- представление
+-- представление "стоимости" навыков по вакансиям
 CREATE VIEW skill_salary_view AS
 SELECT 
     s.skill_name AS skill,
@@ -237,6 +237,31 @@ GROUP BY
     s.skill_name
 ORDER BY 
     average_salary DESC;
+
+
+-- представление списка вакансий на которые подали заявки
+CREATE VIEW vacancies_with_applications AS
+SELECT 
+    v.id AS vacancy_id, 
+    v.title AS vacancy_title,
+    COUNT(a.id) AS application_count -- вычисляемое поле: количество заявок
+FROM vacancies v
+JOIN applications a ON v.id = a.vacancy_id
+GROUP BY v.id, v.title -- группировка по вакансии
+HAVING COUNT(a.id) > 0 -- только те, где есть заявки
+ORDER BY application_count DESC;
+
+
+-- представление списка вакансий, на которые не было подано заявок
+CREATE VIEW vacancies_without_applications AS
+SELECT 
+    v.id AS vacancy_id, 
+    v.title AS vacancy_title,
+    0 AS application_count -- вычисляемое поле: количество заявок = 0
+FROM vacancies v
+LEFT JOIN applications a ON v.id = a.vacancy_id
+WHERE a.id IS NULL -- вакансии без заявок
+ORDER BY v.title;
 
 
 --триггер
