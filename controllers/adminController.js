@@ -94,7 +94,7 @@ const deleteSkill = async (req, res) => {
 const deleteCandidateSkill = async (req, res) => {
     const { candidateId, skillId } = req.params;
     try {
-        await candidateSkillModel.deleteCandidateSkill(candidateId, skillId);
+        await candidateSkillsModel.deleteCandidateSkill(candidateId, skillId);
         res.redirect('/admin');
     } catch (error) {
         console.error(error);
