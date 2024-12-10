@@ -98,7 +98,8 @@ main ul {
 #vacancySkillsTable,
 #applicationsTable,
 #resumesTable,
-#resumeApplicationsTable {
+#resumeApplicationsTable,
+#reportTable {
     border: 1px solid #333;
     margin-left: 15px;
 }
@@ -113,4 +114,31 @@ main ul {
 
 .admin-table td, .admin-table th {
     text-align: center;
+}
+
+.otchet h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px;
+    text-align: center;
+}
+
+#reportTable {
+    display: flexbox;
+    justify-content: center;
+}
+
+#reportTable ul {
+    list-style: none;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+#reportTable ul li {
+    border: 3px solid #333;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
 }
