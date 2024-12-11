@@ -93,23 +93,6 @@
         </div>     
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const backButton = document.getElementById('backButton');
-            if (backButton) {
-                console.log('123123123');
-                backButton.addEventListener('click', () => {
-                    if (document.referrer) {
-                        window.history.back();
-                        console.log('назад');
-                    } else {
-                        alert('Предыдущая страница недоступна.');
-                    }
-                });
-            }
-        });
-    </script>
-
     <%- include('partials/footer') %>
     
 </body>
