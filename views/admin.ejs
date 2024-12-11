@@ -12,12 +12,7 @@
 <body>
     <div class="wrapper">
         <header class="container">
-            <span class="logo"><a href="index.html">IT-ОФФЕР</a></span>
-            <nav>
-                <ul>
-                    <li>Выход из админ панели</li>
-                </ul>
-            </nav>
+            <span class="logo"><a href="/">IT-ОФФЕР</a></span>
         </header>
 
         <div class="container">
@@ -48,14 +43,11 @@
                                         <option value="candidate">Кандидат</option>
                                         <option value="employer">Работодатель</option>
                                     </select>
-                        
-                                    <label for="dateFilter">Дата регистрации:</label>
-                                    <input type="date" id="dateFilter" onchange="applyFilters('userFilterForm')">
                                 </div>
                             
                                 <div id="userSortMenu" style="display: none;">
                                     <label for="sortOptions">Сортировать по:</label>
-                                    <select id="sortOptions" onchange="applySort()">
+                                    <select id="sortOptions" onchange="applySort('usersBody')">
                                         <option value="0_asc">User ID ↑</option>
                                         <option value="0_desc">User ID ↓</option>
                                         <option value="1_asc">Имя ↑</option>
@@ -64,8 +56,6 @@
                                         <option value="2_desc">Фамилия ↓</option>
                                         <option value="6_asc">Роль ↑</option>
                                         <option value="6_desc">Роль ↓</option>
-                                        <option value="7_asc">Дата регистрации ↑</option>
-                                        <option value="7_desc">Дата регистрации ↓</option>
                                     </select>
                                 </div>
 
@@ -109,7 +99,6 @@
                                                     <td><%= user.created_at %></td>
                                                     <td>
                                                         <% if (typeof user !== 'undefined' && typeof user.user_id !== 'undefined') { %>
-                                                            <button data-user-id="<%= user.user_id %>" class="edit-user">Редактировать</button>
                                                             <form action="/admin/users/<%= user.user_id %>/delete" method="POST">
                                                                 <button type="submit">Удалить</button>
                                                             </form>
@@ -200,7 +189,7 @@
 
                                 <div id="candidateSortMenu" style="display: none;">
                                     <label for="sortOptions">Сортировать по:</label>
-                                    <select id="sortOptions" onchange="applySort()">
+                                    <select id="sortOptions" onchange="applySort('candidatesBody')">
                                         <option value="0_asc">ID кандидата ↑</option>
                                         <option value="0_desc">ID кандидата ↓</option>
                                         <option value="1_asc">User ID ↑</option>
@@ -361,9 +350,6 @@
                                         <option value="Стажировка">Стажировка</option>
                                         <option value="Проектная работа">Проектная работа</option>
                                     </select>
-
-                                    <label for="dateFilter">Дата создания:</label>
-                                    <input type="date" id="dateFilter" onchange="applyFilters('vacanciesFilterForm')">
                                 </div>
 
                                 <div id="vacanciesSortMenu" style="display: none;">
@@ -375,8 +361,6 @@
                                         <option value="1_desc">ID работодателя ↓</option>
                                         <option value="4_asc">Зарплата ↑</option>
                                         <option value="4_desc">Зарплата ↓</option>
-                                        <option value="9_asc">Дата создания ↑</option>
-                                        <option value="9_desc">Дата создания ↓</option>
                                     </select>
                                 </div>
 
@@ -592,9 +576,6 @@
                                         <option value="approved">Принято</option>
                                         <option value="declined">Отклонено</option>
                                     </select>
-
-                                    <label for="dateFilter">Дата подачи:</label>
-                                    <input type="date" id="dateFilter" onchange="applyFilters('applicationsFilterForm')">
                                 </div>
 
                                 <div id="applicationSortMenu" style="display: none;">
@@ -606,8 +587,6 @@
                                         <option value="1_desc">ID кандидата ↓</option>
                                         <option value="2_asc">ID вакансии ↑</option>
                                         <option value="2_desc">ID вакансии ↓</option>
-                                        <option value="4_asc">Дата подачи ↑</option>
-                                        <option value="4_desc">Дата подачи ↓</option>
                                     </select>
                                 </div>
 
@@ -669,16 +648,7 @@
                             <div id="resumesTable" style="display: none;">
                                 <div class="admin-actions">
                                     <button onclick="toggleElement('searchFormResumes')">Поиск записей</button>
-                                    <button onclick="toggleElement('resumesFilterForm')">Фильтры</button>
                                     <button onclick="toggleElement('resumesSortMenu')">Сортировка</button> 
-                                </div>
-
-                                <div id="resumesFilterForm" style="display: none;">                            
-                                    <label for="birthdateFilter">Дата рождения:</label>
-                                    <input type="date" id="birthdateFilter" onchange="applyFilters('resumesFilterForm')">
-
-                                    <label for="dateFilter">Дата создания:</label>
-                                    <input type="date" id="dateFilter" onchange="applyFilters('resumesFilterForm')">
                                 </div>
 
                                 <div id="resumesSortMenu" style="display: none;">
@@ -688,8 +658,6 @@
                                         <option value="0_desc">ID резюме ↓</option>
                                         <option value="1_asc">ID кандидата ↑</option>
                                         <option value="1_desc">ID кандидата ↓</option>
-                                        <option value="7_asc">Дата создания ↑</option>
-                                        <option value="7_desc">Дата создания ↓</option>
                                     </select>
                                 </div>
 
@@ -766,9 +734,6 @@
                                         <option value="approved">Принято</option>
                                         <option value="declined">Отклонено</option>
                                     </select>
-
-                                    <label for="dateFilter">Дата подачи:</label>
-                                    <input type="date" id="dateFilter" onchange="applyFilters('resumeApplicationsFilterForm')">
                                 </div>
 
                                 <div id="resumeApplicationsSortMenu" style="display: none;">
@@ -780,8 +745,6 @@
                                         <option value="1_desc">ID работодателя ↓</option>
                                         <option value="2_asc">ID резюме ↑</option>
                                         <option value="2_desc">ID резюме ↓</option>
-                                        <option value="4_asc">Дата создания ↑</option>
-                                        <option value="4_desc">Дата создания ↓</option>
                                     </select>
                                 </div>
 
