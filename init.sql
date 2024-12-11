@@ -102,6 +102,9 @@ CREATE TABLE admins (
     password_hash VARCHAR(255) NOT NULL
 );
 
+ALTER TABLE vacancies ADD COLUMN application_count INT DEFAULT 0; --для триггера
+
+
 CREATE INDEX idx_resumes_salary_max ON resumes(salary_max);
 CREATE INDEX idx_vacancies_salary_max ON vacancies(salary_max);
 
