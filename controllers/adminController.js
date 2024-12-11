@@ -37,7 +37,6 @@ const adminPanel = async (req, res) => {
     }
 };
 
-// Удаление пользователя
 const deleteUser = async (req, res) => {
     const userId = req.params.id;
     try {
@@ -49,7 +48,6 @@ const deleteUser = async (req, res) => {
     }
 };
 
-// Удаление кандидата
 const deleteCandidate = async (req, res) => {
     const candidateId = req.params.id;
     try {
@@ -61,7 +59,6 @@ const deleteCandidate = async (req, res) => {
     }
 };
 
-// Удаление работодателя
 const deleteEmployer = async (req, res) => {
     const employerId = req.params.id;
     try {
@@ -73,7 +70,6 @@ const deleteEmployer = async (req, res) => {
     }
 };
 
-// Удаление вакансии
 const deleteVacancy = async (req, res) => {
     const vacancyId = req.params.id;
     try {
@@ -85,7 +81,6 @@ const deleteVacancy = async (req, res) => {
     }
 };
 
-// Удаление навыка
 const deleteSkill = async (req, res) => {
     const skillId = req.params.id;
     try {
@@ -97,7 +92,6 @@ const deleteSkill = async (req, res) => {
     }
 };
 
-// Удаление связи кандидата и навыка
 const deleteCandidateSkill = async (req, res) => {
     const { candidateId, skillId } = req.params;
     try {
@@ -109,7 +103,6 @@ const deleteCandidateSkill = async (req, res) => {
     }
 };
 
-// Удаление связи вакансии и навыка
 const deleteVacancySkill = async (req, res) => {
     const { vacancyId, skillId } = req.params;
     try {
@@ -121,7 +114,6 @@ const deleteVacancySkill = async (req, res) => {
     }
 };
 
-// Удаление заявки
 const deleteApplication = async (req, res) => {
     const applicationId = req.params.id;
     try {
@@ -133,7 +125,6 @@ const deleteApplication = async (req, res) => {
     }
 };
 
-// Удаление резюме
 const deleteResume = async (req, res) => {
     const resumeId = req.params.id;
     try {
@@ -145,7 +136,6 @@ const deleteResume = async (req, res) => {
     }
 };
 
-// Удаление заявки на резюме
 const deleteResumeApplication = async (req, res) => {
     const resumeApplicationId = req.params.id;
     try {

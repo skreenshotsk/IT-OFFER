@@ -96,6 +96,12 @@ CREATE TABLE resume_applications (
     applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE admins (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL
+);
+
 CREATE INDEX idx_resumes_salary_max ON resumes(salary_max);
 CREATE INDEX idx_vacancies_salary_max ON vacancies(salary_max);
 
@@ -219,6 +225,10 @@ INSERT INTO resume_applications (employer_id, resume_id, status)
 VALUES
 (1, 1, 'pending'),
 (2, 2, 'approved');
+
+INSERT INTO admins (username, password_hash)
+VALUES
+('admin@admin.admin', '$2b$10$oyi9Qd1cdX6GGBLG2B4yWOtYKN0uqOy5bGQ9JBjJahqKE5p3T9fwS');
 
 -- представление "стоимости" навыков по вакансиям
 CREATE VIEW skill_salary_view AS
