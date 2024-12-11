@@ -8,6 +8,8 @@ const vacancySkillsModel = require('../models/skillsVacancyModel');
 const applicationModel = require('../models/applicationModel');
 const resumeModel = require('../models/resumeModel');
 const resumeApplicationModel = require('../models/resumeApplicationModel');
+const reportModel = require('../models/reportModel');
+
 
 const adminPanel = async (req, res) => {
     try {
@@ -22,8 +24,13 @@ const adminPanel = async (req, res) => {
         const resumes = await resumeModel.getAllResumesAdmin();
         const resumeApplications = await resumeApplicationModel.getAllResumeApplications();
 
+        //отчеты
+        const skillSalaryData = await reportModel.getSkillSalaryView();
+        const vacanciesWithApps = await reportModel.getVacanciesWithApplications();
+        const vacanciesWithoutApps = await reportModel.getVacanciesWithoutApplications();
+
         res.render('admin', { users, candidates, employers, vacancies, skills,
-            candidateSkills, vacancySkills, applications, resumes, resumeApplications });
+            candidateSkills, vacancySkills, applications, resumes, resumeApplications, skillSalaryData, vacanciesWithApps, vacanciesWithoutApps });
     } catch (error) {
         console.error(error);
         res.status(500).send('Server error');

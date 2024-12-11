@@ -854,7 +854,12 @@
                                                 </thead>
     
                                                 <tbody>
-    
+                                                    <% skillSalaryData.forEach(row => { %>
+                                                        <tr>
+                                                            <td><%= row.skill %></td>
+                                                            <td><%= row.average_salary %></td>
+                                                        </tr>
+                                                    <% }) %>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -873,7 +878,13 @@
                                                 </thead>
     
                                                 <tbody>
-    
+                                                    <% vacanciesWithApps.forEach(row => { %>
+                                                        <tr>
+                                                            <td><%= row.vacancy_id %></td>
+                                                            <td><%= row.vacancy_title %></td>
+                                                            <td><%= row.application_count %></td>
+                                                        </tr>
+                                                    <% }) %>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -892,7 +903,13 @@
                                                 </thead>
     
                                                 <tbody>
-    
+                                                    <% vacanciesWithoutApps.forEach(row => { %>
+                                                        <tr>
+                                                            <td><%= row.vacancy_id %></td>
+                                                            <td><%= row.vacancy_title %></td>
+                                                            <td><%= row.application_count %></td>
+                                                        </tr>
+                                                    <% }) %>
                                                 </tbody>
                                             </table>
                                         </div>
