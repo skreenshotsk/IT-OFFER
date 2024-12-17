@@ -13,10 +13,7 @@
 <body>
     <div class="wrapper">
         <%- include('partials/header') %>
-
             <div class="container">
-                <button type="submit" id="submitResumeButton" class="submit-button">Назад</button>
-                <h3>Обновить резюме</h3>
                 <style>
                     input[disabled] {
                         background-color: #f0f0f0;
@@ -25,6 +22,8 @@
                     }
                 </style>
                 <main>
+                    <h3>Обновить резюме</h3>
+                    <a href="/auth/profile"><button type="submit" id="backButton" class="submit-button">Назад</button></a>
                     <section class="create-resume-section">
                         <form id="resumeForm" action="/resume/update" method="POST">
                             <label for="resumeLastName">Фамилия:</label>
