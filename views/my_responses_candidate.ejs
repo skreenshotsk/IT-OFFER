@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,101 +8,147 @@
     <link rel="stylesheet" href="/assets/css/style_common.css">
     <link rel="stylesheet" href="/assets/css/style_responses_candidate.css">
 </head>
+
 <body>
     <div class="wrapper">
         <div class="container">
             <%- include('partials/header') %>
 
-            <main>
-                <!-- Условный блок для кандидата -->
-                <a href="/auth/profile"><button type="submit" id="backButton" class="submit-button">Назад</button></a>
-                <section class="responses-section candidate-view">
-                    <h2>Ваши отклики</h2>
-                    <div class="responses-list">
-                        <div class="response" id="response-1">
-                            <% if (vacancies && vacancies.length > 0) { %>
-                                <% vacancies.forEach(function(vacancy, vacancyIndex) { %>
-                                    <h3>Вакансия: <%= vacancy.title %> </h3>
-                                    <% employers.forEach(function(employer, employerIndex) { %>
-                                        <% if (employer.employer_id === vacancy.employer_id) { %>
-                                        <p><strong>Компания:</strong> <%= employer.company_name %></p>
-                                        <% } %>
-                                    <% }) %>
-                                    <p><strong>Описание:</strong> <%= vacancy.description %> </p>
-                                    <p><strong>Зарплата:</strong> <%= vacancy.salary_max %> </p>
-                                    <p><strong>Местоположение:</strong> <%= vacancy.location %> </p>
-                                    <p><strong>Образование:</strong> <%= vacancy.education %> </p>
-                                    <p><strong>Требуемый опыт:</strong> <%= vacancy.experience %> </p>
-                                    <p><strong>График:</strong> <%= vacancy.schedule %> </p>
-                                    <p><strong>Статус:</strong> Ожидает рассмотрения </p>
-                                    <p><strong>Дата отклика:</strong> 2023-10-01</p>
-                                <% }) %>
-                            <% } else { %>
-                                   <p>Вы не откнулись ни на одну вакансию, исправляйтесь!</p>
-                             <% } %>
+                <main>
+                    <!-- Условный блок для кандидата -->
+                    <a href="/auth/profile"><button type="submit" id="backButton"
+                            class="submit-button">Назад</button></a>
+                    <section class="responses-section candidate-view">
+                        <h2>Ваши отклики</h2>
+                        <div class="responses-list">
+                            <div class="response" id="response-1">
+                                <% if (vacancies && vacancies.length> 0) { %>
+                                    <% vacancies.forEach(function(vacancy, vacancyIndex) { %>
+                                        <h3>Вакансия: <%= vacancy.title %>
+                                        </h3>
+                                        <% employers.forEach(function(employer, employerIndex) { %>
+                                            <% if (employer.employer_id===vacancy.employer_id) { %>
+                                                <p><strong>Компания:</strong>
+                                                    <%= employer.company_name %>
+                                                </p>
+                                                <% } %>
+                                                    <% }) %>
+                                                        <p><strong>Описание:</strong>
+                                                            <%= vacancy.description %>
+                                                        </p>
+                                                        <p><strong>Зарплата:</strong>
+                                                            <%= vacancy.salary_max %>
+                                                        </p>
+                                                        <p><strong>Местоположение:</strong>
+                                                            <%= vacancy.location %>
+                                                        </p>
+                                                        <p><strong>Образование:</strong>
+                                                            <%= vacancy.education %>
+                                                        </p>
+                                                        <p><strong>Требуемый опыт:</strong>
+                                                            <%= vacancy.experience %>
+                                                        </p>
+                                                        <p><strong>График:</strong>
+                                                            <%= vacancy.schedule %>
+                                                        </p>
+                                                        <p><strong>Статус:</strong> Ожидает рассмотрения </p>
+                                                        <p><strong>Дата отклика:</strong> 2023-10-01</p>
+                                                        <% }) %>
+                                                            <% } else { %>
+                                                                <p>Вы не откнулись ни на одну вакансию, исправляйтесь!
+                                                                </p>
+                                                                <% } %>
+                            </div>
                         </div>
-                    </div>
-                    <div class="no-responses-message">Откликов пока нет.</div>
-                </section>
+                        <div class="no-responses-message">Откликов пока нет.</div>
+                    </section>
 
-                <!-- Условный блок для работодателя -->
-                <section class="responses-section employer-view">
-                    <h2>Отклики на ваш резюме</h2>
-                    <div class="responses-list">
-                        <div class="response" id="response-3">
-                            <h3>Ваше резюме</h3>
-                            <p><strong>Профессия:</strong> <%= resume.profession %> </p>
-                            <p><strong>ЗП которую вы хотите:</strong> <%= resume.salary_max %> </p>
-                            <p><strong>Вы родились:</strong> <%= resume.birth_date %> </p>
-                            <p><strong>Местоположение:</strong> <%= resume.location %> </p>
-                            <h3>Работодатели хотят с вами связаться:</h3>
-                            <% if (employers && employers.length > 0) { %>
-                                <% employers.forEach(function(employer, employerIndex) { %>
-                                    <p><strong>Компания:</strong> <%= employer.company_name %></p>
-                                        <p><strong>Дата отклика:</strong> <%= applications[employerIndex].applied_at %></p>
-                                    <div class="response-actions">
-                                        <button class="accept-button">Принять</button>
-                                        <button class="reject-button" onclick="rejectResponse('response-3')">Отклонить</button>
-                                   </div>
-                                <% }) %>
-                            <% } else { %>
-                                <p>Нет работодателей, но мы уверены скоро они появятся.</p>
-                                <button class="accept-button">Получить профессиональную помощь по составлению резюме</button>
-                            <% } %>
+                    <!-- Условный блок для работодателя -->
+                    <section class="responses-section employer-view">
+                        <h2>Отклики на ваш резюме</h2>
+                        <div class="responses-list">
+                            <div class="response" id="response-3">
+                                <h3>Ваше резюме</h3>
+                                <p><strong>Профессия:</strong>
+                                    <%= resume.profession %>
+                                </p>
+                                <p><strong>ЗП которую вы хотите:</strong>
+                                    <%= resume.salary_max %>
+                                </p>
+                                <p><strong>Вы родились:</strong>
+                                    <%= resume.birth_date %>
+                                </p>
+                                <p><strong>Местоположение:</strong>
+                                    <%= resume.location %>
+                                </p>
+                                <h3>Работодатели хотят с вами связаться:</h3>
+                                <% if (employers && employers.length> 0) { %>
+                                    <% employers.forEach(function(employer, employerIndex) { %>
+                                        <p><strong>Дата отклика:</strong>
+                                            <%= applications[employerIndex].applied_at %>
+                                        </p>
+                                        <% if (applications[employerIndex].status==='pending' ) { %>
+                                            <p><strong>Компания:</strong>
+                                                Откроется при нажатии на "принять"
+                                            </p>
+                                            <div class="response-actions">
+                                                <form action="/resume_application/accept-response" method="POST">
+                                                    <input type="hidden" name="responseId"
+                                                        value="<%= applications[employerIndex].application_id %>">
+                                                    <button type="submit" class="accept-button">Принять</button>
+                                                </form>
+                                                <button class="reject-button"
+                                                    onclick="rejectResponse('response-3')">Отклонить</button>
+                                            </div>
+                                            <% } else { %>
+                                                <p><strong>Компания: </strong>
+                                                    <%= employer.company_name %>
+                                                </p>
+                                                <p><strong>Сайт: </strong>
+                                                    <%= employer.website %>
+                                                </p>
+                                                <% } %>
+                                                    <% }) %>
+                                                        <% } else { %>
+                                                            <p>Нет работодателей, но мы уверены скоро они появятся.</p>
+                                                            <button class="accept-button">Получить профессиональную
+                                                                помощь по составлению резюме</button>
+                                                            <% } %>
+                            </div>
                         </div>
-                    </div>
-                    <div class="no-responses-message">Откликов пока нет.</div>
-                </section>
-            </main>
+                        <div class="no-responses-message">Откликов пока нет.</div>
+                    </section>
+                </main>
         </div>
     </div>
 
     <%- include('partials/footer') %>
 
-    <script>
-        function rejectResponse(responseId) {
-            const responseElement = document.getElementById(responseId);
-            if (responseElement) {
-                responseElement.remove();
-                checkForResponses();
-            }
-        }
-
-        function checkForResponses() {
-            const responsesSections = document.querySelectorAll('.responses-section');
-            responsesSections.forEach(section => {
-                const responsesList = section.querySelector('.responses-list');
-                const noResponsesMessage = section.querySelector('.no-responses-message');
-                if (responsesList.children.length === 0) {
-                    noResponsesMessage.style.display = 'block';
-                } else {
-                    noResponsesMessage.style.display = 'none';
+        <script>
+            function rejectResponse(responseId) {
+                const responseElement = document.getElementById(responseId);
+                if (responseElement) {
+                    responseElement.remove();
+                    checkForResponses();
                 }
-            });
-        }
+            }
 
-        // Проверка при загрузке страницы
-        document.addEventListener('DOMContentLoaded', checkForResponses);
-    </script>
+            function checkForResponses() {
+                const responsesSections = document.querySelectorAll('.responses-section');
+                responsesSections.forEach(section => {
+                    const responsesList = section.querySelector('.responses-list');
+                    const noResponsesMessage = section.querySelector('.no-responses-message');
+                    if (responsesList.children.length === 0) {
+                        noResponsesMessage.style.display = 'block';
+                    } else {
+                        noResponsesMessage.style.display = 'none';
+                    }
+                });
+            }
+
+            // Проверка при загрузке страницы
+            document.addEventListener('DOMContentLoaded', checkForResponses);
+        </script>
 </body>
+
 </html>

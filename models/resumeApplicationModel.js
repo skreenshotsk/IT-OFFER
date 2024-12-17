@@ -76,6 +76,28 @@ const deleteResumeApplication = async (resumeApplicationId) => {
     return res.rows[0];
 };
 
+const updateResumeApplicationStatus = async (application_id) => {
+    const query = `
+        UPDATE resume_applications
+        SET status = 'accepted'
+        WHERE application_id = $1
+        RETURNING *;
+    `;
+    const values = [application_id];
+
+    try {
+        const res = await pool.query(query, values);
+        if (res.rows.length > 0) {
+            return res.rows[0];
+        } else {
+            throw new Error('Заявка с указанным application_id не найдена');
+        }
+    } catch (error) {
+        console.error('Ошибка при обновлении статуса заявки:', error);
+        throw error;
+    }
+};
+
 module.exports = {
     getAllResumeApplications,
     createResumeApplication,
@@ -84,4 +106,5 @@ module.exports = {
     getAllEmployerIdsByResumeId,
     getApplicationsResumeByResumeId,
     deleteResumeApplication,
+    updateResumeApplicationStatus,
 };

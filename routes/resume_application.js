@@ -3,7 +3,7 @@ const router = express.Router();
 const { getAllVacancyIdsByCandidateId } = require('../models/applicationModel');
 const { getEmployerByUserId, getEmployerByEmployerId } = require('../models/employerModel');
 const { getCandidateByUserId } = require('../models/candidateModel');
-const { createResumeApplication, getApplicationsResumeByResumeId, getAllEmployerIdsByResumeId } = require('../models/resumeApplicationModel');
+const { createResumeApplication, getApplicationsResumeByResumeId, getAllEmployerIdsByResumeId, updateResumeApplicationStatus } = require('../models/resumeApplicationModel');
 const { getVacancyById } = require('../models/vacancyModel');
 const { getUserById } = require('../models/userModel');
 const { getResumeByCandidateId } = require('../models/resumeModel');
@@ -48,6 +48,18 @@ router.get('/response_to_my_resumes', async (req, res) => {
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
+    }
+});
+
+router.post('/accept-response', async (req, res) => {
+    const { responseId } = req.body;
+  
+    try {
+      await updateResumeApplicationStatus(responseId, { status: 'accepted' });
+      console.log(req.body);
+      res.redirect('/resume_application/response_to_my_vacancies');
+    } catch (error) {
+      res.status(500).send('Ошибка при обновлении статуса');
     }
 });
 
