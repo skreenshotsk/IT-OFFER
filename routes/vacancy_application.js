@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createApplication } = require('../models/applicationModel');
+const { createApplication, updateApplicationStatus } = require('../models/applicationModel');
 const { getCandidateByUserId, getUserIdByCandidateId } = require('../models/candidateModel');
 const { getVacancyByEmployerId, getAllVacanciesByUserId } = require('../models/vacancyModel');
 const { getEmployerByUserId } = require('../models/employerModel');
@@ -81,5 +81,16 @@ router.get('/response_to_my_vacancies', async (req, res) => {
     }
 });
 
+router.post('/accept-response', async (req, res) => {
+    const { responseId } = req.body;
+  
+    try {
+      await updateApplicationStatus(responseId, { status: 'accepted' });
+      console.log(req.body);
+      res.redirect('/vacancy_application/response_to_my_vacancies');
+    } catch (error) {
+      res.status(500).send('Ошибка при обновлении статуса');
+    }
+});
 
 module.exports = router;
