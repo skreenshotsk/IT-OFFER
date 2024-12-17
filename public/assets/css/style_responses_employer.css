@@ -64,32 +64,12 @@
     margin-top: 15px;
     display: flex;
     gap: 10px;
-    justify-content: flex-end;
 }
 
 .response-actions button {
     padding: 10px 15px;
-    border: none;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.response-actions .accept-button {
-    color: #fff;
-}
-
-.response-actions .accept-button:hover {
-    transform: scale(1.05);
-}
-
-.response-actions .reject-button {
-    color: #fff;
-}
-
-.response-actions .reject-button:hover {
-    transform: scale(1.05);
 }
 
 .no-responses-message {
@@ -109,6 +89,6 @@
     background-color: #e9e9e9;
 }
 
-.submit-button {
+.submit-button, .reject-button, .accept-button {
     width: 300px;
 }
